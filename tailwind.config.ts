@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['"Playfair Display"', '"Noto Serif KR"', '"Pretendard"', 'serif'],
-        body: ['"Pretendard"', '"Noto Sans KR"', '-apple-system', 'sans-serif'],
-        serif: ['"Playfair Display"', '"Noto Serif KR"', 'Georgia', 'serif'],
-        label: ['"Pretendard"', '"Noto Sans KR"', 'sans-serif'],
-        sans: ['"Pretendard"', '"Noto Sans KR"', 'sans-serif'],
+        heading: ['"Playfair Display"', '"Pretendard"', 'serif'],
+        body: ['"Pretendard"', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Pretendard"', 'serif'],
+        label: ['"Pretendard"', 'sans-serif'],
+        sans: ['"Pretendard"', 'sans-serif'],
       },
       transitionDuration: {
         '700': '700ms',

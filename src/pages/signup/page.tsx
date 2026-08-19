@@ -102,7 +102,7 @@ export default function SignupPage() {
               <span className="italic font-normal text-[#e8e6df]">연결되는 곳.</span>
             </h1>
             <p className="font-sans text-sm text-[#f4f3ee]/80 leading-relaxed">
-              분당태성빌딩 B1 오마드랩스에서 매월 진행되는 에디토리얼 독서클럽의 멤버로 함께하세요.
+              서울특별시 종로구 창경궁로 270 오마드랩스에서 매월 진행되는 에디토리얼 독서클럽의 멤버로 함께하세요.
             </p>
           </div>
         </div>

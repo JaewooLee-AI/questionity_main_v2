@@ -50,7 +50,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/80 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl font-sans tracking-tightest" style={{ transitionDelay: "0.3s" }}>
-            경기도 성남시 분당태성빌딩 B1 오마드랩스를 거점으로,<br className="hidden sm:block" />
+            서울특별시 종로구 창경궁로 270 (혜화역 4번 출구 도보 3분)을 거점으로,<br className="hidden sm:block" />
             2,000+ 명의 독서 멤버와 5,000+ 건의 지적 대화가 만들어내는 프리미엄 커뮤니티.
           </p>
 

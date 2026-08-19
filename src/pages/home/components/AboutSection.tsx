@@ -30,11 +30,11 @@ export default function AboutSection() {
             <div className="group relative overflow-hidden aspect-[4/3] bg-[#e8e6df] border border-[#1a1a1a]/15 transition-all duration-700 ease-out-ace hover:-translate-y-2 hover:shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80"
-                alt="분당태성빌딩 오마드랩스 독서 커뮤니티"
+                alt="혜화 오마드랩스 독서 커뮤니티"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 bg-[#1a1a1a] text-[#f4f3ee] font-mono text-[10px] font-bold px-3 py-1.5 uppercase tracking-widest">
-                VENUE: BUNDANG TAESEONG BLDG B1
+                VENUE: CHANGGYEONGGUNG-RO 270
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function AboutSection() {
             </h2>
 
             <p className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-[#1a1a1a]/80 leading-relaxed text-base md:text-lg mb-6 font-sans tracking-tightest" style={{ transitionDelay: "0.3s" }}>
-              퀘스처니티(Questionity)는 경기도 성남시 분당태성빌딩 지하 1층 오마드랩스(황윤철 대표)를 거점으로,
+              퀘스처니티(Questionity)는 서울특별시 종로구 창경궁로 270 오마드랩스(황윤철 대표)를 거점으로,
               온라인과 오프라인의 경계를 허무는 프리미엄 독서클럽 플랫폼입니다.
             </p>
 
@@ -67,7 +67,7 @@ export default function AboutSection() {
                 매월 엄선 도서 50선
               </div>
               <div className="px-5 py-3 border border-[#1a1a1a] font-serif text-xs font-bold uppercase tracking-widest text-[#1a1a1a]">
-                분당태성빌딩 코워킹 스페이스
+                혜화 오프라인 코워킹 아지트
               </div>
               <div className="px-5 py-3 bg-[#8C2318] text-[#f4f3ee] font-serif text-xs font-bold uppercase tracking-widest">
                 2,000+ 누적 독서 멤버

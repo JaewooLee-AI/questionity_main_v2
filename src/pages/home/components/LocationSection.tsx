@@ -4,8 +4,8 @@ export default function LocationSection() {
   const [copied, setCopied] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const addressText = "경기도 성남시 분당구 분당태성빌딩 B1 오마드랩스";
-  const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent("분당태성빌딩")}`;
+  const addressText = "서울특별시 종로구 창경궁로 270 (혜화역 4번 출구 도보 3분)";
+  const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent("서울특별시 종로구 창경궁로 270")}`;
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -53,7 +53,7 @@ export default function LocationSection() {
             className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto font-sans tracking-tightest"
             style={{ transitionDelay: "0.2s" }}
           >
-            분당태성빌딩 지하 1층 오마드랩스 오프라인 공간에서 아날로그적 질감과 지적인 대화를 나누어보세요.
+            혜화역 오프라인 독서 아지트 오마드랩스에서 아날로그적 질감과 지적인 대화를 나누어보세요.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function LocationSection() {
                   {addressText}
                 </span>
                 <span className="text-[10px] font-mono font-bold text-[#8C2318] bg-[#e8e6df] px-3 py-1 uppercase tracking-widest inline-block">
-                  분당태성빌딩 B1층
+                  혜화역 4번 출구 3분
                 </span>
               </div>
 
@@ -126,8 +126,8 @@ export default function LocationSection() {
             <div className="space-y-6">
               <div className="space-y-2 pb-6 border-b border-[#1a1a1a]/10">
                 <span className="text-xs font-bold text-[#8C2318] uppercase tracking-widest block">OFFLINE ADDRESS</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">분당태성빌딩 B1 오마드랩스</h3>
-                <p className="text-xs text-[#1a1a1a]/60">경기도 성남시 분당구 지하 1층 오프라인 아지트</p>
+                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">종로구 창경궁로 270 오마드랩스</h3>
+                <p className="text-xs text-[#1a1a1a]/60">서울특별시 종로구 오프라인 독서 아지트</p>
               </div>
 
               {/* Transportation Details */}
@@ -139,7 +139,7 @@ export default function LocationSection() {
                   <div>
                     <strong className="text-[#1a1a1a] block font-bold text-sm mb-1 font-serif">오프라인 코워킹 라운지</strong>
                     <p className="text-[#1a1a1a]/70 leading-relaxed">
-                      분당태성빌딩 지하 1층 오마드랩스 공간에서 독서 모임 및 작업 가능.
+                      창경궁로 270 오마드랩스 공간에서 독서 모임 및 작업 가능.
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function LocationSection() {
                   <div>
                     <strong className="text-[#1a1a1a] block font-bold text-sm mb-1 font-serif">주차 지원</strong>
                     <p className="text-[#1a1a1a]/70 leading-relaxed">
-                      태성빌딩 지하 주차장 무료 2시간 지원.
+                      지하 주차장 무료 2시간 지원.
                     </p>
                   </div>
                 </div>

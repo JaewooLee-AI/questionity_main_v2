@@ -66,7 +66,7 @@ export default function LoginPage() {
               <span className="italic font-normal text-[#e8e6df]">특별한 소모임.</span>
             </h1>
             <p className="font-sans text-sm text-[#f4f3ee]/80 leading-relaxed">
-              분당태성빌딩 B1 오마드랩스를 거점으로 2,000+ 멤버들이 활발히 토론하는 프리미엄 커뮤니티입니다.
+              서울특별시 종로구 창경궁로 270 오마드랩스를 거점으로 2,000+ 멤버들이 활발히 토론하는 프리미엄 커뮤니티입니다.
             </p>
           </div>
         </div>

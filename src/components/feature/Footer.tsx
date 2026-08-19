@@ -48,7 +48,7 @@ export default function Footer() {
               책으로 이어지는 특별한 사람들의 프리미엄 에디토리얼 커뮤니티.
             </p>
             <p className="font-sans text-xs text-[#f4f3ee]/50 leading-relaxed mb-6">
-              경기도 성남시 분당구 분당태성빌딩 지하 1층 오마드랩스
+              서울특별시 종로구 창경궁로 270 (혜화역 4번 출구 도보 3분)
               <br />
               누적 독서 멤버 2,000+ 명 | 5,000+ 건의 독후감 데이터
             </p>
@@ -108,7 +108,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-[#f4f3ee]/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-[#f4f3ee]/40">
           <p>
-            퀘스처니티 (Questionity) | 오마드랩스 (황윤철 대표) | 분당태성빌딩 B1
+            퀘스처니티 (Questionity) | 오마드랩스 (황윤철 대표) | 서울특별시 종로구 창경궁로 270
           </p>
           <p>
             &copy; 2026 QUESTIONITY. All rights reserved.

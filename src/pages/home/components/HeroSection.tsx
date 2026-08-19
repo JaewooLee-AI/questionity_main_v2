@@ -1,9 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { heroContent } from "@/mocks/home";
 
+const HERO_SLIDES = [
+  {
+    type: "video",
+    url: "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-an-open-book-in-a-library-42848-large.mp4",
+  },
+  {
+    type: "image",
+    url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80",
+  },
+  {
+    type: "image",
+    url: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&q=80",
+  },
+  {
+    type: "image",
+    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80",
+  },
+];
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-advance hero media slides every 5 seconds for Ace Hotel moving image feel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -25,25 +53,42 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1a1a1a] text-[#f4f3ee]">
-      {/* Ace Hotel Style Animated Motion & Looping Video Background */}
+      {/* Ace Hotel Style Animated Moving Media Crossfade Slider */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover filter brightness-[0.45] contrast-115 scale-105 animate-ace-kenburns"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-an-open-book-in-a-library-42848-large.mp4" type="video/mp4" />
-        </video>
+        {HERO_SLIDES.map((slide, idx) => (
+          <div
+            key={slide.url}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            {slide.type === "video" ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover filter brightness-[0.45] contrast-115 scale-105 animate-ace-kenburns"
+              >
+                <source src={slide.url} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={slide.url}
+                alt="Ace Hotel Inspired Architectural Mood"
+                className="w-full h-full object-cover filter brightness-[0.45] contrast-115 scale-105 animate-ace-kenburns"
+              />
+            )}
+          </div>
+        ))}
 
-        {/* Ambient Overlay & Vintage Grain */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-[#1a1a1a]/70" />
-        <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+        {/* Ambient Film Grain & Vintage Texture Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-[#1a1a1a]/70 z-20" />
+        <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] z-20" />
       </div>
 
       {/* Top Ticker Marquee Bar */}
-      <div className="absolute top-20 md:top-24 left-0 right-0 z-20 bg-[#8C2318] text-[#f4f3ee] py-2 overflow-hidden border-b border-[#f4f3ee]/20 font-mono text-[10px] font-bold tracking-widest uppercase">
+      <div className="absolute top-20 md:top-24 left-0 right-0 z-30 bg-[#8C2318] text-[#f4f3ee] py-2 overflow-hidden border-b border-[#f4f3ee]/20 font-mono text-[10px] font-bold tracking-widest uppercase">
         <div className="whitespace-nowrap animate-marquee flex gap-12">
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
@@ -52,18 +97,18 @@ export default function HeroSection() {
       </div>
 
       {/* Centered Ace Hotel Hero Composition */}
-      <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pt-44 pb-24 md:pt-56 md:pb-32 max-w-5xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-30 w-full px-4 md:px-8 lg:px-12 pt-40 pb-24 md:pt-48 md:pb-32 max-w-7xl mx-auto text-center flex flex-col items-center">
         
         {/* Top Tag Badge */}
-        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-8">
+        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-6 md:mb-8">
           <span className="inline-block border border-[#f4f3ee]/40 bg-[#1a1a1a]/70 backdrop-blur-md px-6 py-2 text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase">
             ROOM NO. 101 — WELCOME TO QUESTIONITY
           </span>
         </div>
 
-        {/* Oversized Centered Headline (Ace Hotel Style) */}
+        {/* Massive Viewport Headline (Identical Scale to Ace Hotel) */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-[#f4f3ee] leading-[0.95] mb-8 tracking-tight"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-5xl sm:text-7xl md:text-[9rem] lg:text-[11rem] xl:text-[13rem] text-[#f4f3ee] leading-[0.85] mb-8 tracking-tighter uppercase"
           style={{ transitionDelay: "0.2s" }}
         >
           WELCOME TO<br />
@@ -72,7 +117,7 @@ export default function HeroSection() {
 
         {/* Subtitles (English Primary + Korean Secondary) */}
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/90 font-serif italic text-lg md:text-2xl leading-relaxed mb-3 max-w-3xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/90 font-serif italic text-lg md:text-3xl leading-relaxed mb-3 max-w-4xl"
           style={{ transitionDelay: "0.3s" }}
         >
           An Editorial Book Salon & Culture Lounge in Seoul
@@ -92,22 +137,34 @@ export default function HeroSection() {
         >
           <a
             href="#clubs"
-            className="w-full sm:w-auto bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-10 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-[6px_6px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
+            className="w-full sm:w-auto bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-12 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-[6px_6px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
           >
             EXPLORE CLUBS ↗
           </a>
           <a
             href="#how-it-works"
-            className="w-full sm:w-auto border border-[#f4f3ee]/40 bg-[#1a1a1a]/50 backdrop-blur-sm text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
+            className="w-full sm:w-auto border border-[#f4f3ee]/40 bg-[#1a1a1a]/50 backdrop-blur-sm text-[#f4f3ee] font-bold text-xs md:text-sm px-12 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
           >
             HOW IT WORKS
           </a>
         </div>
       </div>
 
-      {/* Bottom Editorial Stamp */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block z-10 text-center font-mono">
-        <span className="text-[10px] text-[#f4f3ee]/70 uppercase tracking-widest bg-[#1a1a1a]/80 backdrop-blur border border-[#f4f3ee]/20 px-4 py-1.5 inline-block">
+      {/* Bottom Slide Indicators & Editorial Stamp */}
+      <div className="absolute bottom-8 left-0 right-0 z-30 px-8 flex items-center justify-between font-mono text-[10px]">
+        <div className="flex gap-2">
+          {HERO_SLIDES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-1 transition-all duration-500 ${
+                idx === currentSlide ? "w-8 bg-[#8C2318]" : "w-3 bg-[#f4f3ee]/40 hover:bg-[#f4f3ee]"
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+        <span className="text-[#f4f3ee]/70 uppercase tracking-widest bg-[#1a1a1a]/80 backdrop-blur border border-[#f4f3ee]/20 px-4 py-1.5 inline-block">
           SEOUL • CHANGGYEONGGUNG-RO 270 • EST. 2026
         </span>
       </div>

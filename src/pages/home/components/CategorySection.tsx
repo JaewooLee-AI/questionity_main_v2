@@ -434,69 +434,60 @@ export default function CategorySection() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 mb-16 animate-in fade-in duration-300">
+              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4 mb-16 animate-in fade-in duration-300">
                 {filteredBooks.map((book) => {
                   const isChecked = selectedBookIds.includes(book.id);
                   return (
                     <div
                       key={book.id}
                       onClick={() => toggleBookSelection(book.id)}
-                      className={`group bg-background-50 p-4 border transition-all duration-200 cursor-pointer relative flex flex-col justify-between ${
+                      className={`group relative overflow-hidden text-left font-sans transition-all duration-300 cursor-pointer flex flex-col justify-between ${
                         isChecked
-                          ? "border-primary-500 ring-2 ring-primary-500/20 bg-primary-50/20 shadow-md"
-                          : "border-background-200/80 hover:border-primary-300 hover:shadow-md"
+                          ? "bg-[#1a1a1a] text-[#f4f3ee] -translate-y-1 shadow-lg"
+                          : "bg-[#e8e6df]/50 hover:bg-white text-[#1a1a1a] hover:-translate-y-1 hover:shadow-md"
                       }`}
                     >
-                      {/* Top Checkbox Overlay */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-[11px] font-semibold text-primary-600 bg-primary-50 px-2 py-0.5 border border-primary-200">
-                          {book.category}
-                        </span>
-                        <label className="flex items-center gap-1.5 cursor-pointer text-xs font-bold text-foreground-700">
-                          <input
-                            type="checkbox"
-                            checked={isChecked}
-                            onChange={() => toggleBookSelection(book.id)}
-                            onClick={(e) => e.stopPropagation()}
-                            className="w-4 h-4 text-primary-600 border-background-300 focus:ring-primary-500 rounded-none cursor-pointer"
-                          />
-                          <span className={isChecked ? "text-primary-600 font-extrabold" : "text-foreground-500"}>
-                            {isChecked ? "선택 완료" : "모임 신청"}
-                          </span>
-                        </label>
-                      </div>
-
-                      {/* Official Aladin Book Image & Details */}
-                      <div className="flex gap-3.5 mb-3">
+                      {/* TOP: Book Cover Image */}
+                      <div className="relative w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a] shrink-0">
                         <BookCoverImage
                           book={book}
-                          className="w-16 h-22 shrink-0 object-cover border border-background-300 shadow-xs group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="min-w-0 flex-1 flex flex-col justify-between py-0.5">
-                          <div>
-                            <h4 className="font-heading font-bold text-sm text-foreground-950 line-clamp-2 leading-snug group-hover:text-primary-600 transition-colors">
-                              {book.title}
-                            </h4>
-                            <p className="text-xs text-foreground-500 mt-1 truncate">
-                              {book.author} &bull; {book.publisher}
-                            </p>
-                          </div>
-
-                          {/* Tag badges */}
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {book.tags.slice(0, 2).map((tag) => (
-                              <span key={tag} className="text-[10px] text-foreground-500 bg-background-100 px-1.5 py-0.5">
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
+                        {/* Minimal Checkbox Overlay Badge */}
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleBookSelection(book.id);
+                          }}
+                          className={`absolute top-1.5 right-1.5 px-1.5 py-0.5 text-[9px] font-mono font-bold tracking-tighter uppercase transition-colors ${
+                            isChecked
+                              ? "bg-[#8C2318] text-white"
+                              : "bg-black/60 text-white/90 group-hover:bg-[#1a1a1a]"
+                          }`}
+                        >
+                          {isChecked ? "선택됨" : "+ 신청"}
                         </div>
                       </div>
 
-                      {/* Description Excerpt */}
-                      <p className="text-xs text-foreground-600 leading-relaxed line-clamp-2 pt-2 border-t border-background-200/60">
-                        {book.description}
-                      </p>
+                      {/* BOTTOM: Text Details (Title & Author) */}
+                      <div className="p-2.5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4
+                            className={`font-serif font-bold text-xs leading-tight line-clamp-2 mb-1 ${
+                              isChecked ? "text-[#f4f3ee]" : "text-[#1a1a1a]"
+                            }`}
+                          >
+                            {book.title}
+                          </h4>
+                          <p
+                            className={`text-[10px] truncate font-sans ${
+                              isChecked ? "text-[#f4f3ee]/70" : "text-[#1a1a1a]/60"
+                            }`}
+                          >
+                            {book.author}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}

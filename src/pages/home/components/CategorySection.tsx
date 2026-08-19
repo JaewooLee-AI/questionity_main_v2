@@ -192,62 +192,8 @@ export default function CategorySection() {
           </p>
         </div>
 
-        {/* 6 Category Photo Cards with Image on Top (70% Height) & Text Below */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
-          {categories.map((cat, idx) => {
-            const isSelected = selectedCategory === cat.name;
-            const count = categoryCounts[cat.name] || 0;
-            const meta = CATEGORY_IMAGES[cat.name] || {
-              bg: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
-              code: `CAT. 00${idx + 1} — EDITORIAL`,
-            };
-
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryClick(cat.name)}
-                className={`group relative overflow-hidden text-left font-sans transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between ${
-                  isSelected
-                    ? "bg-[#1a1a1a] text-[#f4f3ee] -translate-y-1 z-10 shadow-lg"
-                    : "bg-[#e8e6df]/60 hover:bg-white text-[#1a1a1a] hover:-translate-y-1 hover:shadow-md"
-                }`}
-              >
-                {/* TOP: Photo Image Container (70% scaled height) */}
-                <div className="relative w-full h-28 sm:h-32 md:h-36 overflow-hidden bg-[#1a1a1a] shrink-0">
-                  <img
-                    src={meta.bg}
-                    alt={cat.name}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-108 filter brightness-95 contrast-105"
-                  />
-                  <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase">
-                    0{idx + 1}
-                  </div>
-                </div>
-
-                {/* BOTTOM: Text Details Below Image */}
-                <div className="p-3.5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <i className={`${cat.icon} text-xs text-[#8C2318]`} />
-                      <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase">
-                        {meta.code.split(" — ")[1]}
-                      </span>
-                    </div>
-                    <h3 className={`font-serif font-bold text-sm md:text-base leading-tight mb-1 ${isSelected ? "text-[#f4f3ee]" : "text-[#1a1a1a]"}`}>
-                      {cat.name} <span className="text-xs font-mono opacity-80 text-[#8C2318]">({count})</span>
-                    </h3>
-                  </div>
-                  <p className={`font-sans text-[10px] leading-tight line-clamp-1 ${isSelected ? "text-[#f4f3ee]/80" : "text-[#1a1a1a]/70"}`}>
-                    {cat.description}
-                  </p>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search Input Bar & Category Filter Directory Index */}
-        <div className="bg-[#e8e6df]/40 p-6 shadow-none mb-8">
+        {/* Search Input Bar & Category Filter Directory Index (ABOVE PHOTO CARDS) */}
+        <div className="bg-[#f4f3ee] p-6 border border-[#1a1a1a] shadow-none mb-10">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search Input & Buttons */}
             <div className="flex w-full lg:w-auto items-center gap-3 flex-1 max-w-xl">
@@ -278,7 +224,7 @@ export default function CategorySection() {
               </div>
               <button
                 onClick={handleSearchSubmit}
-                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-5 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 hover:-translate-y-0.5 hover:shadow-md"
+                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-5 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 border border-[#1a1a1a] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
               >
                 <i className="ri-search-line" />
                 <span>검색</span>
@@ -286,7 +232,7 @@ export default function CategorySection() {
               <button
                 onClick={handleShuffle}
                 title="클릭할 때마다 무한히 다른 도서 추천받기"
-                className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 active:scale-95 hover:-translate-y-0.5 hover:shadow-md"
+                className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] border border-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 active:scale-95 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
               >
                 <i className="ri-refresh-line text-[#8C2318] font-bold" />
                 <span className="hidden sm:inline">🎲 새로고침</span>
@@ -297,10 +243,10 @@ export default function CategorySection() {
             <div className="flex flex-wrap gap-2 justify-center lg:justify-end w-full lg:w-auto font-mono text-xs">
               <button
                 onClick={() => setSelectedCategory("전체")}
-                className={`px-3.5 py-2 font-bold uppercase transition-all duration-300 ${
+                className={`px-3.5 py-2 font-bold uppercase border transition-all duration-300 ${
                   selectedCategory === "전체"
-                    ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
-                    : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                    ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
+                    : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
                 }`}
               >
                 전체 ({categoryCounts["전체"]})
@@ -312,10 +258,10 @@ export default function CategorySection() {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.name)}
-                    className={`px-3 py-2 text-xs font-bold uppercase transition-all duration-300 ${
+                    className={`px-3 py-2 text-xs font-bold uppercase border transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
-                        : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                        ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
+                        : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
                     }`}
                   >
                     {cat.name} ({count})
@@ -324,6 +270,60 @@ export default function CategorySection() {
               })}
             </div>
           </div>
+        </div>
+
+        {/* 6 Category Photo Cards Grid (BELOW SEARCH & FILTERS) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
+          {categories.map((cat, idx) => {
+            const isSelected = selectedCategory === cat.name;
+            const count = categoryCounts[cat.name] || 0;
+            const meta = CATEGORY_IMAGES[cat.name] || {
+              bg: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
+              code: `CAT. 00${idx + 1} — EDITORIAL`,
+            };
+
+            return (
+              <button
+                key={cat.id}
+                onClick={() => handleCategoryClick(cat.name)}
+                className={`group relative overflow-hidden text-left border font-sans transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between ${
+                  isSelected
+                    ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] -translate-y-2 shadow-[8px_8px_0px_#8C2318] z-10"
+                    : "bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border-[#1a1a1a] hover:-translate-y-2 hover:shadow-[8px_8px_0px_#1a1a1a]"
+                }`}
+              >
+                {/* TOP: Photo Image Container (70% scaled height) */}
+                <div className="relative w-full h-28 sm:h-32 md:h-36 overflow-hidden border-b border-[#1a1a1a] bg-[#1a1a1a] shrink-0">
+                  <img
+                    src={meta.bg}
+                    alt={cat.name}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-108 filter brightness-95 contrast-105"
+                  />
+                  <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase border border-[#1a1a1a]">
+                    0{idx + 1}
+                  </div>
+                </div>
+
+                {/* BOTTOM: Text Details Below Image */}
+                <div className="p-3.5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <i className={`${cat.icon} text-xs text-[#8C2318]`} />
+                      <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase">
+                        {meta.code.split(" — ")[1]}
+                      </span>
+                    </div>
+                    <h3 className={`font-serif font-bold text-sm md:text-base leading-tight mb-1 ${isSelected ? "text-[#f4f3ee]" : "text-[#1a1a1a]"}`}>
+                      {cat.name} <span className="text-xs font-mono opacity-80 text-[#8C2318]">({count})</span>
+                    </h3>
+                  </div>
+                  <p className={`font-sans text-[10px] leading-tight line-clamp-1 ${isSelected ? "text-[#f4f3ee]/80" : "text-[#1a1a1a]/70"}`}>
+                    {cat.description}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* Post-Application Clean Completion Banner */}

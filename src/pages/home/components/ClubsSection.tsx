@@ -283,7 +283,7 @@ export default function ClubsSection() {
   const [hoveredRoomId, setHoveredRoomId] = useState<string | null>(null);
 
   // Render individual room card with Ace Hotel 3D Box Hover effect & sibling dimming
-  const renderRoomCard = (room: RoomItem, _index?: number) => {
+  const renderRoomCard = (room: RoomItem, index?: number) => {
     const isHovered = hoveredRoomId === room.id;
     const isDimmed = hoveredRoomId !== null && !isHovered;
     const aladinUrl = room.aladin_url || `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${encodeURIComponent(room.book_title || room.title)}`;
@@ -297,15 +297,21 @@ export default function ClubsSection() {
         onMouseEnter={() => setHoveredRoomId(room.id)}
         onMouseLeave={() => setHoveredRoomId(null)}
         className={`
-          group relative cursor-pointer bg-[#f4f3ee] border border-[#1a1a1a]/15 overflow-hidden flex flex-col justify-between
+          group relative cursor-pointer bg-[#f4f3ee] border border-[#1a1a1a] overflow-hidden flex flex-col justify-between
           transition-all duration-700 ease-out-ace
-          ${isHovered ? "-translate-y-3 shadow-2xl border-[#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+          ${isHovered ? "-translate-y-3 shadow-[10px_10px_0px_#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
           ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
         `}
       >
         <div>
+          {/* Card Header Stamp */}
+          <div className="bg-[#1a1a1a] text-[#f4f3ee] px-4 py-2 flex items-center justify-between font-mono text-[10px] font-bold tracking-widest uppercase border-b border-[#1a1a1a]">
+            <span>ROOM NO. {index !== undefined ? String(index + 1).padStart(3, '0') : '001'}</span>
+            <span className="text-[#8C2318]">{(room as any).category_label || (room as any).category || "CLUB"}</span>
+          </div>
+
           {/* Card Image Banner */}
-          <div className="relative w-full h-44 bg-[#e8e6df] overflow-hidden flex items-center justify-center p-3">
+          <div className="relative w-full h-44 bg-[#e8e6df] overflow-hidden flex items-center justify-center p-3 border-b border-[#1a1a1a]/15">
             <img
               src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
               alt={room.book_title}
@@ -315,17 +321,17 @@ export default function ClubsSection() {
             <div className="absolute top-3 left-3">
               {renderStatusBadge(room.status)}
             </div>
-            <div className="absolute bottom-3 right-3 bg-[#1a1a1a]/80 text-[#f4f3ee] text-[10px] font-bold px-2 py-1 tracking-widest uppercase font-mono">
+            <div className="absolute bottom-3 right-3 bg-[#1a1a1a] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 tracking-widest uppercase font-mono border border-[#f4f3ee]/20">
               👥 {room.max_capacity}명 정원
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-5 font-sans">
+          <div className="p-6 font-sans">
             <span className="text-[10px] font-bold tracking-widest text-[#1a1a1a]/60 uppercase block mb-1">
               {room.location} — {room.program_duration}
             </span>
-            <h3 className="font-serif font-bold text-lg md:text-xl text-[#1a1a1a] mb-2 line-clamp-1 group-hover:text-[#8C2318] transition-colors duration-300">
+            <h3 className="font-serif font-bold text-xl text-[#1a1a1a] mb-2 line-clamp-1 group-hover:text-[#8C2318] transition-colors duration-300">
               {room.title}
             </h3>
 
@@ -339,7 +345,7 @@ export default function ClubsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="shrink-0 text-[10px] font-bold text-[#1a1a1a] uppercase tracking-wider hover:text-[#8C2318] border-b border-[#1a1a1a]/30 transition-colors"
+                className="shrink-0 text-[10px] font-bold text-[#1a1a1a] uppercase tracking-wider hover:text-[#8C2318] border-b border-[#1a1a1a] transition-colors"
               >
                 알라딘 ↗
               </a>
@@ -350,13 +356,13 @@ export default function ClubsSection() {
             </p>
 
             {/* Leader Pill */}
-            <div className="flex items-center gap-3 p-2.5 bg-[#e8e6df]/60 border border-[#1a1a1a]/10 mb-2">
+            <div className="flex items-center gap-3 p-3 bg-[#e8e6df]/60 border border-[#1a1a1a]/20 mb-2">
               <img
                 src={room.leader.image_url}
                 alt={room.leader.name}
-                className="w-8 h-8 object-cover border border-[#1a1a1a]/20 shrink-0"
+                className="w-8 h-8 object-cover border border-[#1a1a1a]/30 shrink-0"
               />
-              <div className="flex flex-col min-w-0">
+              <div className="flex flex-col min-w-0 font-sans">
                 <span className="text-xs font-serif font-bold text-[#1a1a1a] truncate">
                   클럽장 {room.leader.name}
                 </span>
@@ -369,9 +375,9 @@ export default function ClubsSection() {
         </div>
 
         {/* Footer Meta */}
-        <div className="px-5 py-3 bg-[#e8e6df]/40 border-t border-[#1a1a1a]/10 flex items-center justify-between font-sans text-xs">
+        <div className="px-6 py-4 bg-[#e8e6df]/40 border-t border-[#1a1a1a] flex items-center justify-between font-sans text-xs">
           <span className="text-[#1a1a1a]/70 font-medium">📅 {room.schedule_text}</span>
-          <span className="font-serif font-bold text-[#8C2318]">{room.price_text}</span>
+          <span className="font-serif font-bold text-[#8C2318] text-sm">{room.price_text}</span>
         </div>
       </div>
     );

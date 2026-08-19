@@ -54,13 +54,13 @@ export default function CTASection() {
           <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-5" style={{ transitionDelay: "0.3s" }}>
             <a
               href="#clubs"
-              className="bg-[#8C2318] text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-2xl hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
+              className="bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-[6px_6px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
             >
-              모임 둘러보기
+              모임 둘러보기 ↗
             </a>
             <Link
               to="/signup"
-              className="border border-[#f4f3ee]/40 text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
+              className="border border-[#f4f3ee]/40 bg-[#1a1a1a] text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
             >
               무료 회원가입
             </Link>

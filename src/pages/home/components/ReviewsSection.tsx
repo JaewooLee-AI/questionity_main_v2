@@ -187,17 +187,17 @@ export default function ReviewsSection() {
                 onMouseEnter={() => setHoveredReviewId(`${item.id}-${index}`)}
                 onMouseLeave={() => setHoveredReviewId(null)}
                 className={`
-                  w-[340px] md:w-[400px] shrink-0 bg-[#f4f3ee] p-6 md:p-8 border border-[#1a1a1a]/15 flex flex-col justify-between cursor-pointer
+                  w-[340px] md:w-[400px] shrink-0 bg-[#f4f3ee] p-6 md:p-8 border border-[#1a1a1a] flex flex-col justify-between cursor-pointer
                   transition-all duration-700 ease-out-ace
-                  ${isHovered ? "-translate-y-3 shadow-2xl border-[#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+                  ${isHovered ? "-translate-y-3 shadow-[10px_10px_0px_#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
                   ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
                 `}
               >
                 <div>
                   {/* Rating & Tag */}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold tracking-widest text-[#8C2318] uppercase border-b border-[#8C2318]/30">
-                      MEMBER REVIEW
+                    <span className="text-[10px] font-mono font-bold tracking-widest text-[#8C2318] uppercase border-b border-[#8C2318]">
+                      REVIEW NO. {String(index + 1).padStart(3, '0')}
                     </span>
                     <div className="flex items-center gap-1 text-[#8C2318] text-xs">
                       {Array.from({ length: 5 }).map((_, i) => (

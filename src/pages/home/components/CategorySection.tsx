@@ -497,26 +497,26 @@ export default function CategorySection() {
         )}
       </div>
 
-      {/* Floating Bottom Sticky Action Bar */}
+      {/* Floating Bottom Sticky Action Bar (Ace Hotel Matte Black & Brick Red) */}
       {selectedBookIds.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-xl bg-foreground-950 text-background-50 p-4 border border-foreground-800 shadow-2xl flex items-center justify-between gap-4 animate-in slide-in-from-bottom-6 duration-300">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-2xl bg-[#1a1a1a] text-[#f4f3ee] p-4 shadow-2xl flex items-center justify-between gap-4 animate-in slide-in-from-bottom-6 duration-300 font-sans">
           <div className="flex items-center gap-3 min-w-0">
-            <span className="w-8 h-8 rounded-full bg-rose-500 text-background-50 text-xs font-black flex items-center justify-center shrink-0">
+            <span className="w-9 h-9 bg-[#8C2318] text-[#f4f3ee] font-mono text-sm font-bold flex items-center justify-center shrink-0 shadow-sm">
               {selectedBookIds.length}
             </span>
             <div className="min-w-0">
-              <p className="text-xs font-bold text-background-50 truncate">
+              <p className="text-xs font-serif font-bold text-[#f4f3ee] truncate">
                 {selectedBooks.map((b) => b.title).join(", ")}
               </p>
-              <p className="text-[11px] text-background-300">
-                총 {selectedBookIds.length}권의 도서가 선택되었습니다
+              <p className="text-[11px] font-sans text-[#f4f3ee]/70 mt-0.5">
+                총 <strong className="text-[#f4f3ee] font-bold">{selectedBookIds.length}권</strong>의 도서가 선택되었습니다
               </p>
             </div>
           </div>
 
           <button
             onClick={() => setIsSubmitModalOpen(true)}
-            className="bg-primary-500 hover:bg-primary-600 text-background-50 px-5 py-2.5 text-xs md:text-sm font-bold tracking-wide transition-colors shrink-0 flex items-center gap-1.5 cursor-pointer shadow-md"
+            className="bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-300 shrink-0 flex items-center gap-2 cursor-pointer shadow-md hover:-translate-y-0.5"
           >
             <span>독서 모임 개설 신청하기</span>
             <i className="ri-send-plane-fill text-sm" />
@@ -526,42 +526,42 @@ export default function CategorySection() {
 
       {/* Submission Confirmation Modal */}
       {isSubmitModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-background-50 border border-background-200 w-full max-w-lg p-6 md:p-8 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-[#f4f3ee] text-[#1a1a1a] border border-[#1a1a1a]/20 w-full max-w-lg p-6 md:p-8 shadow-2xl relative font-sans">
             <button
               onClick={() => setIsSubmitModalOpen(false)}
-              className="absolute top-4 right-4 text-foreground-400 hover:text-foreground-900 transition-colors"
+              className="absolute top-4 right-4 text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors cursor-pointer"
             >
               <i className="ri-close-line text-2xl" />
             </button>
 
             <div className="text-center mb-6">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+              <div className="w-14 h-14 bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center mx-auto mb-3 text-2xl shadow-md">
                 <i className="ri-checkbox-circle-fill" />
               </div>
-              <h3 className="font-heading font-bold text-xl text-foreground-950 mb-1">
+              <h3 className="font-serif font-bold text-2xl text-[#1a1a1a] mb-1">
                 독서 모임 개설 신청 완료!
               </h3>
-              <p className="text-xs text-foreground-500">
+              <p className="text-xs text-[#1a1a1a]/70 font-sans">
                 선택하신 도서로 퀘스처니티 독서 모임 개설 요청이 정상적으로 접수되었습니다.
               </p>
             </div>
 
             {/* Selected Books List in Modal */}
-            <div className="max-h-48 overflow-y-auto bg-background-100 p-3 border border-background-200 mb-6 space-y-2">
+            <div className="max-h-48 overflow-y-auto bg-[#e8e6df]/70 p-3 mb-6 space-y-2">
               {selectedBooks.map((b) => (
-                <div key={b.id} className="flex items-center gap-3 bg-background-50 p-2 border border-background-200/80">
+                <div key={b.id} className="flex items-center gap-3 bg-white p-2 shadow-xs">
                   <BookCoverImage book={b} className="w-8 h-11 object-cover shrink-0" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold text-foreground-950 truncate">{b.title}</p>
-                    <p className="text-[11px] text-foreground-500 truncate">{b.author} &bull; {b.category}</p>
+                    <p className="text-xs font-serif font-bold text-[#1a1a1a] truncate">{b.title}</p>
+                    <p className="text-[11px] font-sans text-[#1a1a1a]/60 truncate">{b.author} &bull; {b.category}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 p-3.5 text-xs text-amber-800 mb-6 flex items-start gap-2">
-              <i className="ri-information-fill text-amber-600 text-sm shrink-0 mt-0.5" />
+            <div className="bg-[#e8e6df] p-3.5 text-xs text-[#1a1a1a]/80 mb-6 flex items-start gap-2">
+              <i className="ri-information-fill text-[#8C2318] text-sm shrink-0 mt-0.5" />
               <span>
                 희망하시는 도서 모임의 최소 참여 정원이 충족되면 담당 클럽 매니저가 개설 일정과 장소를 안내해 드립니다.
               </span>
@@ -569,7 +569,7 @@ export default function CategorySection() {
 
             <button
               onClick={handleConfirmCompletion}
-              className="w-full bg-foreground-950 hover:bg-foreground-900 text-background-50 py-3 text-xs md:text-sm font-bold tracking-wide transition-colors cursor-pointer"
+              className="w-full bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shadow-md"
             >
               확인 (신청 완료 및 화면 정리)
             </button>

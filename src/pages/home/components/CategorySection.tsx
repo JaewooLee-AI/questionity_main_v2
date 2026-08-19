@@ -149,10 +149,10 @@ export default function CategorySection() {
   };
 
   return (
-    <section id="categories" className="w-full px-6 md:px-12 lg:px-20 py-24 md:py-32 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 relative">
+    <section id="categories" className="w-full px-6 md:px-12 lg:px-20 pt-6 pb-16 md:pt-8 md:pb-20 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 relative">
       <div className="max-w-7xl mx-auto">
         {/* Section Title Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-8 md:mb-10">
           <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
             CURATED ALADIN 50 BOOKS & CATEGORIES
           </span>

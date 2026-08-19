@@ -297,21 +297,21 @@ export default function ClubsSection() {
         onMouseEnter={() => setHoveredRoomId(room.id)}
         onMouseLeave={() => setHoveredRoomId(null)}
         className={`
-          group relative cursor-pointer bg-[#f4f3ee] border border-[#1a1a1a] overflow-hidden flex flex-col justify-between
-          transition-all duration-700 ease-out-ace
-          ${isHovered ? "-translate-y-3 shadow-[10px_10px_0px_#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+          group relative cursor-pointer bg-white border border-black overflow-hidden flex flex-col justify-between
+          transition-all duration-300
+          ${isHovered ? "-translate-y-2 shadow-lg bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-sm"}
           ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
         `}
       >
         <div>
           {/* Card Header Stamp */}
-          <div className="bg-[#1a1a1a] text-[#f4f3ee] px-4 py-2 flex items-center justify-between font-mono text-[10px] font-bold tracking-widest uppercase border-b border-[#1a1a1a]">
+          <div className="bg-black text-white px-4 py-2 flex items-center justify-between font-mono text-[10px] font-bold tracking-normal uppercase border-b border-black">
             <span>ROOM NO. {index !== undefined ? String(index + 1).padStart(3, '0') : '001'}</span>
-            <span className="text-[#8C2318]">{(room as any).category_label || (room as any).category || "CLUB"}</span>
+            <span className="text-white">{(room as any).category_label || (room as any).category || "CLUB"}</span>
           </div>
 
           {/* Card Image Banner */}
-          <div className="relative w-full h-44 bg-[#e8e6df] overflow-hidden flex items-center justify-center p-3 border-b border-[#1a1a1a]/15">
+          <div className="relative w-full h-44 bg-gray-100 overflow-hidden flex items-center justify-center p-3 border-b border-black/15">
             <img
               src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
               alt={room.book_title}

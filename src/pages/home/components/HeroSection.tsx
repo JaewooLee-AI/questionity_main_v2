@@ -4,20 +4,20 @@ import { heroContent } from "@/mocks/home";
 
 const HERO_SLIDES = [
   {
-    type: "video",
-    url: "https://assets.mixkit.co/videos/preview/mixkit-hands-holding-an-open-book-in-a-library-42848-large.mp4",
+    type: "image",
+    url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=474&h=646&fit=crop",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80",
+    url: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=474&h=646&fit=crop",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&q=80",
+    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=474&h=646&fit=crop",
   },
   {
     type: "image",
-    url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80",
+    url: "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=474&h=646&fit=crop",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[85vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden bg-[#1a1a1a] text-[#f4f3ee]">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white">
       {/* Ace Hotel Style Animated Moving Media Crossfade Slider */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {HERO_SLIDES.map((slide, idx) => (
@@ -82,13 +82,13 @@ export default function HeroSection() {
           </div>
         ))}
 
-        {/* Ambient Film Grain & Vintage Texture Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-[#1a1a1a]/70 z-20" />
-        <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] z-20" />
+        {/* Ace Hotel Style Black & White Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/70 z-20" />
+        <div className="absolute inset-0 opacity-10 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] z-20" />
       </div>
 
       {/* Top Ticker Marquee Bar */}
-      <div className="absolute top-20 md:top-24 left-0 right-0 z-30 bg-[#8C2318] text-[#f4f3ee] py-2 overflow-hidden border-b border-[#f4f3ee]/20 font-mono text-[10px] font-bold tracking-widest uppercase">
+      <div className="absolute top-20 md:top-24 left-0 right-0 z-30 bg-black text-white py-2 overflow-hidden border-b border-white/20 font-mono text-[10px] font-bold tracking-normal uppercase">
         <div className="whitespace-nowrap animate-marquee flex gap-12">
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
@@ -101,30 +101,33 @@ export default function HeroSection() {
         
         {/* Top Tag Badge */}
         <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-6">
-          <span className="inline-block border border-[#f4f3ee]/40 bg-[#1a1a1a]/70 backdrop-blur-md px-5 py-1.5 text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase">
+          <span className="inline-block border border-white/40 bg-black/70 backdrop-blur-md px-5 py-1.5 text-white text-xs font-mono font-bold tracking-normal uppercase">
             ROOM NO. 101 — WELCOME TO QUESTIONITY
           </span>
         </div>
 
-        {/* Balanced Refined Headline (Ace Hotel Style) */}
+        {/* Ace Hotel Style Exact Typography - 140px "Welcome to" */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#f4f3ee] leading-[1.05] mb-6 tracking-tight uppercase"
-          style={{ transitionDelay: "0.2s" }}
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-toronto font-light text-white leading-[133px] mb-6 tracking-[-1.4px]"
+          style={{
+            fontSize: "140px",
+            transitionDelay: "0.2s"
+          }}
         >
-          WELCOME TO<br />
-          <span className="italic font-normal text-[#e8e6df]">QUESTIONITY</span>
+          Welcome to<br />
+          <span className="font-normal">Questionity</span>
         </h1>
 
-        {/* Subtitles (English Primary + Korean Secondary) */}
+        {/* Subtitles */}
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/90 font-serif italic text-base md:text-xl leading-relaxed mb-2 max-w-2xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/90 font-sans text-base md:text-xl leading-relaxed mb-2 max-w-2xl"
           style={{ transitionDelay: "0.3s" }}
         >
           An Editorial Book Salon & Culture Lounge in Seoul
         </p>
 
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/70 font-sans text-xs md:text-sm tracking-widest uppercase mb-10 max-w-xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/70 font-sans text-xs md:text-sm tracking-normal uppercase mb-10 max-w-xl"
           style={{ transitionDelay: "0.35s" }}
         >
           서울특별시 종로구 창경궁로 270 (혜화역 4번 출구) • 2,000+ 멤버의 지적 독서 커뮤니티
@@ -137,20 +140,20 @@ export default function HeroSection() {
         >
           <a
             href="#clubs"
-            className="w-full sm:w-auto bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1 hover:shadow-[5px_5px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
+            className="w-full sm:w-auto bg-white text-black border border-white font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-300 hover:bg-transparent hover:text-white uppercase tracking-normal"
           >
-            EXPLORE CLUBS ↗
+            EXPLORE CLUBS
           </a>
           <a
             href="#how-it-works"
-            className="w-full sm:w-auto border border-[#f4f3ee]/40 bg-[#1a1a1a]/50 backdrop-blur-sm text-[#f4f3ee] font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
+            className="w-full sm:w-auto border border-white/40 bg-black/50 backdrop-blur-sm text-white font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-300 hover:bg-white hover:text-black uppercase tracking-normal"
           >
             HOW IT WORKS
           </a>
         </div>
       </div>
 
-      {/* Bottom Slide Indicators & Editorial Stamp */}
+      {/* Bottom Slide Indicators & Location Stamp */}
       <div className="absolute bottom-8 left-0 right-0 z-30 px-8 flex items-center justify-between font-mono text-[10px]">
         <div className="flex gap-2">
           {HERO_SLIDES.map((_, idx) => (
@@ -158,13 +161,13 @@ export default function HeroSection() {
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               className={`h-1 transition-all duration-500 ${
-                idx === currentSlide ? "w-8 bg-[#8C2318]" : "w-3 bg-[#f4f3ee]/40 hover:bg-[#f4f3ee]"
+                idx === currentSlide ? "w-8 bg-white" : "w-3 bg-white/40 hover:bg-white"
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
           ))}
         </div>
-        <span className="text-[#f4f3ee]/70 uppercase tracking-widest bg-[#1a1a1a]/80 backdrop-blur border border-[#f4f3ee]/20 px-4 py-1.5 inline-block">
+        <span className="text-white/70 uppercase tracking-normal bg-black/80 backdrop-blur border border-white/20 px-4 py-1.5 inline-block">
           SEOUL • CHANGGYEONGGUNG-RO 270 • EST. 2026
         </span>
       </div>

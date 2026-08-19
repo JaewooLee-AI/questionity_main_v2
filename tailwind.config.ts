@@ -12,6 +12,7 @@ export default {
         serif: ['"Playfair Display"', '"Pretendard Variable"', '"Pretendard"', 'sans-serif'],
         label: ['"Pretendard Variable"', '"Pretendard"', 'sans-serif'],
         sans: ['"Pretendard Variable"', '"Pretendard"', '-apple-system', 'sans-serif'],
+        toronto: ['"Toronto Gothic"', '"Toronto Gothic Fallback"', 'sans-serif'],
       },
       transitionDuration: {
         '700': '700ms',
@@ -30,6 +31,10 @@ export default {
           brick: '#8C2318',
           olive: '#4A5340',
           muted: '#666666',
+          black: '#000000',
+          white: '#FFFFFF',
+          sand: '#E8E6DF',
+          charcoal: '#1A1A1A',
         },
         background: {
           50: 'oklch(var(--background-50))',

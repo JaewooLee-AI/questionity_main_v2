@@ -53,7 +53,7 @@ export default function LocationSection() {
             className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto font-sans tracking-tightest"
             style={{ transitionDelay: "0.2s" }}
           >
-            혜화역 오프라인 독서 아지트 오마드랩스에서 아날로그적 질감과 지적인 대화를 나누어보세요.
+            혜화역 오프라인 독서 아지트에서 아날로그적 질감과 지적인 대화를 나누어보세요.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default function LocationSection() {
                   📍
                 </div>
                 <strong className="text-lg font-serif font-bold text-[#1a1a1a] block">
-                  퀘스처니티 오마드랩스
+                  퀘스처니티
                 </strong>
                 <span className="text-xs text-[#1a1a1a]/80 font-sans block leading-relaxed">
                   {addressText}
@@ -126,7 +126,7 @@ export default function LocationSection() {
             <div className="space-y-6">
               <div className="space-y-2 pb-6 border-b border-[#1a1a1a]/10">
                 <span className="text-xs font-bold text-[#8C2318] uppercase tracking-widest block">OFFLINE ADDRESS</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">종로구 창경궁로 270 오마드랩스</h3>
+                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">종로구 창경궁로 270</h3>
                 <p className="text-xs text-[#1a1a1a]/60">서울특별시 종로구 오프라인 독서 아지트</p>
               </div>
 
@@ -139,7 +139,7 @@ export default function LocationSection() {
                   <div>
                     <strong className="text-[#1a1a1a] block font-bold text-sm mb-1 font-serif">오프라인 코워킹 라운지</strong>
                     <p className="text-[#1a1a1a]/70 leading-relaxed">
-                      창경궁로 270 오마드랩스 공간에서 독서 모임 및 작업 가능.
+                      창경궁로 270 공간에서 독서 모임 및 작업 가능.
                     </p>
                   </div>
                 </div>

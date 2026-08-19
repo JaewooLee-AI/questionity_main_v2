@@ -37,7 +37,7 @@ export default function Footer() {
             QUESTIONITY
           </h2>
           <p className="font-sans text-xs md:text-sm text-[#f4f3ee]/60 uppercase tracking-widest mt-4">
-            Editorial Reading Community & Coworking Venue | Bundang Taeseong Bldg B1, Omad Labs
+            Editorial Reading Community & Coworking Venue | Seoul, Korea
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-[#f4f3ee]/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-[#f4f3ee]/40">
           <p>
-            퀘스처니티 (Questionity) | 오마드랩스 (황윤철 대표) | 서울특별시 종로구 창경궁로 270
+            퀘스처니티 (Questionity) | 서울특별시 종로구 창경궁로 270
           </p>
           <p>
             &copy; 2026 QUESTIONITY. All rights reserved.

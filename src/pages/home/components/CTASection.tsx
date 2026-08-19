@@ -48,7 +48,7 @@ export default function CTASection() {
           
           <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/80 text-base md:text-xl leading-relaxed mb-12 max-w-xl mx-auto font-sans tracking-tightest" style={{ transitionDelay: "0.2s" }}>
             책 한 권으로 연결되는 깊이 있는 대화와 특별한 조우.<br />
-            서울특별시 종로구 창경궁로 270 오마드랩스에서 매월 새로운 책을 만나보세요.
+            서울특별시 종로구 창경궁로 270에서 매월 새로운 책을 만나보세요.
           </p>
 
           <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-5" style={{ transitionDelay: "0.3s" }}>

@@ -1,0 +1,1269 @@
+- generic [active] [ref=e1]:
+  - region "Regarding Cookies" [ref=e2]:
+    - generic [ref=e4]:
+      - heading "Regarding Cookies" [level=2] [ref=e5]
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - paragraph [ref=e8]: We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic.
+          - paragraph [ref=e9]:
+            - text: By clicking "Accept All", you consent to our use of cookies.
+            - link "Cookie Policy" [ref=e10] [cursor=pointer]:
+              - /url: https://acehotel.com/privacy-policy/
+        - group [ref=e11]:
+          - button "Customize" [ref=e12] [cursor=pointer]
+          - button "Reject All" [ref=e13] [cursor=pointer]
+          - button "Accept All" [ref=e14] [cursor=pointer]
+  - img:
+    - generic "calendar-icon"
+  - link "Skip to content" [ref=e15] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e16]:
+    - navigation "Primary Site" [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - button "Site navigation" [ref=e21] [cursor=pointer]
+            - link "Reload Homepage" [ref=e26] [cursor=pointer]:
+              - /url: https://acehotel.com
+          - heading [level=2] [ref=e31]:
+            - button "Open locations navigation and pick a location" [ref=e32] [cursor=pointer]: Locations
+        - text:            
+        - button "Book Now - This opens the booking form overlay." [ref=e36] [cursor=pointer]:
+          - text: Book Now
+          - generic [ref=e37]: "- This opens the booking form overlay."
+  - main [ref=e38]:
+    - generic [ref=e40]:
+      - generic [ref=e43]:
+        - iframe [ref=e44]:
+          - region "비디오 플레이어" [ref=f1e2]: 
+        - button [ref=e45] [cursor=pointer]
+      - generic:
+        - generic:
+          - heading "Welcome to Ace Hotel" [level=1]: Welcome toAce Hotel
+    - paragraph [ref=e52]: Ace Hotel is a collection of international lifestyle hotels. We’re in Seattle, Palm Springs, New York, Brooklyn, Kyoto, Sydney, Toronto and Athens. Our taste tends toward historical reverence hand-in-hand with considered, contemporary design, and we think really good restaurants, public art and lobby parties are important. Each hotel is globally minded but locally focused, paying tribute to the places and communities that bring them to life. We’re glad you’re here.
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - heading "Locations" [level=2] [ref=e57]
+        - paragraph [ref=e59]: Embrace the city in spaces built for gathering.
+      - generic:
+        - status:
+          - generic:
+            - generic:
+              - generic [ref=e61]:
+                - link "Athens Locations" [ref=e62] [cursor=pointer]:
+                  - /url: https://acehotel.com/athens
+                  - figure [ref=e63]
+                - generic [ref=e65]:
+                  - heading "Athens" [level=3] [ref=e66]
+                  - paragraph [ref=e67]: Our new home, alongside the region’s best beaches yet a short jaunt to the city core.
+                  - link "Read more about Athens" [ref=e69] [cursor=pointer]:
+                    - /url: https://acehotel.com/athens
+                    - text: Visit Ace Hotel Athens
+              - generic [ref=e71]:
+                - link "Brooklyn Locations" [ref=e72] [cursor=pointer]:
+                  - /url: https://acehotel.com/brooklyn
+                  - figure [ref=e73]
+                - generic [ref=e75]:
+                  - heading "Brooklyn" [level=3] [ref=e76]
+                  - paragraph [ref=e77]: In Boerum Hill, at the edge of Downtown, at the ever-evolving intersection of everything.
+                  - link "Read more about Brooklyn" [ref=e79] [cursor=pointer]:
+                    - /url: https://acehotel.com/brooklyn
+                    - text: Visit Ace Hotel Brooklyn
+              - generic [ref=e81]:
+                - link [ref=e82] [cursor=pointer]:
+                  - /url: https://acehotel.com/kyoto
+                  - figure [ref=e83]
+                - generic [ref=e85]:
+                  - heading [level=3] [ref=e86]: Kyoto
+                  - paragraph [ref=e87]: East meets West in Japan’s culture capital.
+                  - link [ref=e89] [cursor=pointer]:
+                    - /url: https://acehotel.com/kyoto
+                    - text: Visit Ace Hotel Kyoto
+              - generic [ref=e91]:
+                - link [ref=e92] [cursor=pointer]:
+                  - /url: https://acehotel.com/new-york
+                  - figure [ref=e93]
+                - generic [ref=e95]:
+                  - heading [level=3] [ref=e96]: New York
+                  - paragraph [ref=e97]: The spot you’ve been searching for, in Midtown Manhattan.
+                  - link [ref=e99] [cursor=pointer]:
+                    - /url: https://acehotel.com/new-york
+                    - text: Visit Ace Hotel New York
+              - generic [ref=e101]:
+                - link [ref=e102] [cursor=pointer]:
+                  - /url: https://acehotel.com/palm-springs
+                  - figure [ref=e103]
+                - generic [ref=e105]:
+                  - heading [level=3] [ref=e106]: Palm Springs
+                  - paragraph [ref=e107]: A mid-century desert oasis, in the shadow of the San Jacintos.
+                  - link [ref=e109] [cursor=pointer]:
+                    - /url: https://acehotel.com/palm-springs
+                    - text: Visit Ace Hotel Palm Springs
+              - generic [ref=e111]:
+                - link [ref=e112] [cursor=pointer]:
+                  - /url: https://acehotel.com/seattle
+                  - figure [ref=e113]
+                - generic [ref=e115]:
+                  - heading [level=3] [ref=e116]: Seattle
+                  - paragraph [ref=e117]: In Belltown, where it all began.
+                  - link [ref=e119] [cursor=pointer]:
+                    - /url: https://acehotel.com/seattle
+                    - text: Visit Ace Hotel Seattle
+              - generic [ref=e121]:
+                - link [ref=e122] [cursor=pointer]:
+                  - /url: https://acehotel.com/sydney
+                  - figure [ref=e123]
+                - generic [ref=e125]:
+                  - heading [level=3] [ref=e126]: Sydney
+                  - paragraph [ref=e127]: In Surry Hills — Ace’s very first stake in the Southern Hemisphere.
+                  - link [ref=e129] [cursor=pointer]:
+                    - /url: https://acehotel.com/sydney
+                    - text: Visit Ace Hotel Sydney
+              - generic [ref=e131]:
+                - link [ref=e132] [cursor=pointer]:
+                  - /url: https://acehotel.com/toronto
+                  - figure [ref=e133]
+                - generic [ref=e135]:
+                  - heading [level=3] [ref=e136]: Toronto
+                  - paragraph [ref=e137]: Tomorrow is a place. In Toronto’s historic Fashion District.
+                  - link [ref=e139] [cursor=pointer]:
+                    - /url: https://acehotel.com/toronto
+                    - text: Visit Ace Hotel Toronto
+        - generic:
+          - button "Previous Locations Slide" [ref=e140] [cursor=pointer]
+          - button "Next Locations Slide" [ref=e144] [cursor=pointer]
+    - generic [ref=e150]:
+      - generic [ref=e151]:
+        - heading "Offers" [level=2] [ref=e152]
+        - generic [ref=e153]:
+          - paragraph [ref=e154]: Available at most Ace Hotels.
+          - link [ref=e155] [cursor=pointer]:
+            - /url: https://acehotel.com/offers
+            - text: See All Offers
+      - generic:
+        - status:
+          - generic:
+            - generic:
+              - generic [ref=e160]:
+                - link "Ace Member Rate Offers" [ref=e161] [cursor=pointer]:
+                  - /url: https://acehotel.com/offers/book-direct/
+                  - figure [ref=e162]:
+                    - img "alist member rate" [ref=e163]
+                - generic [ref=e164]:
+                  - heading [level=3] [ref=e165]:
+                    - link "Ace Member Rate" [ref=e166] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/book-direct/
+                  - paragraph [ref=e167]: Members save up to 30% on our Classic Rate when you book direct—with early check-in, late checkout, and easy changes.
+                  - generic [ref=e168]:
+                    - link "Book Now This link opens in a new browser tab" [ref=e169] [cursor=pointer]:
+                      - /url: https://reservations.acehotel.com/?chain=7231&rate=ACEMEMBER&dest=ACE&level=hotel
+                      - text: Book Now
+                      - generic [ref=e170]: This link opens in a new browser tab
+                    - link "View offer" [ref=e171] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/book-direct/
+              - generic [ref=e173]:
+                - link "Get extra credit Offers" [ref=e174] [cursor=pointer]:
+                  - /url: https://acehotel.com/offers/get-extra-credit/
+                  - figure [ref=e175]
+                - generic [ref=e176]:
+                  - heading [level=3] [ref=e177]:
+                    - link "Get extra credit" [ref=e178] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/get-extra-credit/
+                  - paragraph [ref=e179]: $50 for our restaurants and bars when you book.
+                  - generic [ref=e180]:
+                    - link "Book Now This link opens in a new browser tab" [ref=e181] [cursor=pointer]:
+                      - /url: "?identifier=EXTRACREDIT"
+                      - text: Book Now
+                      - generic [ref=e182]: This link opens in a new browser tab
+                    - link "View offer" [ref=e183] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/get-extra-credit/
+              - generic [ref=e185]:
+                - link "Make it Last Offers" [ref=e186] [cursor=pointer]:
+                  - /url: https://acehotel.com/offers/make-it-last/
+                  - figure [ref=e187]
+                - generic [ref=e188]:
+                  - heading [level=3] [ref=e189]:
+                    - link "Make it Last" [ref=e190] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/make-it-last/
+                  - paragraph [ref=e191]: Book a stay over 2 nights or more and receive up to 30% off.
+                  - generic [ref=e192]:
+                    - link "Book Now This link opens in a new browser tab" [ref=e193] [cursor=pointer]:
+                      - /url: https://reservations.acehotel.com/landing?chain=7231&nights=2&promo=MAKEITLAST
+                      - text: Book Now
+                      - generic [ref=e194]: This link opens in a new browser tab
+                    - link "View offer" [ref=e195] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/make-it-last/
+              - generic [ref=e197]:
+                - link [ref=e198] [cursor=pointer]:
+                  - /url: https://acehotel.com/offers/pay-now-and-save/
+                  - figure [ref=e199]
+                - generic [ref=e200]:
+                  - heading [level=3] [ref=e201]:
+                    - link [ref=e202] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/pay-now-and-save/
+                      - text: Pay Now and Save
+                  - paragraph [ref=e203]: Book a pre-paid stay at least 2 weeks in advance and receive up to 20% off.
+                  - generic [ref=e204]:
+                    - link [ref=e205] [cursor=pointer]:
+                      - /url: https://acehotel.com/offer-redirect?lead=15&promo=PAYITFORWARD
+                      - text: Book Now
+                      - generic [ref=e206]: This link opens in a new browser tab
+                    - link [ref=e207] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/pay-now-and-save/
+                      - text: View offer
+              - generic [ref=e209]:
+                - link [ref=e210] [cursor=pointer]:
+                  - /url: https://acehotel.com/offers/week-daze/
+                  - figure [ref=e211]
+                - generic [ref=e213]:
+                  - heading [level=3] [ref=e214]:
+                    - link [ref=e215] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/week-daze/
+                      - text: Week Daze
+                  - paragraph [ref=e216]: Book 2 nights between Sunday – Thursday and get up to 20% off.
+                  - generic [ref=e217]:
+                    - link [ref=e218] [cursor=pointer]:
+                      - /url: https://reservations.acehotel.com/?chain=7231&nights=2&promo=WEEKDAZE
+                      - text: Book Now
+                      - generic [ref=e219]: This link opens in a new browser tab
+                    - link [ref=e220] [cursor=pointer]:
+                      - /url: https://acehotel.com/offers/week-daze/
+                      - text: View offer
+        - generic:
+          - button "Previous Offers Slide" [ref=e221] [cursor=pointer]
+          - button "Next Offers Slide" [ref=e225] [cursor=pointer]
+    - generic [ref=e231]:
+      - generic [ref=e232]:
+        - heading "Goings on" [level=2] [ref=e233]
+        - combobox "Show Me What’s Going On" [ref=e234] [cursor=pointer]
+        - alert [ref=e235]: Showing 23 results
+        - link [ref=e237] [cursor=pointer]:
+          - /url: /goings-on/
+      - generic:
+        - status:
+          - generic:
+            - generic:
+              - generic [ref=e242]:
+                - link "Tarot Readings at the Amigo Room Goings on" [ref=e243] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/tarot-readings-at-the-amigo-room-74/
+                  - figure [ref=e244]
+                - generic [ref=e245]:
+                  - heading "Tarot Readings at the Amigo Room" [level=3] [ref=e246]
+                  - paragraph [ref=e247]:
+                    - generic [ref=e248]: Ace Hotel Palm Springs
+                    - text: 06:00 PM Wednesday August 19, 2026
+                  - paragraph [ref=e249]: Step into the mystic. Join us every Wednesday night at the Amigo Room for Tarot Card Readings by Highway Child Readings, where intuition and desert energy collide. Whether you’re a believer or just curious, our resident reader will guide you through the cards and help illuminate the path ahead. Sip on a craft cocktail and let the vibes (and the cards) speak.
+                  - link "Read more about Tarot Readings at the Amigo Room" [ref=e251] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/tarot-readings-at-the-amigo-room-74/
+                    - text: Read More
+              - generic [ref=e253]:
+                - link "Vintage Vinyl Thursdays Goings on" [ref=e254] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/vintage-vinyl-thursdays-47/
+                  - figure [ref=e255]
+                - generic [ref=e256]:
+                  - heading "Vintage Vinyl Thursdays" [level=3] [ref=e257]
+                  - paragraph [ref=e258]:
+                    - generic [ref=e259]: Ace Hotel Palm Springs
+                    - text: 08:00 PM Thursday August 20, 2026
+                  - paragraph [ref=e260]: Join us in the Amigo Room while we spin vintage vinyl records Thursdays from 8-11 pm. New featured DJ’s every week. Spin into the weekend early with an all-vinyl DJ night every Thursday at The Ace Hotel & Swim Club. Each week features a different DJ bringing their unique collection of records — from funk and soul to disco, rock, and rare grooves. W
+                  - link "Read more about Vintage Vinyl Thursdays" [ref=e262] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/vintage-vinyl-thursdays-47/
+                    - text: Read More
+              - generic [ref=e264]:
+                - link "Hedspin & Don Paolo Goings on" [ref=e265] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/lobby-radio-8/
+                  - figure [ref=e266]
+                - generic [ref=e267]:
+                  - heading "Hedspin & Don Paolo" [level=3] [ref=e268]
+                  - paragraph [ref=e269]:
+                    - generic [ref=e270]: Ace Hotel Toronto
+                    - text: 08:00 PM Thursday August 20, 2026
+                  - paragraph [ref=e271]: World class talent, Hedspin & Don Paolo turn up the beats while the week winds down every Thursday from 8:00PM–12:00AM in the Lobby. Come through, grab a drink, and settle into the soundtrack of the night.
+                  - link "Read more about Hedspin & Don Paolo" [ref=e273] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/lobby-radio-8/
+                    - text: Read More
+              - generic [ref=e275]:
+                - link [ref=e276] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/sound-waves-summer-dj-series-25/
+                  - figure [ref=e277]
+                - generic [ref=e278]:
+                  - heading [level=3] [ref=e279]: Sound Waves Summer DJ Series
+                  - paragraph [ref=e280]:
+                    - generic [ref=e281]: Ace Hotel Palm Springs
+                    - text: 12:00 PM Friday August 21, 2026
+                  - paragraph [ref=e282]: "Unwind Poolside Fridays, Saturdays, and Sundays with carefully curated sounds brought to you by guest DJs to enhance your desert daze. Use code SOUNDWAVES for an extra 15% off your room – BOOK HERE JUNE DJ SCHEDULE 21+ only. Open to hotel guests or Swim Club pass-holders – Get One Here Friday, June 5 Swim Club (12p–7p): Axel Alatriste Amigo Ro"
+                  - link [ref=e284] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/sound-waves-summer-dj-series-25/
+                    - text: Read More
+              - generic [ref=e286]:
+                - link [ref=e287] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/live-in-the-lobby-fridays-2-5-pm-32/
+                  - figure [ref=e288]
+                - generic [ref=e289]:
+                  - heading [level=3] [ref=e290]: Live In the Lobby Fridays 2-5 pm
+                  - paragraph [ref=e291]:
+                    - generic [ref=e292]: Ace Hotel Palm Springs
+                    - text: 02:00 PM Friday August 21, 2026
+                  - paragraph [ref=e293]: Slow down with stripped-back sets from local and national artists. Pull up a chair or just let the music find you. Guitar sounds float through the hotel lobby and all around you as we feature talented musicians from the desert and beyond. Each musician brings their own unique sound & style to the hotel and showcases their own distinctive voices. Check he
+                  - link [ref=e295] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/live-in-the-lobby-fridays-2-5-pm-32/
+                    - text: Read More
+              - generic [ref=e297]:
+                - link [ref=e298] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/record-shop-rare-groove-special-dj-showcase-werikyo-10/
+                  - figure [ref=e299]
+                - generic [ref=e300]:
+                  - heading [level=3] [ref=e301]: "RECORD SHOP rare groove Special DJ Showcase : WERIKYO"
+                  - paragraph [ref=e302]:
+                    - generic [ref=e303]: Ace Hotel Kyoto
+                    - text: 06:30 PM Friday August 21, 2026
+                  - paragraph [ref=e304]: WERIKYO Originally from Fukuoka and now based in Kobe, she began her DJ career while working at Troop Cafe in Kobe. Centered around deep house, disco, and Balearic sounds, her intuitive selections and dreamy yet grounded mixes create a distinctive atmosphere on the dance floor. 神戸在住、福岡県出身。 神戸TroopCafeでの勤務をきっかけにDJ活動を開始。 Deep house, Disco, Balearicを軸とした直感的な選曲に
+                  - link [ref=e306] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/record-shop-rare-groove-special-dj-showcase-werikyo-10/
+                    - text: Read More
+              - generic [ref=e308]:
+                - link [ref=e309] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/friday-nights-alright-djs-and-live-music-in-the-amigo-room-47/
+                  - figure [ref=e310]
+                - generic [ref=e311]:
+                  - heading [level=3] [ref=e312]: Friday Nights Alright ! DJ’s and Live music in the Amigo Room
+                  - paragraph [ref=e313]:
+                    - generic [ref=e314]: Ace Hotel Palm Springs
+                    - text: 08:00 PM Friday August 21, 2026
+                  - paragraph [ref=e315]: Friday Nights are still the night to kick off the week behind you and enjoy some feel good vibes Every Friday we bring you the best mix of different music from all genres and styles. Classic and cutting edge sounds from house, disco, soul and funk to rock hip hop & house. We showcase the best DJ’s from the desert and beyond 8-11 pm. Check here e
+                  - link [ref=e317] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/friday-nights-alright-djs-and-live-music-in-the-amigo-room-47/
+                    - text: Read More
+              - generic [ref=e319]:
+                - link [ref=e320] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/poolside-with-cvkorda-13/
+                  - figure [ref=e321]
+                - generic [ref=e322]:
+                  - heading [level=3] [ref=e323]: Poolside with CVKORDA
+                  - paragraph [ref=e324]:
+                    - generic [ref=e325]: Ace Hotel Athens
+                    - text: 12:00 PM Saturday August 22, 2026
+                  - paragraph [ref=e326]: Your weekend ritual starts here. Refreshing dips, tasty bites, a cocktail in hand, and a soundtrack made for the Riviera. Every Saturday and Sunday, we’re slowing time down poolside — with Balearic beats, ethnic sounds, organic house, and downtempo grooves setting the tone for an effortless afternoon on the Athenian coast. This Saturday&#
+                  - link [ref=e328] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/poolside-with-cvkorda-13/
+                    - text: Read More
+              - generic [ref=e330]:
+                - link [ref=e331] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/saturday-night-ace-dj-shiotsu-x-dj-mahiro-33/
+                  - figure [ref=e332]
+                - generic [ref=e333]:
+                  - heading [level=3] [ref=e334]: "Saturday Night Ace : DJ SHIOTSU × DJ MAHIRO"
+                  - paragraph [ref=e335]:
+                    - generic [ref=e336]: Ace Hotel Kyoto
+                    - text: 07:00 PM Saturday August 22, 2026
+                  - paragraph [ref=e337]: DJ Shiotsu Since 2001, he has been performing as a club DJ. Known for his unique style and deep experience, he communicates his authentic taste through DJing with a focus on Black music. His broad selection and skillful sets have earned him a loyal fanbase. Recently, he has been active as a DJ at venues like hotels and lounges, as well as events such as spor
+                  - link [ref=e339] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/saturday-night-ace-dj-shiotsu-x-dj-mahiro-33/
+                    - text: Read More
+              - generic [ref=e341]:
+                - link [ref=e342] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/vinyl-in-the-sky-mister-enarto/
+                  - figure [ref=e343]
+                - generic [ref=e344]:
+                  - heading [level=3] [ref=e345]: Vinyl in the Sky | Mister Enarto
+                  - paragraph [ref=e346]:
+                    - generic [ref=e347]: Ace Hotel Athens
+                    - text: 08:00 PM Saturday August 22, 2026
+                  - paragraph [ref=e348]: Saturday evenings at Sora take on a different shape when the records come out. One of our resident DJs sets the pace from sunset into the night, while the Athenian Riviera stretches out five floors below. Breathtaking sundown views, Pan-Asian bites, signature cocktails and a set that builds slowly and effortlessly carries you through the evening. This
+                  - link [ref=e350] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/vinyl-in-the-sky-mister-enarto/
+                    - text: Read More
+              - generic [ref=e352]:
+                - link [ref=e353] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/sounds-of-stms-16/
+                  - figure [ref=e354]
+                - generic [ref=e355]:
+                  - heading [level=3] [ref=e356]: Sounds Of STMS
+                  - paragraph [ref=e357]:
+                    - generic [ref=e358]: Ace Hotel Toronto
+                    - text: 09:00 PM Saturday August 22, 2026
+                  - paragraph [ref=e359]: “Sound of Stms” invites a different guest DJ each week alongside organizer Tdesu —for a free evening of soulful sonics at Ace Hotel Toronto every Saturday ranging from global sounds to remixes, r&b, edits and beyond. Stms (pronounced “Stems”) is a platform showcasing DJs, music producers, & remix culture through events in Toronto. Launched in 2023,
+                  - link [ref=e361] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/sounds-of-stms-16/
+                    - text: Read More
+              - generic [ref=e363]:
+                - link [ref=e364] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/sunday-live-25/
+                  - figure [ref=e365]
+                - generic [ref=e366]:
+                  - heading [level=3] [ref=e367]: Sunday Live
+                  - paragraph [ref=e368]:
+                    - generic [ref=e369]: Ace Hotel Toronto
+                    - text: 03:00 AM Sunday August 23, 2026
+                  - paragraph [ref=e370]: Sundays at Ace are made for music. Ease into brunch at Alder with live R&B sets from 11AM–2PM. Let the afternoon drift into Motown grooves in the Lobby from 3:00–6:00PM, best enjoyed with a coffee or a cocktail in hand. As the sun sets, head upstairs to Evangeline Rooftop and close out the night with jazz-funk sounds from 7–10PM. Reservations for Alder a
+                  - link [ref=e372] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/sunday-live-25/
+                    - text: Read More
+              - generic [ref=e374]:
+                - link [ref=e375] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/yoga-effie-karipides-from-hobnob-25/
+                  - figure [ref=e376]
+                - generic [ref=e377]:
+                  - heading [level=3] [ref=e378]: YOGA | Effie Karipides from Hobnob
+                  - paragraph [ref=e379]:
+                    - generic [ref=e380]: Ace Hotel Athens
+                    - text: 10:00 AM Sunday August 23, 2026
+                  - paragraph [ref=e381]: Complimentary for house guests, €15 for visitors – pay at front office 75-Minute Yoga Sessions | Every Sunday at 10am Every Sunday morning, we’re turning Fenix into a sanctuary of movement and mindfulness. Join us as we roll out our mats in our sun-drenched event space becomes your yoga haven as we team up with Hobnob, Glyfada’s go-to stud
+                  - link [ref=e383] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/yoga-effie-karipides-from-hobnob-25/
+                    - text: Read More
+              - generic [ref=e385]:
+                - link [ref=e386] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/poolside-with-bakerman-5/
+                  - figure [ref=e387]
+                - generic [ref=e388]:
+                  - heading [level=3] [ref=e389]: Poolside with Bakerman
+                  - paragraph [ref=e390]:
+                    - generic [ref=e391]: Ace Hotel Athens
+                    - text: 12:00 PM Sunday August 23, 2026
+                  - paragraph [ref=e392]: Your weekend ritual starts here. Refreshing dips, tasty bites, a cocktail in hand, and a soundtrack made for the Riviera. Every Saturday and Sunday, we’re slowing time down poolside — with Balearic beats, ethnic sounds, organic house, and downtempo grooves setting the tone for an effortless afternoon on the Athenian coast. This Sunday&#82
+                  - link [ref=e394] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/poolside-with-bakerman-5/
+                    - text: Read More
+              - generic [ref=e396]:
+                - link [ref=e397] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/sipsound-vol-3-with-frequency-punch/
+                  - figure [ref=e398]
+                - generic [ref=e399]:
+                  - heading [level=3] [ref=e400]: Sip&Sound Vol.3 with Frequency Punch
+                  - paragraph [ref=e401]:
+                    - generic [ref=e402]: Ace Hotel Kyoto
+                    - text: 01:00 PM Sunday August 23, 2026
+                  - paragraph [ref=e403]: "Sip & Sound Vol.3 with Frequency Punch Join us for the 3rd edition of “Sip & Sound” at Stumptown Coffee Roasters in Ace Hotel Kyoto. Enjoy great coffee alongside a vibrant Sunday afternoon of live performances and DJ sets. Date & Time: Sunday, August 23, 2026 | 1:00pm – 6:00pm Location: Ace Hotel Kyoto 1F – Stumptown Coffee Roa"
+                  - link [ref=e405] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/sipsound-vol-3-with-frequency-punch/
+                    - text: Read More
+              - generic [ref=e407]:
+                - link [ref=e408] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/mic-drop-karaoke/
+                  - figure [ref=e409]
+                - generic [ref=e410]:
+                  - heading [level=3] [ref=e411]: Mic Drop Karaoke
+                  - paragraph [ref=e412]:
+                    - generic [ref=e413]: Ace Hotel Palm Springs
+                    - text: 08:00 PM Monday August 24, 2026
+                  - paragraph [ref=e414]: Sing like nobody’s listening (because they probably aren’t). Hosted by Kyle, the High Desert Karaoke Maestro, every Monday in the Amigo Room.
+                  - link [ref=e416] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/mic-drop-karaoke/
+                    - text: Read More
+              - generic [ref=e418]:
+                - link [ref=e419] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/lets-bingo-again-37/
+                  - figure [ref=e420]
+                - generic [ref=e421]:
+                  - heading [level=3] [ref=e422]: Let’s Bingo Again
+                  - paragraph [ref=e423]:
+                    - generic [ref=e424]: Ace Hotel Palm Springs
+                    - text: 06:00 PM Tuesday August 25, 2026
+                  - paragraph [ref=e425]: Bingo at King’s Highway hosted by Vanity Halston. Reservations are strongly recommended as space is limited; $25 spend per person to participate. RESERVE HERE
+                  - link [ref=e427] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/lets-bingo-again-37/
+                    - text: Read More
+              - generic [ref=e429]:
+                - link [ref=e430] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/lobby-knights-17/
+                  - figure [ref=e431]
+                - generic [ref=e432]:
+                  - heading [level=3] [ref=e433]: Lobby Knights
+                  - paragraph [ref=e434]: 07:00 PM Tuesday August 25, 2026
+                  - paragraph [ref=e435]: In the Lobby, in partnership with Knightcap. Take a seat and play at your own pace — whether you know your openings or are just learning the board. A quiet room, a few good games, and time to settle in.Challenge a stranger or bring a friend.
+                  - link [ref=e437] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/lobby-knights-17/
+                    - text: Read More
+              - generic [ref=e439]:
+                - link [ref=e440] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/taco-tuesday-223/
+                  - figure [ref=e441]
+                - generic [ref=e443]:
+                  - heading [level=3] [ref=e444]: TACO TUESDAY
+                  - paragraph [ref=e445]:
+                    - generic [ref=e446]: Ace Hotel Kyoto
+                    - text: 07:00 PM Tuesday August 25, 2026
+                  - paragraph [ref=e447]: Indulge in five different tacos for just ¥600 all while listening to the Latin music played by DJ E.P. Daisuke from 7 pm. 19時からDJ E.P. Daisukeが流すラテン音楽を聴きながら、￥600の5種類のタコスをお楽しみください。 E.P Daisuke In 1989, EP Daisuke began his DJ career in Osaka alongside techno DJ Fumiya Tanaka. While Tanaka delved into techno music, EP Daisuke leaned towards roots music. Under
+                  - link [ref=e449] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/taco-tuesday-223/
+                    - text: Read More
+              - generic [ref=e451]:
+                - link [ref=e452] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/spacial-friday-night-questa-nissie/
+                  - figure [ref=e453]
+                - generic [ref=e454]:
+                  - heading [level=3] [ref=e455]: "FRIDAY JUNCTION : QUESTA & NiSSiE"
+                  - paragraph [ref=e456]:
+                    - generic [ref=e457]: Ace Hotel Kyoto
+                    - text: 07:00 PM Friday August 28, 2026
+                  - paragraph [ref=e458]: QUESTA Based in Osaka, QUESTA is a DJ renowned for his ability to weave dance grooves from a wide range of musical styles into seamless, genre-defying sets. His versatile selections and exceptional sense of the dance floor have earned him a strong reputation over the years. Respected by music lovers and fellow artists alike, he is regularly booked for major
+                  - link [ref=e460] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/spacial-friday-night-questa-nissie/
+                    - text: Read More
+              - generic [ref=e462]:
+                - link [ref=e463] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/late-check-out-10/
+                  - figure [ref=e464]
+                - generic [ref=e465]:
+                  - heading [level=3] [ref=e466]: Late Check-Out
+                  - paragraph [ref=e467]:
+                    - generic [ref=e468]: Ace Hotel Toronto
+                    - text: 09:00 PM Friday August 28, 2026
+                  - paragraph [ref=e469]: Late Check-Out Every Friday night, DJ Ocho takes over the Lobby with high-energy open-format sets spanning hip-hop, R&B, afrobeats, dancehall, reggaeton, and global crowd favorites. 9PM–1AM — come early, stay late.
+                  - link [ref=e471] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/late-check-out-10/
+                    - text: Read More
+              - generic [ref=e473]:
+                - link [ref=e474] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/sound-healing-andreas-yeravshek-x-hobnob-5/
+                  - figure [ref=e475]
+                - generic [ref=e476]:
+                  - heading [level=3] [ref=e477]: SOUND HEALING | Andreas Yeravshek x Hobnob
+                  - paragraph [ref=e478]:
+                    - generic [ref=e479]: Ace Hotel Athens
+                    - text: 11:30 AM Sunday August 30, 2026
+                  - paragraph [ref=e480]: Complimentary for house guests, €20 for visitors – drop-ins welcome | pay at front office 60-Minute Sound Bath Sessions | Every last Sunday of the month Every last Sunday of the month, we’re turning Fenix into a haven of body, mind, and soul nourishment and mindfulness. Join us in our sun-drenched event space as we team up with Hobnob, Gly
+                  - link [ref=e482] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/sound-healing-andreas-yeravshek-x-hobnob-5/
+                    - text: Read More
+              - generic [ref=e484]:
+                - link [ref=e485] [cursor=pointer]:
+                  - /url: https://acehotel.com/going-on/poolside-with-caelina-4/
+                  - figure [ref=e486]
+                - generic [ref=e487]:
+                  - heading [level=3] [ref=e488]: Poolside with Caelīna
+                  - paragraph [ref=e489]:
+                    - generic [ref=e490]: Ace Hotel Athens
+                    - text: 12:00 PM Sunday August 30, 2026
+                  - paragraph [ref=e491]: Your weekend ritual starts here. Refreshing dips, tasty bites, a cocktail in hand, and a soundtrack made for the Riviera. Every Saturday and Sunday, we’re slowing time down poolside — with Balearic beats, organic house, and downtempo grooves setting the tone for an effortless afternoon on the Athenian coast. This Sunday’s sounds are
+                  - link [ref=e493] [cursor=pointer]:
+                    - /url: https://acehotel.com/going-on/poolside-with-caelina-4/
+                    - text: Read More
+        - generic:
+          - button "Previous Goings on Slide" [ref=e494] [cursor=pointer]
+          - button "Next Goings on Slide" [ref=e498] [cursor=pointer]
+    - generic [ref=e504]:
+      - generic [ref=e505]:
+        - heading "Ace Reader" [level=2] [ref=e506]
+        - link [ref=e508] [cursor=pointer]:
+          - /url: https://acehotel.com/blog/
+          - text: View Ace Reader
+      - generic:
+        - status:
+          - generic:
+            - generic:
+              - generic [ref=e513]:
+                - link "10 Caribana Tracks Ace Reader" [ref=e514] [cursor=pointer]:
+                  - /url: https://acehotel.com/whine-and-kotch/
+                  - figure [ref=e515]:
+                    - img "Whine and Kotch - DJ Taima posing near her turntables." [ref=e516]
+                - generic [ref=e517]:
+                  - paragraph [ref=e518]: Ace Hotel Toronto | July 23, 2026
+                  - heading [level=3] [ref=e519]:
+                    - link "10 Caribana Tracks" [ref=e520] [cursor=pointer]:
+                      - /url: https://acehotel.com/whine-and-kotch/
+                  - paragraph [ref=e521]: Whine & Kotch’s DJ Taima shares a festival pregame playlist ahead of Caribana celebrations this weekend in Toronto.
+                  - link "Read more about 10 Caribana Tracks" [ref=e523] [cursor=pointer]:
+                    - /url: https://acehotel.com/whine-and-kotch/
+                    - text: Read More
+              - generic [ref=e525]:
+                - link "Queer Belonging Through Books Ace Reader" [ref=e526] [cursor=pointer]:
+                  - /url: https://acehotel.com/queer-belonging-through-books/
+                  - figure [ref=e527]:
+                    - img "Man smiling while holding up books." [ref=e528]
+                - generic [ref=e529]:
+                  - paragraph [ref=e530]: Ace Hotel Kyoto | July 9, 2026
+                  - heading [level=3] [ref=e531]:
+                    - link "Queer Belonging Through Books" [ref=e532] [cursor=pointer]:
+                      - /url: https://acehotel.com/queer-belonging-through-books/
+                  - paragraph [ref=e533]: A reading list from Tokyo’s loneliness books and Kyoto’s Megaphone Books.
+                  - link "Read more about Queer Belonging Through Books" [ref=e535] [cursor=pointer]:
+                    - /url: https://acehotel.com/queer-belonging-through-books/
+                    - text: Read More
+              - generic [ref=e537]:
+                - link "5 Things with Saturdays Football Ace Reader" [ref=e538] [cursor=pointer]:
+                  - /url: https://acehotel.com/5-things-with-saturdays-football/
+                  - figure [ref=e539]:
+                    - img "Saturdays Football. Man playing with a soccer ball. He is juggling the ball of his head." [ref=e540]
+                - generic [ref=e541]:
+                  - paragraph [ref=e542]: Ace Hotel | June 25, 2026
+                  - heading [level=3] [ref=e543]:
+                    - link "5 Things with Saturdays Football" [ref=e544] [cursor=pointer]:
+                      - /url: https://acehotel.com/5-things-with-saturdays-football/
+                  - paragraph [ref=e545]: A 2026 World Cup field guide from Saturdays Football for fans of all stripes.
+                  - link "Read more about 5 Things with Saturdays Football" [ref=e547] [cursor=pointer]:
+                    - /url: https://acehotel.com/5-things-with-saturdays-football/
+                    - text: Read More
+              - generic [ref=e549]:
+                - link [ref=e550] [cursor=pointer]:
+                  - /url: https://acehotel.com/perfectly-imperfect-x-ace-hotel-the-locals-guide-to-brooklyn/
+                  - figure [ref=e551]
+                - generic [ref=e553]:
+                  - paragraph [ref=e554]: 2026-05-29 12:05:46
+                  - heading [level=3] [ref=e555]:
+                    - link [ref=e556] [cursor=pointer]:
+                      - /url: https://acehotel.com/perfectly-imperfect-x-ace-hotel-the-locals-guide-to-brooklyn/
+                      - text: "Perfectly Imperfect x Ace Hotel: The Local’s Guide to Brooklyn"
+                  - link [ref=e558] [cursor=pointer]:
+                    - /url: https://acehotel.com/perfectly-imperfect-x-ace-hotel-the-locals-guide-to-brooklyn/
+                    - text: Read More
+              - generic [ref=e560]:
+                - link [ref=e561] [cursor=pointer]:
+                  - /url: https://acehotel.com/packing-list-mei-semones/
+                  - figure [ref=e562]
+                - generic [ref=e564]:
+                  - paragraph [ref=e565]: 2026-05-05 16:39:07
+                  - heading [level=3] [ref=e566]:
+                    - link [ref=e567] [cursor=pointer]:
+                      - /url: https://acehotel.com/packing-list-mei-semones/
+                      - text: "Packing List: Mei Semones"
+                  - paragraph [ref=e568]: The 25-year-old Brooklynite songwriter and guitarist shares what she’s touring with.
+                  - link [ref=e570] [cursor=pointer]:
+                    - /url: https://acehotel.com/packing-list-mei-semones/
+                    - text: Read More
+              - generic [ref=e572]:
+                - link [ref=e573] [cursor=pointer]:
+                  - /url: https://acehotel.com/stones-throws-sonic-guide-to-kyoto/
+                  - figure [ref=e574]
+                - generic [ref=e576]:
+                  - paragraph [ref=e577]: Ace Hotel Kyoto | April 20, 2026
+                  - heading [level=3] [ref=e578]:
+                    - link [ref=e579] [cursor=pointer]:
+                      - /url: https://acehotel.com/stones-throws-sonic-guide-to-kyoto/
+                      - text: Stones Throw’s Sonic Guide to Kyoto
+                  - paragraph [ref=e580]: Stones Throw Records is a West Coast child of the ’90s, unbending enthusiasm for vinyl still intact.
+                  - link [ref=e582] [cursor=pointer]:
+                    - /url: https://acehotel.com/stones-throws-sonic-guide-to-kyoto/
+                    - text: Read More
+              - generic [ref=e584]:
+                - link [ref=e585] [cursor=pointer]:
+                  - /url: https://acehotel.com/portraits-of-queer-living-5-things-with-quan-thai/
+                  - figure [ref=e586]
+                - generic [ref=e588]:
+                  - paragraph [ref=e589]: Ace Hotel | March 5, 2026
+                  - heading [level=3] [ref=e590]:
+                    - link [ref=e591] [cursor=pointer]:
+                      - /url: https://acehotel.com/portraits-of-queer-living-5-things-with-quan-thai/
+                      - text: "PORTRAITS OF QUEER LIVING: 5 THINGS WITH QUAN THAI"
+                  - paragraph [ref=e592]: "TO·BE·LONGING introduces fluidity to domesticity, subverting historically defined heteronormative ideals of the home. The installation, the work of architect Quan Thai, rethinks the rigidity of home for those who do not conform. On display: nearly 40 artifacts received in response to the query, “What makes your home queer?” Here, Quan shares a selection of objects manifesting queerness in homes across North America."
+                  - link [ref=e594] [cursor=pointer]:
+                    - /url: https://acehotel.com/portraits-of-queer-living-5-things-with-quan-thai/
+                    - text: Read More
+              - generic [ref=e596]:
+                - link [ref=e597] [cursor=pointer]:
+                  - /url: https://acehotel.com/packing-list-madison-cunningham/
+                  - figure [ref=e598]
+                - generic [ref=e600]:
+                  - paragraph [ref=e601]: Ace Hotel | January 30, 2026
+                  - heading [level=3] [ref=e602]:
+                    - link [ref=e603] [cursor=pointer]:
+                      - /url: https://acehotel.com/packing-list-madison-cunningham/
+                      - text: "Packing List: Madison Cunningham"
+                  - paragraph [ref=e604]: "Joan Didion authored many American classics — her shortest: a packing list published in 1979. The list, from her collection The White Album, was kept taped to the door of her Hollywood apartment closet for utilization at a moment’s notice. A tidy catalog of things that includes both stockings and bourbon, we often turn to Joan when staring down an empty suitcase. All this to say, we’re excited to introduce Packing List — a new Reader feature chronicling the tried-and-true travel companions of the wayfarers we know and love. Singer-songwriter Madison Cunningham kicks off the series as she tours in support of her fourth studio album, Ace (a coincidence, we swear)."
+                  - link [ref=e606] [cursor=pointer]:
+                    - /url: https://acehotel.com/packing-list-madison-cunningham/
+                    - text: Read More
+              - generic [ref=e608]:
+                - link [ref=e609] [cursor=pointer]:
+                  - /url: https://acehotel.com/flo-dills-guide-to-sydney/
+                  - figure [ref=e610]
+                - generic [ref=e611]:
+                  - paragraph [ref=e612]: Ace Hotel Sydney | December 22, 2025
+                  - heading [level=3] [ref=e613]:
+                    - link [ref=e614] [cursor=pointer]:
+                      - /url: https://acehotel.com/flo-dills-guide-to-sydney/
+                      - text: Flo Dill’s Guide to Sydney
+                  - paragraph [ref=e615]: "It was Londoner Flo Dill’s first time in Sydney, and she came with notes. “Like everyone, I ask friends who’ve been there before — but I try to get just two or three top things,” the NTS Breakfast Show host says. She’d come to romance Ace Sydney’s Lobby with her signature blend of leftfield pop and feather-light rock, and to try out a new way to travel. “I’m trying to free myself from the tyranny of Google Maps and just go where it feels good.” Her hot take: “Not every meal needs to be life changing.” Alongside friends, Flo also polled her devoted NTS listeners for their can’t-miss spots, which is how she discovered the gem that is Wendy Whiteley’s Secret Garden — right at home on her outdoorsy-leaning list."
+                  - link [ref=e617] [cursor=pointer]:
+                    - /url: https://acehotel.com/flo-dills-guide-to-sydney/
+                    - text: Read More
+              - generic [ref=e619]:
+                - link [ref=e620] [cursor=pointer]:
+                  - /url: https://acehotel.com/the-mister-behind-mr-maurices-italian/
+                  - figure [ref=e621]
+                - generic [ref=e622]:
+                  - paragraph [ref=e623]: Ace Hotel Kyoto | December 5, 2025
+                  - heading [level=3] [ref=e624]:
+                    - link [ref=e625] [cursor=pointer]:
+                      - /url: https://acehotel.com/the-mister-behind-mr-maurices-italian/
+                      - text: The Mister Behind Mr. Maurice’s Italian
+                  - paragraph [ref=e626]: If one happened to be in Japan when the craving for a Caesar salad set in, one would be wise to make haste for Mr. Maurice’s Italian — the neighborhood Italian restaurant and bar at Ace Hotel Kyoto, run in partnership with the inimitable Philly chef Marc Vetri.
+                  - link [ref=e628] [cursor=pointer]:
+                    - /url: https://acehotel.com/the-mister-behind-mr-maurices-italian/
+                    - text: Read More
+              - generic [ref=e630]:
+                - link [ref=e631] [cursor=pointer]:
+                  - /url: https://acehotel.com/5-things-with-elise-peterson/
+                  - figure [ref=e632]
+                - generic [ref=e633]:
+                  - paragraph [ref=e634]: Ace Hotel Brooklyn | November 17, 2025
+                  - heading [level=3] [ref=e635]:
+                    - link [ref=e636] [cursor=pointer]:
+                      - /url: https://acehotel.com/5-things-with-elise-peterson/
+                      - text: 5 THINGS WITH ELISE PETERSON
+                  - paragraph [ref=e637]: Elise Peterson was pregnant and living in New York when the question hit — how would she maintain her independent identity postpartum? The artist and writer looked outward for advice on upkeep of her inner self, seeking guidance through conversations with women she admired. These heart-to-hearts birthed COOL MOMS, a podcast — and eventual event series — devoted to amplifying mothers who prioritize their passions.
+                  - link [ref=e639] [cursor=pointer]:
+                    - /url: https://acehotel.com/5-things-with-elise-peterson/
+                    - text: Read More
+              - generic [ref=e641]:
+                - link [ref=e642] [cursor=pointer]:
+                  - /url: https://acehotel.com/five-things-with-missy-mazzoli/
+                  - figure [ref=e643]
+                - generic [ref=e644]:
+                  - paragraph [ref=e645]: Ace Hotel Brooklyn | October 24, 2025
+                  - heading [level=3] [ref=e646]:
+                    - link [ref=e647] [cursor=pointer]:
+                      - /url: https://acehotel.com/five-things-with-missy-mazzoli/
+                      - text: FIVE THINGS WITH MISSY MAZZOLI
+                  - paragraph [ref=e648]: Missy Mazzoli had an ex who used to tell her she was a sex and death artist. “Unapologetically, I would say, yes, that’s true,” the Brooklyn-based, Grammy-nominated composer says. “I think that sex and death are the things that we are the least able to talk about in an intelligent and deep way. And they’re the most interesting things in the world.”
+                  - link [ref=e650] [cursor=pointer]:
+                    - /url: https://acehotel.com/five-things-with-missy-mazzoli/
+                    - text: Read More
+              - generic [ref=e652]:
+                - link [ref=e653] [cursor=pointer]:
+                  - /url: https://acehotel.com/tv-on-the-radio-talk-brooklyn/
+                  - figure [ref=e654]
+                - generic [ref=e655]:
+                  - paragraph [ref=e656]: Ace Hotel Brooklyn | September 19, 2025
+                  - heading [level=3] [ref=e657]:
+                    - link [ref=e658] [cursor=pointer]:
+                      - /url: https://acehotel.com/tv-on-the-radio-talk-brooklyn/
+                      - text: TV on the Radio Talk Brooklyn
+                  - paragraph [ref=e659]: TV on the Radio threw our dream festival — food, art, no overlapping sets and Hannibal Buress as emcee. There Goes The Neighborhood saw the band honor the borough that bore them with an all-Black lineup featuring majority female performers including Sudan Archives, Moor Mother and Spelling. Beneath Brooklyn’s K Bridge, the celebration of community, music and culture coalesced around fierce and glorious joy last Saturday. The eve before, the band led the Lobby at Ace Brooklyn into the weekend with an iridescent set from behind the decks.
+                  - link [ref=e661] [cursor=pointer]:
+                    - /url: https://acehotel.com/tv-on-the-radio-talk-brooklyn/
+                    - text: Read More
+              - generic [ref=e663]:
+                - link [ref=e664] [cursor=pointer]:
+                  - /url: https://acehotel.com/paris-quixotic-projects-arrives-in-athens/
+                  - figure [ref=e665]
+                - generic [ref=e666]:
+                  - paragraph [ref=e667]: Ace Hotel Athens | August 27, 2025
+                  - heading [level=3] [ref=e668]:
+                    - link [ref=e669] [cursor=pointer]:
+                      - /url: https://acehotel.com/paris-quixotic-projects-arrives-in-athens/
+                      - text: Paris’ Quixotic Projects Arrives in Athens
+                  - paragraph [ref=e670]: Parisian hospitality collective Quixotic Projects, the brains behind Candelaria and Le Mary Celeste, landed at Ace Hotel & Swim Club Athens this summer. Led by Carina Soto Velasquez and Josh Fontaine — alongside their head of mixology Chris McNulty — Quixotic brought their signature creativity to the drinks at Sebastian and the Lobby Bar.
+                  - link [ref=e672] [cursor=pointer]:
+                    - /url: https://acehotel.com/paris-quixotic-projects-arrives-in-athens/
+                    - text: Read More
+              - generic [ref=e674]:
+                - link [ref=e675] [cursor=pointer]:
+                  - /url: https://acehotel.com/latasha-moves-differently-in-the-desert/
+                  - figure [ref=e676]
+                - generic [ref=e677]:
+                  - paragraph [ref=e678]: Ace Hotel Palm Springs | August 18, 2025
+                  - heading [level=3] [ref=e679]:
+                    - link [ref=e680] [cursor=pointer]:
+                      - /url: https://acehotel.com/latasha-moves-differently-in-the-desert/
+                      - text: Latashá Moves Differently in the Desert
+                  - paragraph [ref=e681]: "Opposites that attract Latashá: technology and nature. The LA-based musician, performance artist and all-around creatrix holed up for 30 days at Ace Hotel & Swim Club Palm Springs in January, meditating on the primal bond between humans and nature."
+                  - link [ref=e683] [cursor=pointer]:
+                    - /url: https://acehotel.com/latasha-moves-differently-in-the-desert/
+                    - text: Read More
+              - generic [ref=e685]:
+                - link [ref=e686] [cursor=pointer]:
+                  - /url: https://acehotel.com/a-swim-club-summer/
+                  - figure [ref=e687]
+                - generic [ref=e688]:
+                  - paragraph [ref=e689]: Ace Hotel Athens | July 9, 2025
+                  - heading [level=3] [ref=e690]:
+                    - link [ref=e691] [cursor=pointer]:
+                      - /url: https://acehotel.com/a-swim-club-summer/
+                      - text: A Swim Club Summer
+                  - paragraph [ref=e692]: The season of music, art, wellness and pool parties is upon Ace Hotel & Swim Club Athens. And in true and proper worship of the burning ball in the sky, the Swim Club’s Summer Series welcomes a roster of international and local DJ talent, wellness practitioners and artist-led workshops — all open to hotel guests and day visitors.
+                  - link [ref=e694] [cursor=pointer]:
+                    - /url: https://acehotel.com/a-swim-club-summer/
+                    - text: Read More
+              - generic [ref=e696]:
+                - link [ref=e697] [cursor=pointer]:
+                  - /url: https://acehotel.com/greek-visions-finds-meaning-in-incoherence/
+                  - figure [ref=e698]
+                - generic [ref=e700]:
+                  - paragraph [ref=e701]: Ace Hotel Athens | April 3, 2025
+                  - heading [level=3] [ref=e702]:
+                    - link [ref=e703] [cursor=pointer]:
+                      - /url: https://acehotel.com/greek-visions-finds-meaning-in-incoherence/
+                      - text: Greek Visions Finds Meaning in Incoherence
+                  - paragraph [ref=e704]: “It’s an incoherent archive of contemporary Greek culture,” says Greek Visions founder Takis Zontiros. What began as an Instagram account cataloguing movements and moments in Greece’s past and recent present — 1970s to 2010s — grew long, curious arms. Greek Visions resembles a virtual museum preserving the minute and monumental of the country’s cultural identity, its reach now spanning a popular Instagram account, regular merch drops and a Substack. Newly notched in the brand’s résumé — curator of the in-room vinyl at Ace Hotel & Swim Club Athens (hear a preview here) and collaborator on an apparel collection that revives the decadence of Greek discotheques.
+                  - link [ref=e706] [cursor=pointer]:
+                    - /url: https://acehotel.com/greek-visions-finds-meaning-in-incoherence/
+                    - text: Read More
+              - generic [ref=e708]:
+                - link [ref=e709] [cursor=pointer]:
+                  - /url: https://acehotel.com/willem-verbeecks-perfect-new-york-day/
+                  - figure [ref=e710]
+                - generic [ref=e711]:
+                  - paragraph [ref=e712]: Ace Hotel | August 22, 2024
+                  - heading [level=3] [ref=e713]:
+                    - link [ref=e714] [cursor=pointer]:
+                      - /url: https://acehotel.com/willem-verbeecks-perfect-new-york-day/
+                      - text: Willem Verbeeck’s Perfect New York Day
+                  - paragraph [ref=e715]: "The Los Angeles-based photographer balances assignments for the likes of Rolling Stone and the New Yorker with personal projects driven by long walks through otherworldly landscapes. Raised in the New York tri-state area, he spent a weekend with us during a recent trip back east, doing what he loves: strolling through Manhattan accompanied by his camera. Below are a few of the stops Willem made along the way."
+                  - link [ref=e717] [cursor=pointer]:
+                    - /url: https://acehotel.com/willem-verbeecks-perfect-new-york-day/
+                    - text: Read More
+              - generic [ref=e719]:
+                - link [ref=e720] [cursor=pointer]:
+                  - /url: https://acehotel.com/corey-wash-walks-on-the-sunny-side/
+                  - figure [ref=e721]
+                - generic [ref=e722]:
+                  - paragraph [ref=e723]: Ace Hotel Palm Springs | July 2, 2024
+                  - heading [level=3] [ref=e724]:
+                    - link [ref=e725] [cursor=pointer]:
+                      - /url: https://acehotel.com/corey-wash-walks-on-the-sunny-side/
+                      - text: Corey Wash Walks on the “Sunny Side”
+                  - paragraph [ref=e726]: Don’t forget to log off. That’s the gist of “Sunny Side,” Corey Wash’s commission for the Palm Springs mural wall, which gets a refresh every spring in time for Desert Gold, our Coachella-season shindig. The painting, a riotously colorful ode to communing with nature, isn’t just a call to get off your phone, but more broadly to take a step back and think about what matters.
+                  - link [ref=e728] [cursor=pointer]:
+                    - /url: https://acehotel.com/corey-wash-walks-on-the-sunny-side/
+                    - text: Read More
+              - generic [ref=e730]:
+                - link [ref=e731] [cursor=pointer]:
+                  - /url: https://acehotel.com/an-endless-art-practice/
+                  - figure [ref=e732]
+                - generic [ref=e733]:
+                  - paragraph [ref=e734]: Ace Hotel | March 19, 2024
+                  - heading [level=3] [ref=e735]:
+                    - link [ref=e736] [cursor=pointer]:
+                      - /url: https://acehotel.com/an-endless-art-practice/
+                      - text: An Endless Art Practice
+                  - paragraph [ref=e737]: It’s her studio, but to a passerby Hyungi Park would seem out of place. A vision in all black, the 28-year-old artist dons only a trace of color — the smattering of red tattoos that start on her left cheek and snake their way down her neck and arms, punctuating the thick collage of black ink. Her studio, on the other hand, is almost ethereal. Its white walls hold shelves brimming with machines, tools and containers of organic materials that Hyungi foraged, found or made.
+                  - link [ref=e739] [cursor=pointer]:
+                    - /url: https://acehotel.com/an-endless-art-practice/
+                    - text: Read More
+              - generic [ref=e741]:
+                - link [ref=e742] [cursor=pointer]:
+                  - /url: https://acehotel.com/soy-sauce-is-like-a-fine-wine/
+                  - figure [ref=e743]
+                - generic [ref=e744]:
+                  - paragraph [ref=e745]: Ace Hotel | February 12, 2024
+                  - heading [level=3] [ref=e746]:
+                    - link [ref=e747] [cursor=pointer]:
+                      - /url: https://acehotel.com/soy-sauce-is-like-a-fine-wine/
+                      - text: Soy Sauce, Like a Fine Wine
+                  - paragraph [ref=e748]: "Eri Miyagi and Miki Nomura started Brooklyn-based Japanese condiment company Cabi Foods in 2022 for multitude reasons. One, their love of a really good mold called koji. Two, to share the Japanese home cooking they grew up on and its inherent emphasis on flavor and fresh ingredients. And to destroy the idea of Japanese condiments that “just sit there.” Launching with a yuzu vinegar, dashi soy sauce and sansho peppercorn miso — all sourced from small, regional producers — Cabi condiments focus on Japanese-specific flavors that go with anything: kale, chicken, vanilla ice cream."
+                  - link [ref=e750] [cursor=pointer]:
+                    - /url: https://acehotel.com/soy-sauce-is-like-a-fine-wine/
+                    - text: Read More
+              - generic [ref=e752]:
+                - link [ref=e753] [cursor=pointer]:
+                  - /url: https://acehotel.com/fantasma-paraiso-phantom-paradise/
+                  - figure [ref=e754]
+                - generic [ref=e755]:
+                  - paragraph [ref=e756]: Ace Hotel Los Angeles | January 29, 2024
+                  - heading [level=3] [ref=e757]:
+                    - link [ref=e758] [cursor=pointer]:
+                      - /url: https://acehotel.com/fantasma-paraiso-phantom-paradise/
+                      - text: Fantasma Paraiso / Phantom Paradise
+                  - paragraph [ref=e759]: Have you ever seen someone you love reduced to a blurry apparition on Google Street View? Felix Quintana has. With fantasma paraiso, Felix layers beauty, day-to-day routines and emblems of Los Angeles’ diasporic communities into such imagery through the cyanotype process.
+                  - link [ref=e761] [cursor=pointer]:
+                    - /url: https://acehotel.com/fantasma-paraiso-phantom-paradise/
+                    - text: Read More
+              - generic [ref=e763]:
+                - link [ref=e764] [cursor=pointer]:
+                  - /url: https://acehotel.com/fran-millers-toronto-guide/
+                  - figure [ref=e765]
+                - generic [ref=e766]:
+                  - paragraph [ref=e767]: Ace Hotel Toronto | December 13, 2023
+                  - heading [level=3] [ref=e768]:
+                    - link [ref=e769] [cursor=pointer]:
+                      - /url: https://acehotel.com/fran-millers-toronto-guide/
+                      - text: Fran Miller’s Toronto Guide
+                  - paragraph [ref=e770]: Founder of the eponymous, pared-back line of natural skincare staples F. Miller, Fran Miller is a person we trust. We trust her to make our hair soft and our skin strong. We also trust her taste in Toronto, the city she’s based, where F. Miller’s products are designed, formulated and bottled by hand. Here, we share all-inclusive list of her local haunts, from fresh flowers to designer vintage to advice on accessing the Cheese Boutique’s cheese vault.
+                  - link [ref=e772] [cursor=pointer]:
+                    - /url: https://acehotel.com/fran-millers-toronto-guide/
+                    - text: Read More
+              - generic [ref=e774]:
+                - link [ref=e775] [cursor=pointer]:
+                  - /url: https://acehotel.com/sister-act/
+                  - figure [ref=e776]
+                - generic [ref=e778]:
+                  - paragraph [ref=e779]: Ace Hotel | November 1, 2023
+                  - heading [level=3] [ref=e780]:
+                    - link [ref=e781] [cursor=pointer]:
+                      - /url: https://acehotel.com/sister-act/
+                      - text: Sister Act
+                  - paragraph [ref=e782]: Shane Thomas and Saturn Risin9 are luminous. Tucked into an Ace Suite in DTLA at magic hour, buzzing with a magnetic, conspiratorial energy — plus cunning wit cut with vulnerability — it’s clear the two multi-faceted creators have a direct aux cord to the source — both together and individually. In advance of Blush!’s sure-to-be sickening soirée over Pride weekend at Ace Hotel Palm Springs, Shane and Saturn join us in dialogue.
+                  - link [ref=e784] [cursor=pointer]:
+                    - /url: https://acehotel.com/sister-act/
+                    - text: Read More
+              - generic [ref=e786]:
+                - link [ref=e787] [cursor=pointer]:
+                  - /url: https://acehotel.com/ballroom-5-things-with-function/
+                  - figure [ref=e788]
+                - generic [ref=e789]:
+                  - paragraph [ref=e790]: Ace Hotel | September 22, 2023
+                  - heading [level=3] [ref=e791]:
+                    - link [ref=e792] [cursor=pointer]:
+                      - /url: https://acehotel.com/ballroom-5-things-with-function/
+                      - text: "Ballroom: 5 Things with Function"
+                  - paragraph [ref=e793]: "Launched last year, FUNCTION is a Toronto-based platform for everything Ballroom: culture, stories, events and education. Recently, they brought Ballroom royalty through our doors for our collaborative “Class of ’23” sessions, an ongoing series centering sexual health, community and movement. We gathered monthly to talk about history, sex ed and the courageous creative expression of voguing, as led by four of Ballroom’s most influential figures. Tears, cheers, breakthrough moments on the floor — the effects of FUNCTION remind us how alive and how staggeringly inextricable sweetness and pain can feel. Here, FUNCTION lays down five pillars of Ballroom."
+                  - link [ref=e795] [cursor=pointer]:
+                    - /url: https://acehotel.com/ballroom-5-things-with-function/
+                    - text: Read More
+        - generic:
+          - button "Previous Ace Reader Slide" [ref=e796] [cursor=pointer]
+          - button "Next Ace Reader Slide" [ref=e800] [cursor=pointer]
+    - paragraph [ref=e806]:
+      - text: Follow us
+      - link "@acehotel – Link opens in a new window" [ref=e807] [cursor=pointer]:
+        - /url: https://instagram.com/acehotel
+        - text: "@acehotel"
+    - generic [ref=e809]:
+      - generic [ref=e810]:
+        - generic [ref=e811]:
+          - paragraph [ref=e812]: The A-list
+          - heading "Join for secret codes, special events, big news, and up to 15% off your next stay." [level=2] [ref=e813]
+        - generic [ref=e814]:
+          - generic [ref=e815]: Asterisks (*) indicate required fields.
+          - generic [ref=e816]:
+            - generic: Email *
+            - textbox "Email *" [ref=e818]
+          - generic [ref=e819]:
+            - generic [ref=e820]:
+              - generic: First Name *
+              - textbox "First Name *" [ref=e822]
+            - generic [ref=e823]:
+              - generic: Last Name *
+              - textbox "Last Name *" [ref=e825]
+          - generic [ref=e826]:
+            - generic [ref=e827]:
+              - generic: Select a Country *
+              - combobox "Select a Country *" [ref=e828]:
+                - option "Afghanistan"
+                - option "Åland Islands"
+                - option "Albania"
+                - option "Algeria"
+                - option "American Samoa"
+                - option "Andorra"
+                - option "Angola"
+                - option "Anguilla"
+                - option "Antarctica"
+                - option "Antigua and Barbuda"
+                - option "Argentina"
+                - option "Armenia"
+                - option "Aruba"
+                - option "Australia"
+                - option "Austria"
+                - option "Azerbaijan"
+                - option "Bahamas"
+                - option "Bahrain"
+                - option "Bangladesh"
+                - option "Barbados"
+                - option "Belarus"
+                - option "Belgium"
+                - option "Belize"
+                - option "Benin"
+                - option "Bermuda"
+                - option "Bhutan"
+                - option "Bolivia"
+                - option "Bosnia and Herzegovina"
+                - option "Botswana"
+                - option "Bouvet Island"
+                - option "Brazil"
+                - option "British Indian Ocean Territory"
+                - option "Brunei Darussalam"
+                - option "Bulgaria"
+                - option "Burkina Faso"
+                - option "Burundi"
+                - option "Cambodia"
+                - option "Cameroon"
+                - option "Canada"
+                - option "Cape Verde"
+                - option "Cayman Islands"
+                - option "Central African Republic"
+                - option "Chad"
+                - option "Chile"
+                - option "China"
+                - option "Christmas Island"
+                - option "Cocos (Keeling) Islands"
+                - option "Colombia"
+                - option "Comoros"
+                - option "Congo"
+                - option "Congo, The Democratic Republic of The"
+                - option "Cook Islands"
+                - option "Costa Rica"
+                - option "Cote D’ivoire"
+                - option "Croatia"
+                - option "Cuba"
+                - option "Cyprus"
+                - option "Czech Republic"
+                - option "Denmark"
+                - option "Djibouti"
+                - option "Dominica"
+                - option "Dominican Republic"
+                - option "Ecuador"
+                - option "Egypt"
+                - option "El Salvador"
+                - option "Equatorial Guinea"
+                - option "Eritrea"
+                - option "Estonia"
+                - option "Ethiopia"
+                - option "Falkland Islands (Malvinas)"
+                - option "Faroe Islands"
+                - option "Fiji"
+                - option "Finland"
+                - option "France"
+                - option "French Guiana"
+                - option "French Polynesia"
+                - option "French Southern Territories"
+                - option "Gabon"
+                - option "Gambia"
+                - option "Georgia"
+                - option "Germany"
+                - option "Ghana"
+                - option "Gibraltar"
+                - option "Greece"
+                - option "Greenland"
+                - option "Grenada"
+                - option "Guadeloupe"
+                - option "Guam"
+                - option "Guatemala"
+                - option "Guernsey"
+                - option "Guinea"
+                - option "Guinea-bissau"
+                - option "Guyana"
+                - option "Haiti"
+                - option "Heard Island and Mcdonald Islands"
+                - option "Holy See (Vatican City State)"
+                - option "Honduras"
+                - option "Hong Kong"
+                - option "Hungary"
+                - option "Iceland"
+                - option "India"
+                - option "Indonesia"
+                - option "Iran, Islamic Republic of"
+                - option "Iraq"
+                - option "Ireland"
+                - option "Isle of Man"
+                - option "Israel"
+                - option "Italy"
+                - option "Jamaica"
+                - option "Japan"
+                - option "Jersey"
+                - option "Jordan"
+                - option "Kazakhstan"
+                - option "Kenya"
+                - option "Kiribati"
+                - option "Korea, Democratic People’s Republic of"
+                - option "Korea, Republic of"
+                - option "Kuwait"
+                - option "Kyrgyzstan"
+                - option "Lao People’s Democratic Republic"
+                - option "Latvia"
+                - option "Lebanon"
+                - option "Lesotho"
+                - option "Liberia"
+                - option "Libyan Arab Jamahiriya"
+                - option "Liechtenstein"
+                - option "Lithuania"
+                - option "Luxembourg"
+                - option "Macao"
+                - option "Macedonia, The Former Yugoslav Republic of"
+                - option "Madagascar"
+                - option "Malawi"
+                - option "Malaysia"
+                - option "Maldives"
+                - option "Mali"
+                - option "Malta"
+                - option "Marshall Islands"
+                - option "Martinique"
+                - option "Mauritania"
+                - option "Mauritius"
+                - option "Mayotte"
+                - option "Mexico"
+                - option "Micronesia, Federated States of"
+                - option "Moldova, Republic of"
+                - option "Monaco"
+                - option "Mongolia"
+                - option "Montenegro"
+                - option "Montserrat"
+                - option "Morocco"
+                - option "Mozambique"
+                - option "Myanmar"
+                - option "Namibia"
+                - option "Nauru"
+                - option "Nepal"
+                - option "Netherlands"
+                - option "Netherlands Antilles"
+                - option "New Caledonia"
+                - option "New Zealand"
+                - option "Nicaragua"
+                - option "Niger"
+                - option "Nigeria"
+                - option "Niue"
+                - option "Norfolk Island"
+                - option "Northern Mariana Islands"
+                - option "Norway"
+                - option "Oman"
+                - option "Pakistan"
+                - option "Palau"
+                - option "Palestinian Territory, Occupied"
+                - option "Panama"
+                - option "Papua New Guinea"
+                - option "Paraguay"
+                - option "Peru"
+                - option "Philippines"
+                - option "Pitcairn"
+                - option "Poland"
+                - option "Portugal"
+                - option "Puerto Rico"
+                - option "Qatar"
+                - option "Reunion"
+                - option "Romania"
+                - option "Russian Federation"
+                - option "Rwanda"
+                - option "Saint Helena"
+                - option "Saint Kitts and Nevis"
+                - option "Saint Lucia"
+                - option "Saint Pierre and Miquelon"
+                - option "Saint Vincent and The Grenadines"
+                - option "Samoa"
+                - option "San Marino"
+                - option "Sao Tome and Principe"
+                - option "Saudi Arabia"
+                - option "Senegal"
+                - option "Serbia"
+                - option "Seychelles"
+                - option "Sierra Leone"
+                - option "Singapore"
+                - option "Slovakia"
+                - option "Slovenia"
+                - option "Solomon Islands"
+                - option "Somalia"
+                - option "South Africa"
+                - option "South Georgia and The South Sandwich Islands"
+                - option "Spain"
+                - option "Sri Lanka"
+                - option "Sudan"
+                - option "Suriname"
+                - option "Svalbard and Jan Mayen"
+                - option "Swaziland"
+                - option "Sweden"
+                - option "Switzerland"
+                - option "Syrian Arab Republic"
+                - option "Taiwan"
+                - option "Tajikistan"
+                - option "Tanzania, United Republic of"
+                - option "Thailand"
+                - option "Timor-leste"
+                - option "Togo"
+                - option "Tokelau"
+                - option "Tonga"
+                - option "Trinidad and Tobago"
+                - option "Tunisia"
+                - option "Turkey"
+                - option "Turkmenistan"
+                - option "Turks and Caicos Islands"
+                - option "Tuvalu"
+                - option "Uganda"
+                - option "Ukraine"
+                - option "United Arab Emirates"
+                - option "United Kingdom"
+                - option "United States"
+                - option "United States Minor Outlying Islands"
+                - option "Uruguay"
+                - option "Uzbekistan"
+                - option "Vanuatu"
+                - option "Venezuela"
+                - option "Viet Nam"
+                - option "Virgin Islands, British"
+                - option "Virgin Islands, U.S."
+                - option "Wallis and Futuna"
+                - option "Western Sahara"
+                - option "Yemen"
+                - option "Zambia"
+                - option "Zimbabwe"
+            - generic [ref=e829]:
+              - generic: City *
+              - textbox "City *" [ref=e831]
+          - generic [ref=e832]:
+            - paragraph [ref=e833]:
+              - text: By clicking the Join Up button, you agree to the
+              - link "Privacy Policy" [ref=e835] [cursor=pointer]:
+                - /url: https://acehotel.com/privacy-policy/
+            - button "Join Up Subscribe to the Ace Hotel newsletter" [ref=e836] [cursor=pointer]:
+              - text: Join Up
+              - generic [ref=e837]: Subscribe to the Ace Hotel newsletter
+        - list [ref=e838]:
+          - listitem [ref=e839]:
+            - link [ref=e840] [cursor=pointer]:
+              - /url: https://www.instagram.com/acehotel/
+              - img "Go to Ace Hotel’s instagram page." [ref=e842]
+          - listitem [ref=e844]:
+            - link [ref=e845] [cursor=pointer]:
+              - /url: https://www.facebook.com/acehotel/
+              - img "Go to Ace Hotel’s facebook page." [ref=e847]
+          - listitem [ref=e849]:
+            - link [ref=e850] [cursor=pointer]:
+              - /url: https://acehotel.substack.com/
+              - img "Go to Ace Hotel’s substack page." [ref=e852]
+          - listitem [ref=e854]:
+            - link [ref=e855] [cursor=pointer]:
+              - /url: https://www.youtube.com/@ace_hotel
+              - img "Go to Ace Hotel’s youtube page." [ref=e857]
+      - img "A black banner with white text reads 'EVERYTHING IS GOING TO BE OKAY' above a row of empty wooden chairs." [ref=e860]
+  - contentinfo "Footer" [ref=e861]:
+    - generic [ref=e862]:
+      - generic [ref=e863]:
+        - generic [ref=e864]:
+          - link "Ace Hotel - Reload Homepage" [ref=e866] [cursor=pointer]:
+            - /url: https://acehotel.com
+          - generic [ref=e870]:
+            - link [ref=e872] [cursor=pointer]:
+              - /url: https://www.seibuprince.com/
+              - img "Seibu Prince Hotels & Resorts" [ref=e873]
+            - list [ref=e874]:
+              - listitem [ref=e875]:
+                - link [ref=e876] [cursor=pointer]:
+                  - /url: https://www.instagram.com/acehotel/
+                  - img "Go to Ace Hotel's instagram page." [ref=e878]
+              - listitem [ref=e880]:
+                - link [ref=e881] [cursor=pointer]:
+                  - /url: https://www.facebook.com/acehotel/
+                  - img "Go to Ace Hotel's facebook page." [ref=e883]
+              - listitem [ref=e885]:
+                - link [ref=e886] [cursor=pointer]:
+                  - /url: https://acehotel.substack.com/
+                  - img "Go to Ace Hotel's substack page." [ref=e888]
+              - listitem [ref=e890]:
+                - link [ref=e891] [cursor=pointer]:
+                  - /url: https://www.youtube.com/@ace_hotel
+                  - img "Go to Ace Hotel's youtube page." [ref=e893]
+        - navigation "footer" [ref=e895]:
+          - list [ref=e896]:
+            - listitem [ref=e897]:
+              - link "Accessibility" [ref=e898] [cursor=pointer]:
+                - /url: https://acehotel.com/accessibility/
+            - listitem [ref=e899]:
+              - link "Privacy Policy" [ref=e900] [cursor=pointer]:
+                - /url: https://acehotel.com/privacy-policy/
+            - listitem [ref=e901]:
+              - link "Press Inquiries" [ref=e902] [cursor=pointer]:
+                - /url: https://acehotel.com/press-inquiries/
+            - listitem [ref=e903]:
+              - link "Contact" [ref=e904] [cursor=pointer]:
+                - /url: https://acehotel.com/contact/
+            - listitem [ref=e905]:
+              - link "FAQs" [ref=e906] [cursor=pointer]:
+                - /url: https://acehotel.com/faqs/
+            - listitem [ref=e907]:
+              - link "A-List" [ref=e908] [cursor=pointer]:
+                - /url: https://acehotel.com/a-list/
+            - listitem [ref=e909]:
+              - link "Careers" [ref=e910] [cursor=pointer]:
+                - /url: https://acehotel.com/careers/
+            - listitem [ref=e911]:
+              - link "Manage Reservations" [ref=e912] [cursor=pointer]:
+                - /url: https://reservations.acehotel.com/signin?&chain=7231
+            - listitem [ref=e913]:
+              - link "Hotel Development" [ref=e914] [cursor=pointer]:
+                - /url: mailto:development@acehotel.com
+            - listitem [ref=e915]:
+              - link "Pet Friendly Hotels" [ref=e916] [cursor=pointer]:
+                - /url: https://acehotel.com/pet-friendly/
+      - generic [ref=e917]:
+        - link "– Link opens in a new window" [ref=e918] [cursor=pointer]:
+          - /url: https://www.atelierace.com/
+        - paragraph [ref=e920]: © Ace Hotel 2026

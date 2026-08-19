@@ -192,7 +192,7 @@ export default function CategorySection() {
           </p>
         </div>
 
-        {/* 6 Category Photo Cards with Ace Hotel Room Header Stamps & 3D Hover Lift */}
+        {/* 6 Category Photo Cards with Image on Top (70% Height) & Text Below */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
           {categories.map((cat, idx) => {
             const isSelected = selectedCategory === cat.name;
@@ -206,38 +206,38 @@ export default function CategorySection() {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.name)}
-                className={`group relative overflow-hidden text-left border transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between aspect-[3/4] ${
+                className={`group relative overflow-hidden text-left border font-sans transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? "border-[#8C2318] -translate-y-2 shadow-[10px_10px_0px_#8C2318] z-10"
-                    : "border-[#1a1a1a] hover:-translate-y-3 hover:shadow-[10px_10px_0px_#1a1a1a] bg-[#1a1a1a]"
+                    ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] -translate-y-2 shadow-[8px_8px_0px_#8C2318] z-10"
+                    : "bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border-[#1a1a1a] hover:-translate-y-2 hover:shadow-[8px_8px_0px_#1a1a1a]"
                 }`}
               >
-                {/* Editorial Photo Background */}
-                <img
-                  src={meta.bg}
-                  alt={cat.name}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out-ace ${
-                    isSelected ? "scale-110 filter brightness-[0.7] contrast-110" : "filter brightness-[0.5] group-hover:scale-110 group-hover:brightness-[0.65]"
-                  }`}
-                />
-
-                {/* Dark Gradient Overlay for Typography Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent pointer-events-none" />
-
-                <div className="flex-1" />
-
-                {/* Bottom Content Stamp */}
-                <div className="relative z-10 p-3.5 text-[#f4f3ee]">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <i className={`${cat.icon} text-sm text-[#8C2318]`} />
-                    <span className="text-[9px] font-mono font-bold tracking-widest text-[#f4f3ee]/70 uppercase">
-                      {meta.code.split(" — ")[1]}
-                    </span>
+                {/* TOP: Photo Image Container (70% scaled height) */}
+                <div className="relative w-full h-28 sm:h-32 md:h-36 overflow-hidden border-b border-[#1a1a1a] bg-[#1a1a1a] shrink-0">
+                  <img
+                    src={meta.bg}
+                    alt={cat.name}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-108 filter brightness-95 contrast-105"
+                  />
+                  <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase border border-[#1a1a1a]">
+                    0{idx + 1}
                   </div>
-                  <h3 className="font-serif font-bold text-base text-[#f4f3ee] leading-tight mb-0.5">
-                    {cat.name} <span className="text-xs font-mono opacity-80 text-[#8C2318]">({count})</span>
-                  </h3>
-                  <p className="font-sans text-[10px] text-[#f4f3ee]/80 line-clamp-1 leading-tight">
+                </div>
+
+                {/* BOTTOM: Text Details Below Image */}
+                <div className="p-3.5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <i className={`${cat.icon} text-xs text-[#8C2318]`} />
+                      <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase">
+                        {meta.code.split(" — ")[1]}
+                      </span>
+                    </div>
+                    <h3 className={`font-serif font-bold text-sm md:text-base leading-tight mb-1 ${isSelected ? "text-[#f4f3ee]" : "text-[#1a1a1a]"}`}>
+                      {cat.name} <span className="text-xs font-mono opacity-80 text-[#8C2318]">({count})</span>
+                    </h3>
+                  </div>
+                  <p className={`font-sans text-[10px] leading-tight line-clamp-1 ${isSelected ? "text-[#f4f3ee]/80" : "text-[#1a1a1a]/70"}`}>
                     {cat.description}
                   </p>
                 </div>

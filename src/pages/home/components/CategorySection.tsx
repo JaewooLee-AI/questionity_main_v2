@@ -211,7 +211,7 @@ export default function CategorySection() {
                   htmlFor="cat-search"
                   className="absolute left-0 top-0 text-xs font-bold uppercase tracking-widest text-[#1a1a1a]/60 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#1a1a1a]/50 peer-focus:top-0 peer-focus:text-xs peer-focus:font-bold peer-focus:text-[#8C2318]"
                 >
-                  도서명, 저자, 키워드 검색 (예: 아토믹 해빗, 한강, AI)
+                  도서명, 저자, 키워드 검색
                 </label>
                 {searchInput && (
                   <button

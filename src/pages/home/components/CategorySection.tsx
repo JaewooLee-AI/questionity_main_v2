@@ -27,6 +27,33 @@ function BookCoverImage({ book, className }: { book: CuratedBook; className: str
   );
 }
 
+const CATEGORY_IMAGES: Record<string, { bg: string; code: string }> = {
+  경제경영: {
+    bg: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
+    code: "CAT. 001 — ECONOMICS",
+  },
+  자기계발: {
+    bg: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
+    code: "CAT. 002 — GROWTH",
+  },
+  인문학: {
+    bg: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80",
+    code: "CAT. 003 — HUMANITIES",
+  },
+  "IT/컴퓨터": {
+    bg: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80",
+    code: "CAT. 004 — AI & TECH",
+  },
+  "소설/시/희곡": {
+    bg: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80",
+    code: "CAT. 005 — LITERATURE",
+  },
+  사회과학: {
+    bg: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80",
+    code: "CAT. 006 — SOCIETY",
+  },
+};
+
 export default function CategorySection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("전체");
   const [searchInput, setSearchInput] = useState<string>("");
@@ -165,110 +192,134 @@ export default function CategorySection() {
           </p>
         </div>
 
-        {/* 6 Category Cards with 3D Hover Lift */}
+        {/* 6 Category Photo Cards with Ace Hotel Room Header Stamps & 3D Hover Lift */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
-          {categories.map((cat) => {
+          {categories.map((cat, idx) => {
             const isSelected = selectedCategory === cat.name;
             const count = categoryCounts[cat.name] || 0;
+            const meta = CATEGORY_IMAGES[cat.name] || {
+              bg: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
+              code: `CAT. 00${idx + 1} — EDITORIAL`,
+            };
+
             return (
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.name)}
-                className={`group relative p-6 text-center border font-sans transition-all duration-700 ease-out-ace cursor-pointer ${
+                className={`group relative overflow-hidden text-left border transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between aspect-[3/4] ${
                   isSelected
-                    ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] -translate-y-2 shadow-[8px_8px_0px_#8C2318]"
-                    : "bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border-[#1a1a1a] hover:-translate-y-2 hover:shadow-[8px_8px_0px_#1a1a1a]"
+                    ? "border-[#8C2318] -translate-y-2 shadow-[10px_10px_0px_#8C2318] z-10"
+                    : "border-[#1a1a1a] hover:-translate-y-3 hover:shadow-[10px_10px_0px_#1a1a1a] bg-[#1a1a1a]"
                 }`}
               >
-                  <div
-                    className={`w-12 h-12 mx-auto mb-4 flex items-center justify-center transition-colors duration-500 border border-[#1a1a1a]/20 ${
-                      isSelected
-                        ? "bg-[#8C2318] text-[#f4f3ee]"
-                        : "bg-[#e8e6df] text-[#1a1a1a] group-hover:bg-[#8C2318] group-hover:text-[#f4f3ee]"
-                    }`}
-                  >
-                    <i className={`${cat.icon} text-2xl`} />
+                {/* Editorial Photo Background */}
+                <img
+                  src={meta.bg}
+                  alt={cat.name}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out-ace ${
+                    isSelected ? "scale-110 filter brightness-[0.7] contrast-110" : "filter brightness-[0.5] group-hover:scale-110 group-hover:brightness-[0.65]"
+                  }`}
+                />
+
+                {/* Dark Gradient Overlay for Typography Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-[#1a1a1a]/70 pointer-events-none" />
+
+                {/* Top Header Stamp (Ace Hotel Room Stamp) */}
+                <div className="relative z-10 bg-[#1a1a1a]/90 backdrop-blur-sm text-[#f4f3ee] px-3 py-1.5 flex items-center justify-between font-mono text-[9px] font-bold tracking-widest uppercase border-b border-[#1a1a1a]">
+                  <span>CAT. 00{idx + 1}</span>
+                  <span className={isSelected ? "text-[#8C2318]" : "text-[#f4f3ee]/80"}>ROOM {idx + 1}01</span>
+                </div>
+
+                {/* Bottom Content Stamp */}
+                <div className="relative z-10 p-3.5 text-[#f4f3ee]">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <i className={`${cat.icon} text-sm text-[#8C2318]`} />
+                    <span className="text-[9px] font-mono font-bold tracking-widest text-[#f4f3ee]/70 uppercase">
+                      {meta.code.split(" — ")[1]}
+                    </span>
                   </div>
-                  <h3 className="font-serif font-bold text-base mb-1">
-                    {cat.name} <span className="text-xs font-mono opacity-70">({count})</span>
+                  <h3 className="font-serif font-bold text-base text-[#f4f3ee] leading-tight mb-0.5">
+                    {cat.name} <span className="text-xs font-mono opacity-80 text-[#8C2318]">({count})</span>
                   </h3>
-                  <p className={`font-sans text-[11px] leading-tight line-clamp-1 ${isSelected ? "text-[#f4f3ee]/80" : "text-[#1a1a1a]/60"}`}>
+                  <p className="font-sans text-[10px] text-[#f4f3ee]/80 line-clamp-1 leading-tight">
                     {cat.description}
                   </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Search Input Bar & Category Filter Tabs */}
-          <div className="bg-white p-6 border border-[#1a1a1a] shadow-none mb-8">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              {/* Search Input & Buttons */}
-              <div className="flex w-full md:w-auto items-center gap-3 flex-1 max-w-xl">
-                <div className="relative flex-1 pt-2">
-                  <input
-                    type="text"
-                    id="cat-search"
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder=" "
-                    className="peer w-full bg-transparent border-b-2 border-[#1a1a1a] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#8C2318] transition-colors"
-                  />
-                  <label
-                    htmlFor="cat-search"
-                    className="absolute left-0 top-0 text-xs font-bold uppercase tracking-widest text-[#1a1a1a]/60 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#1a1a1a]/50 peer-focus:top-0 peer-focus:text-xs peer-focus:font-bold peer-focus:text-[#8C2318]"
-                  >
-                    도서명, 저자, 키워드 검색 (예: 아토믹 해빗, 한강, AI)
-                  </label>
-                  {searchInput && (
-                    <button
-                      onClick={handleClearSearch}
-                      className="absolute right-0 bottom-2 text-[#1a1a1a]/60 hover:text-[#1a1a1a] text-sm"
-                    >
-                      <i className="ri-close-circle-fill" />
-                    </button>
-                  )}
                 </div>
-                <button
-                  onClick={handleSearchSubmit}
-                  className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-6 py-3 text-xs font-bold uppercase tracking-widest transition-colors cursor-pointer shrink-0 flex items-center gap-1 border border-[#1a1a1a]"
-                >
-                  <i className="ri-search-line" />
-                  <span>검색</span>
-                </button>
-                <button
-                  onClick={handleShuffle}
-                  title="클릭할 때마다 무한히 다른 도서 추천받기"
-                  className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] border border-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-colors cursor-pointer shrink-0 flex items-center gap-1 active:scale-95"
-                >
-                  <i className="ri-refresh-line text-[#8C2318] font-bold" />
-                  <span className="hidden sm:inline">🎲 새로고침</span>
-                </button>
-              </div>
+              </button>
+            );
+          })}
+        </div>
 
-              {/* Category Filter Pills */}
-              <div className="flex flex-wrap gap-2 justify-center md:justify-end w-full md:w-auto font-mono text-xs">
-                <button
-                  onClick={() => setSelectedCategory("전체")}
-                  className={`px-3.5 py-1.5 font-bold uppercase border transition-all ${
-                    selectedCategory === "전체"
-                      ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318]"
-                    : "bg-background-100 text-foreground-700 border-background-200 hover:border-foreground-400"
+        {/* Search Input Bar & Category Filter Directory Index */}
+        <div className="bg-[#f4f3ee] p-6 border border-[#1a1a1a] shadow-none mb-8">
+          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            {/* Search Input & Buttons */}
+            <div className="flex w-full lg:w-auto items-center gap-3 flex-1 max-w-xl">
+              <div className="relative flex-1 pt-2">
+                <input
+                  type="text"
+                  id="cat-search"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder=" "
+                  className="peer w-full bg-transparent border-b-2 border-[#1a1a1a] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#8C2318] transition-colors font-sans"
+                />
+                <label
+                  htmlFor="cat-search"
+                  className="absolute left-0 top-0 text-xs font-bold uppercase tracking-widest text-[#1a1a1a]/60 transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-xs peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#1a1a1a]/50 peer-focus:top-0 peer-focus:text-xs peer-focus:font-bold peer-focus:text-[#8C2318]"
+                >
+                  도서명, 저자, 키워드 검색 (예: 아토믹 해빗, 한강, AI)
+                </label>
+                {searchInput && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="absolute right-0 bottom-2 text-[#1a1a1a]/60 hover:text-[#1a1a1a] text-sm"
+                  >
+                    <i className="ri-close-circle-fill" />
+                  </button>
+                )}
+              </div>
+              <button
+                onClick={handleSearchSubmit}
+                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-5 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 border border-[#1a1a1a] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+              >
+                <i className="ri-search-line" />
+                <span>검색</span>
+              </button>
+              <button
+                onClick={handleShuffle}
+                title="클릭할 때마다 무한히 다른 도서 추천받기"
+                className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] border border-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 active:scale-95 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+              >
+                <i className="ri-refresh-line text-[#8C2318] font-bold" />
+                <span className="hidden sm:inline">🎲 새로고침</span>
+              </button>
+            </div>
+
+            {/* Category Filter Pills (Ace Hotel Directory Tag Style) */}
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-end w-full lg:w-auto font-mono text-xs">
+              <button
+                onClick={() => setSelectedCategory("전체")}
+                className={`px-3.5 py-2 font-bold uppercase border transition-all duration-300 ${
+                  selectedCategory === "전체"
+                    ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
+                    : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
                 }`}
               >
                 전체 ({categoryCounts["전체"]})
               </button>
               {categories.map((cat) => {
                 const count = categoryCounts[cat.name] || 0;
+                const isSelected = selectedCategory === cat.name;
                 return (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.name)}
-                    className={`px-3 py-1.5 text-xs font-semibold border transition-all ${
-                      selectedCategory === cat.name
-                        ? "bg-primary-500 text-background-50 border-primary-500"
-                        : "bg-background-100 text-foreground-700 border-background-200 hover:border-primary-300"
+                    className={`px-3 py-2 text-xs font-bold uppercase border transition-all duration-300 ${
+                      isSelected
+                        ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
+                        : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
                     }`}
                   >
                     {cat.name} ({count})

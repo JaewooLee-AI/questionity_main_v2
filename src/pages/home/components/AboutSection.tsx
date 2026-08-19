@@ -63,13 +63,13 @@ export default function AboutSection() {
             </p>
 
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out flex flex-wrap gap-4" style={{ transitionDelay: "0.5s" }}>
-              <div className="px-5 py-3 border border-[#1a1a1a] font-serif text-xs font-bold uppercase tracking-widest text-[#1a1a1a]">
+              <div className="px-5 py-3 border border-black bg-white font-sans text-xs font-bold uppercase tracking-normal text-black hover:bg-black hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg">
                 매월 엄선 도서 50선
               </div>
-              <div className="px-5 py-3 border border-[#1a1a1a] font-serif text-xs font-bold uppercase tracking-widest text-[#1a1a1a]">
+              <div className="px-5 py-3 border border-black bg-white font-sans text-xs font-bold uppercase tracking-normal text-black hover:bg-black hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg">
                 혜화 오프라인 코워킹 아지트
               </div>
-              <div className="px-5 py-3 bg-[#8C2318] text-[#f4f3ee] font-serif text-xs font-bold uppercase tracking-widest">
+              <div className="px-5 py-3 border border-black bg-black text-white font-sans text-xs font-bold uppercase tracking-normal hover:bg-white hover:text-black transition-all hover:-translate-y-1 hover:shadow-lg">
                 2,000+ 누적 독서 멤버
               </div>
             </div>

@@ -52,7 +52,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1a1a1a] text-[#f4f3ee]">
+    <section ref={sectionRef} className="relative min-h-[85vh] md:min-h-[88vh] flex items-center justify-center overflow-hidden bg-[#1a1a1a] text-[#f4f3ee]">
       {/* Ace Hotel Style Animated Moving Media Crossfade Slider */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {HERO_SLIDES.map((slide, idx) => (
@@ -68,7 +68,7 @@ export default function HeroSection() {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover filter brightness-[0.45] contrast-115 scale-105 animate-ace-kenburns"
+                className="w-full h-full object-cover filter brightness-[0.5] contrast-110 scale-105 animate-ace-kenburns"
               >
                 <source src={slide.url} type="video/mp4" />
               </video>
@@ -76,7 +76,7 @@ export default function HeroSection() {
               <img
                 src={slide.url}
                 alt="Ace Hotel Inspired Architectural Mood"
-                className="w-full h-full object-cover filter brightness-[0.45] contrast-115 scale-105 animate-ace-kenburns"
+                className="w-full h-full object-cover filter brightness-[0.5] contrast-110 scale-105 animate-ace-kenburns"
               />
             )}
           </div>
@@ -97,18 +97,18 @@ export default function HeroSection() {
       </div>
 
       {/* Centered Ace Hotel Hero Composition */}
-      <div className="relative z-30 w-full px-4 md:px-8 lg:px-12 pt-40 pb-24 md:pt-48 md:pb-32 max-w-7xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-30 w-full px-6 md:px-12 lg:px-20 pt-36 pb-20 md:pt-44 md:pb-24 max-w-4xl mx-auto text-center flex flex-col items-center">
         
         {/* Top Tag Badge */}
-        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-6 md:mb-8">
-          <span className="inline-block border border-[#f4f3ee]/40 bg-[#1a1a1a]/70 backdrop-blur-md px-6 py-2 text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase">
+        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-6">
+          <span className="inline-block border border-[#f4f3ee]/40 bg-[#1a1a1a]/70 backdrop-blur-md px-5 py-1.5 text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase">
             ROOM NO. 101 — WELCOME TO QUESTIONITY
           </span>
         </div>
 
-        {/* Massive Viewport Headline (Identical Scale to Ace Hotel) */}
+        {/* Balanced Refined Headline (Ace Hotel Style) */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-5xl sm:text-7xl md:text-[9rem] lg:text-[11rem] xl:text-[13rem] text-[#f4f3ee] leading-[0.85] mb-8 tracking-tighter uppercase"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#f4f3ee] leading-[1.05] mb-6 tracking-tight uppercase"
           style={{ transitionDelay: "0.2s" }}
         >
           WELCOME TO<br />
@@ -117,14 +117,14 @@ export default function HeroSection() {
 
         {/* Subtitles (English Primary + Korean Secondary) */}
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/90 font-serif italic text-lg md:text-3xl leading-relaxed mb-3 max-w-4xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/90 font-serif italic text-base md:text-xl leading-relaxed mb-2 max-w-2xl"
           style={{ transitionDelay: "0.3s" }}
         >
           An Editorial Book Salon & Culture Lounge in Seoul
         </p>
 
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/70 font-sans text-xs md:text-sm tracking-widest uppercase mb-12 max-w-2xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/70 font-sans text-xs md:text-sm tracking-widest uppercase mb-10 max-w-xl"
           style={{ transitionDelay: "0.35s" }}
         >
           서울특별시 종로구 창경궁로 270 (혜화역 4번 출구) • 2,000+ 멤버의 지적 독서 커뮤니티
@@ -132,18 +132,18 @@ export default function HeroSection() {
 
         {/* Action Buttons Centered */}
         <div
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
           style={{ transitionDelay: "0.4s" }}
         >
           <a
             href="#clubs"
-            className="w-full sm:w-auto bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-12 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-[6px_6px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
+            className="w-full sm:w-auto bg-[#8C2318] text-[#f4f3ee] border border-[#8C2318] font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1 hover:shadow-[5px_5px_0px_#f4f3ee] hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
           >
             EXPLORE CLUBS ↗
           </a>
           <a
             href="#how-it-works"
-            className="w-full sm:w-auto border border-[#f4f3ee]/40 bg-[#1a1a1a]/50 backdrop-blur-sm text-[#f4f3ee] font-bold text-xs md:text-sm px-12 py-5 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
+            className="w-full sm:w-auto border border-[#f4f3ee]/40 bg-[#1a1a1a]/50 backdrop-blur-sm text-[#f4f3ee] font-bold text-xs md:text-sm px-8 py-4 text-center transition-all duration-700 ease-out-ace hover:-translate-y-1 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
           >
             HOW IT WORKS
           </a>

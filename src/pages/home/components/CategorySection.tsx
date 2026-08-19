@@ -95,7 +95,7 @@ export default function CategorySection() {
   const [activeSearchKeyword, setActiveSearchKeyword] = useState<string>("");
   const [selectedBookIds, setSelectedBookIds] = useState<string[]>([]);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
-  const [isListExpanded, setIsListExpanded] = useState<boolean>(false);
+  const [isListExpanded, setIsListExpanded] = useState<boolean>(true);
   const [hasCompletedApplication, setHasCompletedApplication] = useState<boolean>(false);
   
   // Random Seed for true infinite reshuffling

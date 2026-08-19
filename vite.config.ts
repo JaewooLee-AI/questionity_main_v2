@@ -32,42 +32,61 @@ function aladinCoverProxy(): Plugin {
 
         const fetchUrl = coverUrl.replace("http://", "https://");
 
-        const request = https.get(
-          fetchUrl,
-          {
-            headers: {
-              Referer: "https://www.aladin.co.kr/",
-              "User-Agent":
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-              Accept: "image/webp,image/apng,image/*,*/*;q=0.8",
-            },
-          },
-          (proxyRes) => {
-            if (proxyRes.statusCode !== 200) {
-              res.statusCode = proxyRes.statusCode || 502;
-              res.end();
-              return;
-            }
-            res.setHeader(
-              "Content-Type",
-              proxyRes.headers["content-type"] || "image/jpeg"
-            );
-            res.setHeader("Cache-Control", "public, max-age=86400");
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            proxyRes.pipe(res);
+        function fetchWithRedirects(url: string, redirectCount = 0) {
+          if (redirectCount > 5) {
+            res.statusCode = 502;
+            res.end();
+            return;
           }
-        );
 
-        request.on("error", () => {
-          res.statusCode = 502;
-          res.end();
-        });
+          const request = https.get(
+            url,
+            {
+              headers: {
+                Referer: "https://www.aladin.co.kr/",
+                "User-Agent":
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                Accept: "image/webp,image/apng,image/*,*/*;q=0.8",
+              },
+            },
+            (proxyRes) => {
+              // Follow redirects
+              if ((proxyRes.statusCode === 301 || proxyRes.statusCode === 302 || proxyRes.statusCode === 307) && proxyRes.headers.location) {
+                const redirectUrl = proxyRes.headers.location.startsWith("http")
+                  ? proxyRes.headers.location
+                  : `https://image.aladin.co.kr${proxyRes.headers.location}`;
+                fetchWithRedirects(redirectUrl, redirectCount + 1);
+                return;
+              }
 
-        request.setTimeout(8000, () => {
-          request.destroy();
-          res.statusCode = 504;
-          res.end();
-        });
+              if (proxyRes.statusCode !== 200) {
+                res.statusCode = proxyRes.statusCode || 502;
+                res.end();
+                return;
+              }
+              res.setHeader(
+                "Content-Type",
+                proxyRes.headers["content-type"] || "image/jpeg"
+              );
+              res.setHeader("Cache-Control", "public, max-age=86400");
+              res.setHeader("Access-Control-Allow-Origin", "*");
+              proxyRes.pipe(res);
+            }
+          );
+
+          request.on("error", () => {
+            res.statusCode = 502;
+            res.end();
+          });
+
+          request.setTimeout(8000, () => {
+            request.destroy();
+            res.statusCode = 504;
+            res.end();
+          });
+        }
+
+        fetchWithRedirects(fetchUrl);
       });
     },
   };

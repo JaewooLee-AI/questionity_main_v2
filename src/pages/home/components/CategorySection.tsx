@@ -5,15 +5,32 @@ import { proxyBookCover } from "@/lib/proxyBookCover";
 
 // Book Cover component with robust error handling and multiple fallbacks
 function BookCoverImage({ book, className }: { book: CuratedBook; className: string }) {
-  const [imageError, setImageError] = useState(false);
+  const [stage, setStage] = useState<"proxy" | "direct" | "fallback">("proxy");
 
-  // Try proxy first, fallback to direct URL
-  const imageSrc = book.cover.includes('aladin.co.kr')
-    ? `/api/book-cover?url=${encodeURIComponent(book.cover)}`
+  // Stage 1: try proxy; Stage 2: try direct URL; Stage 3: gradient fallback
+  const imageSrc = stage === "proxy"
+    ? (book.cover.includes('aladin.co.kr')
+      ? `/api/book-cover?url=${encodeURIComponent(book.cover)}`
+      : book.cover)
     : book.cover;
 
-  if (imageError || !book.cover) {
-    // Enhanced fallback with better visual design
+  const handleError = () => {
+    if (stage === "proxy") {
+      setStage("direct");
+    } else {
+      setStage("fallback");
+    }
+  };
+
+  // Also detect tiny/broken placeholder images from Aladin
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.naturalWidth < 10 || img.naturalHeight < 10) {
+      handleError();
+    }
+  };
+
+  if (stage === "fallback" || !book.cover) {
     const categoryStyles: Record<string, { gradient: string; icon: string; emoji: string }> = {
       "경제경영": { gradient: "from-blue-600 to-blue-900", icon: "💰", emoji: "💼" },
       "자기계발": { gradient: "from-green-600 to-green-900", icon: "🌱", emoji: "📈" },
@@ -47,9 +64,11 @@ function BookCoverImage({ book, className }: { book: CuratedBook; className: str
     <img
       src={imageSrc}
       alt={book.title}
-      onError={() => setImageError(true)}
+      onError={handleError}
+      onLoad={handleLoad}
       className={className}
       loading="lazy"
+      referrerPolicy="no-referrer"
     />
   );
 }

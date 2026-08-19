@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['"Playfair Display"', '"Pretendard"', 'serif'],
-        body: ['"Pretendard"', '-apple-system', 'sans-serif'],
-        serif: ['"Playfair Display"', '"Pretendard"', 'serif'],
-        label: ['"Pretendard"', 'sans-serif'],
-        sans: ['"Pretendard"', 'sans-serif'],
+        heading: ['"Playfair Display"', '"Pretendard Variable"', '"Pretendard"', 'sans-serif'],
+        body: ['"Pretendard Variable"', '"Pretendard"', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Pretendard Variable"', '"Pretendard"', 'sans-serif'],
+        label: ['"Pretendard Variable"', '"Pretendard"', 'sans-serif'],
+        sans: ['"Pretendard Variable"', '"Pretendard"', '-apple-system', 'sans-serif'],
       },
       transitionDuration: {
         '700': '700ms',

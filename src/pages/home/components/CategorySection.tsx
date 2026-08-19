@@ -434,7 +434,7 @@ export default function CategorySection() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4 mb-16 animate-in fade-in duration-300">
+              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2.5 sm:gap-3 mb-16 animate-in fade-in duration-300">
                 {filteredBooks.map((book) => {
                   const isChecked = selectedBookIds.includes(book.id);
                   return (

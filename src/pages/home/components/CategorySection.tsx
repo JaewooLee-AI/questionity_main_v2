@@ -192,8 +192,8 @@ export default function CategorySection() {
           </p>
         </div>
 
-        {/* Search Input Bar & Category Filter Directory Index (ABOVE PHOTO CARDS) */}
-        <div className="bg-[#f4f3ee] p-6 border border-[#1a1a1a] shadow-none mb-10">
+        {/* Search Input Bar & Category Filter Directory Index (ABOVE PHOTO CARDS - BORDERLESS) */}
+        <div className="bg-[#e8e6df]/40 p-6 mb-10">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search Input & Buttons */}
             <div className="flex w-full lg:w-auto items-center gap-3 flex-1 max-w-xl">
@@ -224,7 +224,7 @@ export default function CategorySection() {
               </div>
               <button
                 onClick={handleSearchSubmit}
-                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-5 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 border border-[#1a1a1a] hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] px-5 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <i className="ri-search-line" />
                 <span>검색</span>
@@ -232,21 +232,21 @@ export default function CategorySection() {
               <button
                 onClick={handleShuffle}
                 title="클릭할 때마다 무한히 다른 도서 추천받기"
-                className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] border border-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 active:scale-95 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+                className="bg-[#e8e6df] hover:bg-white text-[#1a1a1a] px-4 py-3 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 flex items-center gap-1.5 active:scale-95 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <i className="ri-refresh-line text-[#8C2318] font-bold" />
                 <span className="hidden sm:inline">🎲 새로고침</span>
               </button>
             </div>
 
-            {/* Category Filter Pills (Ace Hotel Directory Tag Style) */}
+            {/* Category Filter Pills (Borderless Tag Style) */}
             <div className="flex flex-wrap gap-2 justify-center lg:justify-end w-full lg:w-auto font-mono text-xs">
               <button
                 onClick={() => setSelectedCategory("전체")}
-                className={`px-3.5 py-2 font-bold uppercase border transition-all duration-300 ${
+                className={`px-3.5 py-2 font-bold uppercase transition-all duration-300 ${
                   selectedCategory === "전체"
-                    ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
-                    : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+                    ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                    : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
                 }`}
               >
                 전체 ({categoryCounts["전체"]})
@@ -258,10 +258,10 @@ export default function CategorySection() {
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.name)}
-                    className={`px-3 py-2 text-xs font-bold uppercase border transition-all duration-300 ${
+                    className={`px-3 py-2 text-xs font-bold uppercase transition-all duration-300 ${
                       isSelected
-                        ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] shadow-[3px_3px_0px_#1a1a1a]"
-                        : "bg-[#e8e6df] text-[#1a1a1a] border-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_#1a1a1a]"
+                        ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                        : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
                     }`}
                   >
                     {cat.name} ({count})
@@ -272,7 +272,7 @@ export default function CategorySection() {
           </div>
         </div>
 
-        {/* 6 Category Photo Cards Grid (BELOW SEARCH & FILTERS) */}
+        {/* 6 Category Photo Cards Grid (BORDERLESS PHOTO CARDS BELOW) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
           {categories.map((cat, idx) => {
             const isSelected = selectedCategory === cat.name;
@@ -286,20 +286,20 @@ export default function CategorySection() {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.name)}
-                className={`group relative overflow-hidden text-left border font-sans transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between ${
+                className={`group relative overflow-hidden text-left font-sans transition-all duration-700 ease-out-ace cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] -translate-y-2 shadow-[8px_8px_0px_#8C2318] z-10"
-                    : "bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border-[#1a1a1a] hover:-translate-y-2 hover:shadow-[8px_8px_0px_#1a1a1a]"
+                    ? "bg-[#1a1a1a] text-[#f4f3ee] -translate-y-1 z-10 shadow-lg"
+                    : "bg-[#e8e6df]/60 hover:bg-white text-[#1a1a1a] hover:-translate-y-1 hover:shadow-md"
                 }`}
               >
                 {/* TOP: Photo Image Container (70% scaled height) */}
-                <div className="relative w-full h-28 sm:h-32 md:h-36 overflow-hidden border-b border-[#1a1a1a] bg-[#1a1a1a] shrink-0">
+                <div className="relative w-full h-28 sm:h-32 md:h-36 overflow-hidden bg-[#1a1a1a] shrink-0">
                   <img
                     src={meta.bg}
                     alt={cat.name}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-108 filter brightness-95 contrast-105"
                   />
-                  <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase border border-[#1a1a1a]">
+                  <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase">
                     0{idx + 1}
                   </div>
                 </div>

@@ -52,7 +52,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+    <section ref={sectionRef} className="relative min-h-[58vh] md:min-h-[62vh] flex items-center justify-center overflow-hidden bg-black text-white">
       {/* Ace Hotel Style Animated Moving Media Crossfade Slider */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {HERO_SLIDES.map((slide, idx) => (
@@ -88,7 +88,7 @@ export default function HeroSection() {
       </div>
 
       {/* Top Ticker Marquee Bar */}
-      <div className="absolute top-20 md:top-24 left-0 right-0 z-30 bg-black text-white py-2 overflow-hidden border-b border-white/20 font-mono text-[10px] font-bold tracking-normal uppercase">
+      <div className="absolute top-10 md:top-12 left-0 right-0 z-30 bg-black text-white py-1.5 overflow-hidden border-b border-white/20 font-mono text-[9px] font-bold tracking-normal uppercase">
         <div className="whitespace-nowrap animate-marquee flex gap-12">
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
           <span>WELCOME TO QUESTIONITY • EDITORIAL BOOK SALON & CULTURE LOUNGE • CHANGGYEONGGUNG-RO 270 SEOUL • EST. 2026</span>
@@ -97,20 +97,20 @@ export default function HeroSection() {
       </div>
 
       {/* Centered Ace Hotel Hero Composition */}
-      <div className="relative z-30 w-full px-6 md:px-12 lg:px-20 pt-36 pb-20 md:pt-44 md:pb-24 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-30 w-full px-6 md:px-12 lg:px-20 pt-20 pb-12 md:pt-24 md:pb-14 max-w-3xl mx-auto text-center flex flex-col items-center">
         
         {/* Top Tag Badge */}
-        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-6">
-          <span className="inline-block border border-white/40 bg-black/70 backdrop-blur-md px-5 py-1.5 text-white text-xs font-mono font-bold tracking-normal uppercase">
+        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-4">
+          <span className="inline-block border border-white/40 bg-black/70 backdrop-blur-md px-4 py-1 text-white text-[11px] font-mono font-bold tracking-normal uppercase">
             ROOM NO. 101 — WELCOME TO QUESTIONITY
           </span>
         </div>
 
-        {/* Ace Hotel Style Exact Typography - 140px "Welcome to" */}
+        {/* Ace Hotel Style Exact Responsive Typography (70% Scale) */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-toronto font-light text-white leading-[133px] mb-6 tracking-[-1.4px]"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-toronto font-light text-white leading-[1.05] mb-4 tracking-[-1px]"
           style={{
-            fontSize: "140px",
+            fontSize: "clamp(42px, 5.5vw, 85px)",
             transitionDelay: "0.2s"
           }}
         >
@@ -120,14 +120,14 @@ export default function HeroSection() {
 
         {/* Subtitles */}
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/90 font-sans text-base md:text-xl leading-relaxed mb-2 max-w-2xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/90 font-sans text-sm md:text-base leading-relaxed mb-1.5 max-w-xl"
           style={{ transitionDelay: "0.3s" }}
         >
           An Editorial Book Salon & Culture Lounge in Seoul
         </p>
 
         <p
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/70 font-sans text-xs md:text-sm tracking-normal uppercase mb-10 max-w-xl"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white/70 font-sans text-[11px] md:text-xs tracking-normal uppercase mb-6 max-w-lg"
           style={{ transitionDelay: "0.35s" }}
         >
           서울특별시 종로구 창경궁로 270 (혜화역 4번 출구) • 2,000+ 멤버의 지적 독서 커뮤니티
@@ -135,7 +135,7 @@ export default function HeroSection() {
 
         {/* Action Buttons Centered */}
         <div
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto"
           style={{ transitionDelay: "0.4s" }}
         >
           <a

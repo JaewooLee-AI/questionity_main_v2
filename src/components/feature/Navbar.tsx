@@ -73,8 +73,8 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out-ace ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-black/10 shadow-sm py-4"
-          : "bg-transparent py-6"
+          ? "bg-white/95 backdrop-blur-md border-b border-black/10 shadow-sm py-2"
+          : "bg-transparent py-2.5 md:py-3"
       }`}
     >
       <div className="w-full px-6 md:px-12 lg:px-20">
@@ -82,7 +82,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 shrink-0">
             <span
-              className={`font-sans font-normal text-sm tracking-normal uppercase transition-colors duration-500 ${
+              className={`font-sans font-normal text-xs md:text-sm tracking-normal uppercase transition-colors duration-500 ${
                 scrolled ? "text-black" : "text-white"
               }`}
             >
@@ -91,13 +91,13 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-xs font-bold uppercase tracking-normal transition-all duration-300 hover:opacity-100 whitespace-nowrap ${
+                className={`text-[11px] font-bold uppercase tracking-normal transition-all duration-300 hover:opacity-100 whitespace-nowrap ${
                   scrolled
                     ? "text-black/80 hover:text-black"
                     : "text-white/90 hover:text-white"
@@ -109,21 +109,21 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA / User Menu */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             {isLoading ? null : isAuthenticated && user ? (
               /* Logged in */
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className={`flex items-center gap-3 transition-colors uppercase tracking-normal text-xs font-bold whitespace-nowrap ${
+                  className={`flex items-center gap-2 transition-colors uppercase tracking-normal text-[11px] font-bold whitespace-nowrap ${
                     scrolled
                       ? "text-black hover:text-black"
                       : "text-white hover:text-white/80"
                   }`}
                 >
-                  <div className="w-8 h-8 rounded-none bg-black text-white flex items-center justify-center shrink-0 font-sans font-bold">
+                  <div className="w-6 h-6 rounded-none bg-black text-white flex items-center justify-center shrink-0 font-sans font-bold text-[10px]">
                     {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={user.name} className="w-8 h-8 object-cover" />
+                      <img src={user.avatarUrl} alt={user.name} className="w-6 h-6 object-cover" />
                     ) : (
                       <span>{user.name.charAt(0)}</span>
                     )}
@@ -132,21 +132,21 @@ export default function Navbar() {
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-3 w-56 bg-white border border-black shadow-2xl py-3 z-50">
-                    <div className="px-5 py-3 border-b border-black/10">
-                      <p className="text-sm font-sans font-bold text-black truncate">{user.name}</p>
-                      <p className="text-xs font-sans text-black/60 truncate">{user.email}</p>
+                  <div className="absolute right-0 mt-2 w-52 bg-white border border-black shadow-2xl py-2 z-50">
+                    <div className="px-4 py-2 border-b border-black/10">
+                      <p className="text-xs font-sans font-bold text-black truncate">{user.name}</p>
+                      <p className="text-[10px] font-sans text-black/60 truncate">{user.email}</p>
                     </div>
                     <Link
                       to="/mypage"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-normal text-black hover:bg-gray-100 transition-colors"
+                      className="flex items-center gap-3 px-4 py-2 text-[11px] uppercase tracking-normal text-black hover:bg-gray-100 transition-colors"
                     >
                       마이페이지
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-normal text-black hover:bg-gray-100 transition-colors text-left"
+                      className="w-full flex items-center gap-3 px-4 py-2 text-[11px] uppercase tracking-normal text-black hover:bg-gray-100 transition-colors text-left"
                     >
                       로그아웃
                     </button>
@@ -158,7 +158,7 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className={`text-xs font-bold uppercase tracking-normal transition-colors whitespace-nowrap ${
+                  className={`text-[11px] font-bold uppercase tracking-normal transition-colors whitespace-nowrap ${
                     scrolled ? "text-black hover:text-black" : "text-white hover:text-white/80"
                   }`}
                 >
@@ -166,7 +166,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-black text-white text-xs font-bold uppercase tracking-normal px-6 py-3 transition-all duration-300 hover:bg-gray-900 shadow-lg whitespace-nowrap"
+                  className="bg-black text-white text-[11px] font-bold uppercase tracking-normal px-4 py-1.5 transition-all duration-300 hover:bg-gray-900 shadow-md whitespace-nowrap"
                 >
                   시작하기
                 </Link>

@@ -222,13 +222,9 @@ export default function CategorySection() {
                 />
 
                 {/* Dark Gradient Overlay for Typography Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-[#1a1a1a]/70 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent pointer-events-none" />
 
-                {/* Top Header Stamp (Ace Hotel Room Stamp) */}
-                <div className="relative z-10 bg-[#1a1a1a]/90 backdrop-blur-sm text-[#f4f3ee] px-3 py-1.5 flex items-center justify-between font-mono text-[9px] font-bold tracking-widest uppercase border-b border-[#1a1a1a]">
-                  <span>CAT. 00{idx + 1}</span>
-                  <span className={isSelected ? "text-[#8C2318]" : "text-[#f4f3ee]/80"}>ROOM {idx + 1}01</span>
-                </div>
+                <div className="flex-1" />
 
                 {/* Bottom Content Stamp */}
                 <div className="relative z-10 p-3.5 text-[#f4f3ee]">

@@ -5,56 +5,43 @@ import { proxyBookCover } from "@/lib/proxyBookCover";
 
 // Book Cover component with robust error handling and multiple fallbacks
 function BookCoverImage({ book, className }: { book: CuratedBook; className: string }) {
-  const [stage, setStage] = useState<"proxy" | "direct" | "fallback">("proxy");
+  const [imageError, setImageError] = useState(false);
 
-  // Stage 1: try proxy; Stage 2: try direct URL; Stage 3: gradient fallback
-  const imageSrc = stage === "proxy"
-    ? (book.cover.includes('aladin.co.kr')
-      ? `/api/book-cover?url=${encodeURIComponent(book.cover)}`
-      : book.cover)
+  // If Aladin image, use server proxy; otherwise load directly from CDN
+  const isAladin = book.cover?.includes("aladin.co.kr");
+  const imageSrc = isAladin
+    ? `/api/book-cover?url=${encodeURIComponent(book.cover)}`
     : book.cover;
 
-  const handleError = () => {
-    if (stage === "proxy") {
-      setStage("direct");
-    } else {
-      setStage("fallback");
-    }
-  };
-
-  // Also detect tiny/broken placeholder images from Aladin
   const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     if (img.naturalWidth < 10 || img.naturalHeight < 10) {
-      handleError();
+      setImageError(true);
     }
   };
 
-  if (stage === "fallback" || !book.cover) {
-    const categoryStyles: Record<string, { gradient: string; icon: string; emoji: string }> = {
-      "경제경영": { gradient: "from-blue-600 to-blue-900", icon: "💰", emoji: "💼" },
-      "자기계발": { gradient: "from-green-600 to-green-900", icon: "🌱", emoji: "📈" },
-      "인문학": { gradient: "from-purple-600 to-purple-900", icon: "📚", emoji: "🎓" },
-      "IT/컴퓨터": { gradient: "from-cyan-600 to-cyan-900", icon: "💻", emoji: "🔧" },
-      "소설/시/희곡": { gradient: "from-pink-600 to-pink-900", icon: "✍️", emoji: "🖋" },
-      "사회과학": { gradient: "from-orange-600 to-orange-900", icon: "🌍", emoji: "🤝" },
+  if (imageError || !book.cover) {
+    const categoryStyles: Record<string, { gradient: string; emoji: string }> = {
+      "경제경영": { gradient: "from-slate-800 to-blue-950", emoji: "💼" },
+      "자기계발": { gradient: "from-slate-800 to-emerald-950", emoji: "📈" },
+      "인문학": { gradient: "from-slate-800 to-purple-950", emoji: "🎓" },
+      "IT/컴퓨터": { gradient: "from-slate-800 to-cyan-950", emoji: "💻" },
+      "소설/시/희곡": { gradient: "from-slate-800 to-rose-950", emoji: "🖋" },
+      "사회과학": { gradient: "from-slate-800 to-amber-950", emoji: "🤝" },
     };
 
     const style = categoryStyles[book.category] || {
-      gradient: "from-gray-700 to-gray-900",
-      icon: "📖",
+      gradient: "from-neutral-800 to-neutral-950",
       emoji: "📚"
     };
 
     return (
-      <div className={`${className} relative bg-gradient-to-br ${style.gradient} flex flex-col items-center justify-center p-3 border-2 border-white/30 shadow-xl overflow-hidden`}>
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center">
-          <span className="text-2xl mb-2 drop-shadow-lg">{style.emoji}</span>
-          <div className="text-center">
-            <span className="text-[9px] text-white font-bold leading-tight block mb-1">{book.category}</span>
-            <span className="text-[8px] text-white/90 leading-tight line-clamp-2">{book.title}</span>
-          </div>
+      <div className={`${className} relative bg-gradient-to-br ${style.gradient} flex flex-col items-center justify-center p-2 text-white overflow-hidden select-none`}>
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <span className="text-xl mb-1">{style.emoji}</span>
+          <span className="text-[9px] font-bold opacity-75 tracking-wider block mb-0.5">{book.category}</span>
+          <span className="text-[8px] font-medium leading-tight line-clamp-2 px-1 opacity-90">{book.title}</span>
         </div>
       </div>
     );
@@ -64,11 +51,10 @@ function BookCoverImage({ book, className }: { book: CuratedBook; className: str
     <img
       src={imageSrc}
       alt={book.title}
-      onError={handleError}
+      onError={() => setImageError(true)}
       onLoad={handleLoad}
       className={className}
       loading="lazy"
-      referrerPolicy="no-referrer"
     />
   );
 }

@@ -3,26 +3,53 @@ import { categories } from "@/mocks/home";
 import { CURATED_50_BOOKS, CuratedBook } from "@/mocks/books50";
 import { proxyBookCover } from "@/lib/proxyBookCover";
 
-// Book Cover via server-side proxy (same approach as admin's Streamlit st.image)
+// Book Cover component with robust error handling and multiple fallbacks
 function BookCoverImage({ book, className }: { book: CuratedBook; className: string }) {
   const [imageError, setImageError] = useState(false);
-  const proxiedSrc = proxyBookCover(book.cover);
 
-  if (imageError) {
-    // Fallback: show styled title card
+  // Try proxy first, fallback to direct URL
+  const imageSrc = book.cover.includes('aladin.co.kr')
+    ? `/api/book-cover?url=${encodeURIComponent(book.cover)}`
+    : book.cover;
+
+  if (imageError || !book.cover) {
+    // Enhanced fallback with better visual design
+    const categoryStyles: Record<string, { gradient: string; icon: string; emoji: string }> = {
+      "경제경영": { gradient: "from-blue-600 to-blue-900", icon: "💰", emoji: "💼" },
+      "자기계발": { gradient: "from-green-600 to-green-900", icon: "🌱", emoji: "📈" },
+      "인문학": { gradient: "from-purple-600 to-purple-900", icon: "📚", emoji: "🎓" },
+      "IT/컴퓨터": { gradient: "from-cyan-600 to-cyan-900", icon: "💻", emoji: "🔧" },
+      "소설/시/희곡": { gradient: "from-pink-600 to-pink-900", icon: "✍️", emoji: "🖋" },
+      "사회과학": { gradient: "from-orange-600 to-orange-900", icon: "🌍", emoji: "🤝" },
+    };
+
+    const style = categoryStyles[book.category] || {
+      gradient: "from-gray-700 to-gray-900",
+      icon: "📖",
+      emoji: "📚"
+    };
+
     return (
-      <div className={`${className} bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center p-1`}>
-        <span className="text-[9px] text-white font-bold leading-tight text-center line-clamp-3">{book.title}</span>
+      <div className={`${className} relative bg-gradient-to-br ${style.gradient} flex flex-col items-center justify-center p-3 border-2 border-white/30 shadow-xl overflow-hidden`}>
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center">
+          <span className="text-2xl mb-2 drop-shadow-lg">{style.emoji}</span>
+          <div className="text-center">
+            <span className="text-[9px] text-white font-bold leading-tight block mb-1">{book.category}</span>
+            <span className="text-[8px] text-white/90 leading-tight line-clamp-2">{book.title}</span>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
     <img
-      src={proxiedSrc}
+      src={imageSrc}
       alt={book.title}
       onError={() => setImageError(true)}
       className={className}
+      loading="lazy"
     />
   );
 }
@@ -53,6 +80,9 @@ const CATEGORY_IMAGES: Record<string, { bg: string; code: string }> = {
     code: "CAT. 006 — SOCIETY",
   },
 };
+
+// Fallback image for categories without images
+const DEFAULT_CATEGORY_IMAGE = "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80";
 
 export default function CategorySection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("전체");
@@ -181,13 +211,13 @@ export default function CategorySection() {
         {/* Section Title Header */}
         <div className="text-center mb-8 md:mb-10">
           <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
-            CURATED ALADIN 50 BOOKS & CATEGORIES
+            CURATED ALADIN 300 BOOKS & CATEGORIES (50 BOOKS EACH)
           </span>
           <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
             관심 주제로 독서 모임 도서를 탐색해보세요
           </h2>
           <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans tracking-tightest">
-            인문학, 비즈니스, 소설 등 6개 에디토리얼 카테고리의 50권 추천 도서 중<br className="hidden sm:inline" />
+            인문학, 비즈니스, 소설 등 6개 카테고리별 50권(총 300권)의 큐레이션 추천 도서 중<br className="hidden sm:inline" />
             원하는 책을 선택하고 나만의 독서 모임 개설을 신청해보세요.
           </p>
         </div>
@@ -278,7 +308,7 @@ export default function CategorySection() {
             const isSelected = selectedCategory === cat.name;
             const count = categoryCounts[cat.name] || 0;
             const meta = CATEGORY_IMAGES[cat.name] || {
-              bg: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80",
+              bg: DEFAULT_CATEGORY_IMAGE,
               code: `CAT. 00${idx + 1} — EDITORIAL`,
             };
 
@@ -298,6 +328,9 @@ export default function CategorySection() {
                     src={meta.bg}
                     alt={cat.name}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-108 filter brightness-95 contrast-105"
+                    onError={(e) => {
+                      e.currentTarget.src = DEFAULT_CATEGORY_IMAGE;
+                    }}
                   />
                   <div className="absolute top-2 left-2 bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest uppercase">
                     0{idx + 1}

@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { reviews as fallbackReviews, ReviewItem } from "@/mocks/home";
 import { CURATED_50_BOOKS } from "@/mocks/books50";
 import { supabase } from "@/lib/supabase";
 import { proxyBookCover } from "@/lib/proxyBookCover";
 
-// Book Cover via server-side proxy (same approach as admin's Streamlit st.image)
+// Book Cover via server-side proxy
 function ReviewBookCover({ item, className }: { item: ReviewItem; className: string }) {
   const [imageError, setImageError] = useState(false);
   const proxiedSrc = proxyBookCover(item.bookImageUrl);
 
   if (imageError || !proxiedSrc) {
     return (
-      <div className={`${className} bg-gradient-to-br from-primary-600 to-primary-800 flex items-center justify-center p-1`}>
-        <span className="text-[8px] text-white font-bold leading-tight text-center line-clamp-3">{item.bookTitle}</span>
+      <div className={`${className} bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center p-2 font-serif`}>
+        <span className="text-[10px] font-bold leading-tight text-center line-clamp-3">{item.bookTitle}</span>
       </div>
     );
   }
@@ -30,6 +30,7 @@ function ReviewBookCover({ item, className }: { item: ReviewItem; className: str
 export default function ReviewsSection() {
   const [reviewList, setReviewList] = useState<ReviewItem[]>(fallbackReviews);
   const [selectedReview, setSelectedReview] = useState<ReviewItem | null>(null);
+  const [hoveredReviewId, setHoveredReviewId] = useState<string | null>(null);
   const [likesMap, setLikesMap] = useState<Record<string, number>>({});
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -149,81 +150,99 @@ export default function ReviewsSection() {
   const marqueeItems = uniqueReviews;
 
   return (
-    <section id="reviews" ref={sectionRef} className="w-full py-20 md:py-28 bg-background-50 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12 text-center mb-12 md:mb-16">
-        <span className="inline-block text-accent-500 text-xs font-semibold tracking-wide uppercase mb-3">
-          Reviews Marquee
+    <section
+      id="reviews"
+      ref={sectionRef}
+      className={`
+        w-full py-24 md:py-32 border-t border-[#1a1a1a]/10 overflow-hidden font-sans
+        transition-colors duration-700 ease-out-ace
+        ${hoveredReviewId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
+      `}
+    >
+      {/* Section Header */}
+      <div className="text-center mb-16 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+        <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
+          MEMBER TESTIMONIALS & EDITORIAL REVIEWS
         </span>
-        <h2 className="font-heading font-bold text-2xl md:text-4xl text-foreground-950 leading-tight mb-4">
-          참여자들의 생생한 후기
+        <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
+          2,000+ 멤버들의 생생한 독서 후기
         </h2>
-        <p className="text-foreground-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-          마우스를 올리면 정지하며, 카드를 클릭하면<br className="hidden sm:inline" />
-          상세 도서 정보와 알라딘 링크를 확인하실 수 있습니다
+        <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-sans tracking-tightest">
+          카드를 클릭하면 상세 도서 정보와 독서클럽 스케줄을 확인하실 수 있습니다.
         </p>
       </div>
 
-      {/* Marquee Track Container (Hover to Pause, Slowed down by half: 90s) */}
+      {/* Marquee Track Container */}
       <div className="relative w-full overflow-hidden group">
-        <div className="flex w-max gap-5 md:gap-6 animate-marquee group-hover:[animation-play-state:paused] py-4">
+        <div className="flex w-max gap-6 md:gap-8 animate-marquee group-hover:[animation-play-state:paused] py-6 px-4">
           {marqueeItems.map((item, index) => {
             const currentLikes = getLikes(item);
+            const isHovered = hoveredReviewId === `${item.id}-${index}`;
+            const isDimmed = hoveredReviewId !== null && !isHovered;
+
             return (
               <div
                 key={`${item.id}-${index}`}
                 onClick={() => setSelectedReview(item)}
-                className="w-[320px] md:w-[380px] shrink-0 bg-background-50 rounded-none p-5 md:p-6 border border-background-200/80 shadow-sm hover:shadow-xl hover:border-accent-500/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                onMouseEnter={() => setHoveredReviewId(`${item.id}-${index}`)}
+                onMouseLeave={() => setHoveredReviewId(null)}
+                className={`
+                  w-[340px] md:w-[400px] shrink-0 bg-[#f4f3ee] p-6 md:p-8 border border-[#1a1a1a]/15 flex flex-col justify-between cursor-pointer
+                  transition-all duration-700 ease-out-ace
+                  ${isHovered ? "-translate-y-3 shadow-2xl border-[#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+                  ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
+                `}
               >
                 <div>
-                  {/* AI Badge & Rating */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[11px] font-semibold text-accent-500 bg-accent-50 px-2 py-0.5 border border-accent-200">
-                      ✨ AI 추천 생생 후기
+                  {/* Rating & Tag */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[10px] font-bold tracking-widest text-[#8C2318] uppercase border-b border-[#8C2318]/30">
+                      MEMBER REVIEW
                     </span>
-                    <div className="flex items-center gap-0.5">
+                    <div className="flex items-center gap-1 text-[#8C2318] text-xs">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <i
                           key={i}
-                          className={`ri-star-${i < item.rating ? "fill" : "line"} text-amber-400 text-xs`}
+                          className={`ri-star-${i < item.rating ? "fill" : "line"}`}
                         />
                       ))}
                     </div>
                   </div>
 
                   {/* Book Image Thumbnail & Title */}
-                  <div className="flex items-center gap-3 mb-3 bg-background-100/80 p-2.5 border border-background-200/60">
+                  <div className="flex items-center gap-3 mb-4 bg-[#e8e6df]/50 p-3 border border-[#1a1a1a]/10">
                     <ReviewBookCover
                       item={item}
-                      className="w-10 h-14 object-cover border border-background-300 shrink-0 shadow-xs"
+                      className="w-10 h-14 object-cover border border-[#1a1a1a]/20 shrink-0 shadow-xs"
                     />
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-bold text-foreground-950 truncate">
+                      <div className="text-xs font-serif font-bold text-[#1a1a1a] truncate">
                         {(item as any).displayTitle || item.bookTitle}
                       </div>
-                      <div className="text-[11px] text-foreground-500 truncate mt-0.5">
+                      <div className="text-[11px] text-[#1a1a1a]/60 truncate mt-0.5">
                         {item.bookAuthor}
                       </div>
                     </div>
                   </div>
 
                   {/* Excerpt Content */}
-                  <p className="text-xs md:text-sm text-foreground-700 leading-relaxed mb-4 line-clamp-3">
+                  <p className="font-serif text-sm text-[#1a1a1a]/90 leading-relaxed mb-6 line-clamp-3 italic">
                     &ldquo;{item.content}&rdquo;
                   </p>
                 </div>
 
                 {/* Footer: Author, Role, Like Count */}
-                <div className="pt-3 border-t border-background-200/70 flex items-center justify-between">
+                <div className="pt-4 border-t border-[#1a1a1a]/10 flex items-center justify-between font-sans">
                   <div className="flex flex-col min-w-0">
-                    <span className="text-xs font-bold text-foreground-900 truncate">{item.name}</span>
-                    <span className="text-[11px] text-foreground-500 truncate">{item.role}</span>
+                    <span className="text-xs font-serif font-bold text-[#1a1a1a] truncate">{item.name}</span>
+                    <span className="text-[10px] text-[#1a1a1a]/60 truncate">{item.role}</span>
                   </div>
                   <button
                     onClick={(e) => handleLike(item.id, e)}
-                    className="flex items-center gap-1 text-xs text-rose-500 hover:text-rose-600 bg-rose-50 hover:bg-rose-100 px-2 py-1 transition-colors shrink-0"
+                    className="flex items-center gap-1.5 text-xs text-[#8C2318] hover:text-[#1a1a1a] font-mono transition-colors shrink-0"
                   >
-                    <i className="ri-heart-3-fill text-rose-500" />
-                    <span className="font-semibold">{currentLikes}</span>
+                    <i className="ri-heart-3-fill" />
+                    <span className="font-bold">{currentLikes}</span>
                   </button>
                 </div>
               </div>

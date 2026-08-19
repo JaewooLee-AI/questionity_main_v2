@@ -23,46 +23,48 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden">
+    <section ref={sectionRef} className="relative w-full overflow-hidden bg-[#1a1a1a] text-[#f4f3ee]">
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="https://readdy.ai/api/search-image?query=Abstract%20artistic%20illustration%20of%20stacked%20books%20forming%20staircase%20leading%20to%20bright%20light%2C%20warm%20golden%20and%20amber%20tones%2C%20dreamy%20atmosphere%2C%20soft%20gradient%20background%20from%20deep%20warm%20brown%20to%20bright%20gold%2C%20editorial%20illustration%20style%2C%20abstract%20and%20inspiring&width=1600&height=700&seq=cta-bg&orientation=landscape"
-          alt="독서 성장"
-          className="w-full h-full object-cover object-center"
+          src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1920&q=80"
+          alt="Ace Hotel Library Editorial"
+          className="w-full h-full object-cover object-center filter brightness-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground-950/80 via-foreground-950/70 to-foreground-950/80" />
+        <div className="absolute inset-0 bg-[#1a1a1a]/70" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full px-4 md:px-8 lg:px-12 py-20 md:py-28">
+      <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 py-24 md:py-36 max-w-7xl mx-auto">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-heading font-bold text-2xl md:text-4xl lg:text-5xl text-background-50 leading-tight mb-5" style={{ transitionDelay: "0.1s" }}>
-            지금 바로 독서모임에 참여하세요
+          <span className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out inline-block border-b border-[#f4f3ee]/40 text-[#f4f3ee]/80 text-xs font-bold tracking-widest uppercase pb-1 mb-6 font-sans">
+            JOIN QUESTIONITY COMMUNITY
+          </span>
+          
+          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-4xl md:text-6xl text-[#f4f3ee] leading-tight mb-6" style={{ transitionDelay: "0.1s" }}>
+            지금 바로 독서 클럽에<br />
+            <span className="italic font-normal text-[#e8e6df]">참여하세요.</span>
           </h2>
-          <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-background-100/90 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto" style={{ transitionDelay: "0.2s" }}>
-            책 한 권으로 시작하는 새로운 인연과 성장.
-            퀘스처니티와 함께 매월 새로운 책, 새로운 사람들을 만나보세요.
+          
+          <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/80 text-base md:text-xl leading-relaxed mb-12 max-w-xl mx-auto font-sans tracking-tightest" style={{ transitionDelay: "0.2s" }}>
+            책 한 권으로 연결되는 깊이 있는 대화와 특별한 조우.<br />
+            분당태성빌딩 B1 오마드랩스에서 매월 새로운 책을 만나보세요.
           </p>
 
-          <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-3" style={{ transitionDelay: "0.3s" }}>
+          <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out flex flex-col sm:flex-row items-center justify-center gap-5" style={{ transitionDelay: "0.3s" }}>
             <a
               href="#clubs"
-              className="bg-primary-500 text-background-50 font-semibold text-sm md:text-base px-8 py-3.5 rounded-md hover:bg-primary-600 transition-all duration-300 shadow-lg shadow-primary-500/30 whitespace-nowrap"
+              className="bg-[#8C2318] text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:shadow-2xl hover:bg-white hover:text-[#1a1a1a] uppercase tracking-widest"
             >
               모임 둘러보기
             </a>
             <Link
               to="/signup"
-              className="bg-background-50 text-foreground-950 font-semibold text-sm md:text-base px-8 py-3.5 rounded-md hover:bg-background-100 transition-all duration-300 whitespace-nowrap"
+              className="border border-[#f4f3ee]/40 text-[#f4f3ee] font-bold text-xs md:text-sm px-10 py-5 transition-all duration-700 ease-out-ace hover:-translate-y-1.5 hover:border-[#f4f3ee] hover:bg-[#f4f3ee]/10 uppercase tracking-widest"
             >
               무료 회원가입
             </Link>
           </div>
-
-          <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mt-6 text-background-50/60 text-xs" style={{ transitionDelay: "0.4s" }}>
-            회원가입 시 첫 모임 참여 10% 할인 적용
-          </p>
         </div>
       </div>
 

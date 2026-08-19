@@ -149,24 +149,24 @@ export default function CategorySection() {
   };
 
   return (
-    <section id="categories" className="w-full px-4 md:px-8 lg:px-12 py-20 md:py-28 bg-background-100 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="categories" className="w-full px-6 md:px-12 lg:px-20 py-24 md:py-32 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 relative">
+      <div className="max-w-7xl mx-auto">
         {/* Section Title Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <span className="inline-block text-accent-500 text-xs font-semibold tracking-wide uppercase mb-3">
-            Aladin 6 Categories & 50 Curated Books
+        <div className="text-center mb-16 md:mb-20">
+          <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
+            CURATED ALADIN 50 BOOKS & CATEGORIES
           </span>
-          <h2 className="font-heading font-bold text-2xl md:text-4xl text-foreground-950 leading-tight mb-3">
-            관심 주제로 독서 모임 도서를 선택해 보세요
+          <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
+            관심 주제로 독서 모임 도서를 탐색해보세요
           </h2>
-          <p className="text-foreground-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            알라딘 6가지 카테고리의 50권 추천 도서 중 원하는 책을 선택하고<br className="hidden sm:inline" />
-            나만의 독서 모임 개설을 신청해 보세요!
+          <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans tracking-tightest">
+            인문학, 비즈니스, 소설 등 6개 에디토리얼 카테고리의 50권 추천 도서 중<br className="hidden sm:inline" />
+            원하는 책을 선택하고 나만의 독서 모임 개설을 신청해보세요.
           </p>
         </div>
 
-        {/* 6 Aladin Category Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-10">
+        {/* 6 Category Cards with 3D Hover Lift */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-12">
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat.name;
             const count = categoryCounts[cat.name] || 0;
@@ -174,25 +174,25 @@ export default function CategorySection() {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.name)}
-                className={`group rounded-none p-5 text-center transition-all duration-300 border text-left flex flex-col items-center justify-center cursor-pointer ${
+                className={`group p-6 text-center transition-all duration-700 ease-out-ace border flex flex-col items-center justify-center cursor-pointer ${
                   isSelected
-                    ? "bg-primary-500 text-background-50 border-primary-600 shadow-md -translate-y-1"
-                    : "bg-background-50 hover:bg-primary-50/50 text-foreground-900 border-background-200/80 hover:border-primary-300"
+                    ? "bg-[#8C2318] text-[#f4f3ee] border-[#8C2318] -translate-y-2 shadow-2xl"
+                    : "bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border-[#1a1a1a]/15 hover:border-[#1a1a1a] hover:-translate-y-2 hover:shadow-xl"
                 }`}
               >
                 <div
-                  className={`w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-none transition-colors duration-300 ${
+                  className={`w-12 h-12 mx-auto mb-4 flex items-center justify-center transition-colors duration-500 ${
                     isSelected
-                      ? "bg-background-50 text-primary-500"
-                      : "bg-primary-50 text-primary-500 group-hover:bg-primary-500 group-hover:text-background-50"
+                      ? "bg-[#f4f3ee] text-[#8C2318]"
+                      : "bg-[#e8e6df] text-[#1a1a1a] group-hover:bg-[#8C2318] group-hover:text-[#f4f3ee]"
                   }`}
                 >
                   <i className={`${cat.icon} text-2xl`} />
                 </div>
-                <h3 className="font-bold text-sm md:text-base mb-1">
-                  {cat.name} <span className="text-xs opacity-80">({count})</span>
+                <h3 className="font-serif font-bold text-base mb-1">
+                  {cat.name} <span className="text-xs font-sans opacity-70">({count})</span>
                 </h3>
-                <p className={`text-[11px] leading-tight line-clamp-1 ${isSelected ? "text-background-200" : "text-foreground-500"}`}>
+                <p className={`font-sans text-[11px] leading-tight line-clamp-1 ${isSelected ? "text-[#f4f3ee]/80" : "text-[#1a1a1a]/60"}`}>
                   {cat.description}
                 </p>
               </button>

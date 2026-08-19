@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 @tailwind base;
@@ -7,106 +7,81 @@
 
 @layer base {
   :root {
-    /* Ace Hotel Color Palette: Warm Off-White Paper, Matte Black, Deep Terracotta Brick */
-    --background-50: 0.975 0.008 80;   /* #F6F5F1 Warm Off-White Canvas */
-    --background-100: 0.955 0.01 80;   /* #EFECE6 Warm Paper */
+    /* Ace Hotel Color Palette: Warm Off-White Paper (#F4F3EE), Matte Black (#1A1A1A), Brick Red (#8C2318) */
+    --background-50: 0.975 0.008 80;   /* #F4F3EE Warm Off-White Canvas */
+    --background-100: 0.955 0.01 80;   /* #E8E6DF Warm Hover Canvas */
     --background-200: 0.925 0.012 80;  /* #E2DFD7 Light Sand */
     --background-300: 0.86 0.015 80;   /* #CECBC3 Border Gray */
-    --background-400: 0.75 0.018 80;
-    --background-500: 0.60 0.02 80;
-    --background-600: 0.45 0.02 80;
-    --background-700: 0.35 0.02 80;
-    --background-800: 0.25 0.02 80;
-    --background-900: 0.18 0.015 80;
-    --background-950: 0.12 0.01 80;    /* #111111 Matte Black */
+    --background-950: 0.12 0.01 80;    /* #1A1A1A Matte Black */
 
-    /* Deep Vintage Terracotta / Brick Red (#8C2318 / #992B25) */
-    --primary-50: 0.97 0.015 28;
-    --primary-100: 0.93 0.035 28;
-    --primary-200: 0.86 0.07 28;
-    --primary-300: 0.76 0.11 28;
-    --primary-400: 0.62 0.16 28;
-    --primary-500: 0.46 0.18 28;       /* Ace Brick Red #8C2318 */
-    --primary-600: 0.40 0.18 28;       /* Darker Brick Red */
-    --primary-700: 0.34 0.16 28;
-    --primary-800: 0.28 0.14 28;
-    --primary-900: 0.22 0.10 28;
-    --primary-950: 0.15 0.06 28;
-
-    --accent-50: 0.97 0.01 90;
-    --accent-100: 0.92 0.02 90;
-    --accent-200: 0.85 0.04 90;
-    --accent-300: 0.75 0.06 90;
-    --accent-400: 0.65 0.08 90;
-    --accent-500: 0.48 0.06 140;      /* Muted Vintage Olive #4A5340 */
-    --accent-600: 0.40 0.06 140;
-    --accent-700: 0.32 0.05 140;
-    --accent-800: 0.25 0.04 140;
-    --accent-900: 0.18 0.03 140;
-    --accent-950: 0.12 0.02 140;
-
-    --secondary-50: 0.97 0.005 80;
-    --secondary-100: 0.94 0.01 80;
-    --secondary-200: 0.88 0.015 80;
-    --secondary-300: 0.80 0.02 80;
-    --secondary-400: 0.68 0.02 80;
-    --secondary-500: 0.52 0.02 80;
-    --secondary-600: 0.42 0.02 80;
-    --secondary-700: 0.32 0.015 80;
-    --secondary-800: 0.24 0.01 80;
-    --secondary-900: 0.18 0.01 80;
-    --secondary-950: 0.12 0.005 80;
-
-    --foreground-50: 0.98 0 0;
-    --foreground-100: 0.95 0 0;
-    --foreground-200: 0.90 0 0;
-    --foreground-300: 0.80 0 0;
-    --foreground-400: 0.68 0 0;
-    --foreground-500: 0.55 0 0;
-    --foreground-600: 0.42 0 0;
-    --foreground-700: 0.30 0 0;        /* Dark Charcoal */
-    --foreground-800: 0.20 0 0;
-    --foreground-900: 0.14 0 0;        /* Deep Charcoal */
-    --foreground-950: 0.10 0 0;        /* #111111 Matte Black */
-
-    --font-heading: 'Pretendard', 'Outfit', 'GmarketSansBold', sans-serif;
+    --font-heading: 'Playfair Display', 'Noto Serif KR', serif;
     --font-body: 'Pretendard', 'Noto Sans KR', sans-serif;
     --font-label: 'Pretendard', 'Noto Sans KR', sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: oklch(var(--background-50));
+    background-color: #f4f3ee;
+    color: #1a1a1a;
   }
 
   body {
     font-family: var(--font-body);
-    background-color: oklch(var(--background-50));
-    color: oklch(var(--foreground-950));
+    background-color: #f4f3ee;
+    color: #1a1a1a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #1a1a1a;
+    color: #f4f3ee;
   }
 }
 
 @layer utilities {
   .font-heading {
-    font-family: var(--font-heading);
+    font-family: 'Playfair Display', 'Noto Serif KR', serif;
     letter-spacing: -0.02em;
   }
 
   .font-body {
-    font-family: var(--font-body);
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
   }
 
-  .font-label {
-    font-family: var(--font-label);
+  .font-serif-editorial {
+    font-family: 'Playfair Display', 'Noto Serif KR', Georgia, serif;
+  }
+
+  /* 3D Box Hover Effects (Ace Hotel Micro-interactions) */
+  .ace-3d-box {
+    transition: transform 700ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 700ms cubic-bezier(0.25, 1, 0.5, 1), background-color 700ms cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, box-shadow;
+  }
+
+  .ace-3d-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18), 0 10px 20px -5px rgba(0, 0, 0, 0.1);
   }
 
   .ace-border {
-    border: 1px solid #222222;
+    border: 1px solid #1a1a1a;
   }
 
   .ace-border-subtle {
     border: 1px solid #d4d0c7;
+  }
+
+  /* Floating label underline input for Ace Hotel editorial forms */
+  .ace-input-underline {
+    border-bottom: 2px solid #1a1a1a;
+    background: transparent;
+    border-radius: 0;
+    transition: border-color 300ms ease;
+  }
+  
+  .ace-input-underline:focus {
+    outline: none;
+    border-bottom-color: #8C2318;
   }
 }

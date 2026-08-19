@@ -9,7 +9,19 @@ function formatPrice(price: number) {
   return new Intl.NumberFormat("ko-KR").format(price);
 }
 
-function ClubCard({ club, index }: { club: Club; index: number }) {
+function ClubCard({
+  club,
+  isActive,
+  isDimmed,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  club: Club;
+  isActive: boolean;
+  isDimmed: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}) {
   const isClosed = club.status === "closed";
   const isOngoing = club.status === "ongoing";
   const isFull = club.currentMembers >= club.capacity && club.status === "open";
@@ -18,101 +30,98 @@ function ClubCard({ club, index }: { club: Club; index: number }) {
   return (
     <Link
       to={`/clubs/${club.id}`}
-      className="group bg-background-50 rounded-none overflow-hidden border border-background-200/70 hover:shadow-lg hover:shadow-primary-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col"
-      style={{ animationDelay: `${index * 0.05}s` }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={`
+        group relative cursor-pointer bg-[#f4f3ee] border border-[#1a1a1a]/15 overflow-hidden flex flex-col justify-between
+        transition-all duration-700 ease-out-ace
+        ${isActive ? "-translate-y-3 shadow-2xl border-[#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+        ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
+      `}
     >
-      {/* Image */}
-      <div className="relative aspect-[3/2] overflow-hidden shrink-0">
-        <img
-          src={club.imageUrl}
-          alt={club.name}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute top-3 left-3">
-          <span className="inline-block bg-background-50/90 backdrop-blur-sm text-foreground-800 text-xs font-semibold px-2.5 py-1 rounded-none">
-            {club.category}
-          </span>
+      <div>
+        {/* Image */}
+        <div className="relative aspect-[4/3] bg-[#e8e6df] overflow-hidden shrink-0">
+          <img
+            src={club.imageUrl}
+            alt={club.name}
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out-ace group-hover:scale-105"
+          />
+          <div className="absolute top-3 left-3">
+            <span className="inline-block bg-[#1a1a1a] text-[#f4f3ee] font-mono text-[10px] font-bold px-2.5 py-1 tracking-widest uppercase">
+              {club.category}
+            </span>
+          </div>
+
+          {/* Status Badges */}
+          {isClosed && (
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center">
+              <span className="bg-[#1a1a1a] text-[#f4f3ee] font-serif text-xs font-bold px-4 py-2 uppercase tracking-widest border border-[#f4f3ee]/30">
+                종료된 클럽
+              </span>
+            </div>
+          )}
+          {isOngoing && !isClosed && (
+            <div className="absolute bottom-3 right-3">
+              <span className="inline-block bg-[#4A5340] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 uppercase tracking-widest font-mono">
+                진행 중
+              </span>
+            </div>
+          )}
+          {isFull && !isClosed && !isOngoing && (
+            <div className="absolute bottom-3 right-3">
+              <span className="inline-block bg-[#1a1a1a] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 uppercase tracking-widest font-mono">
+                마감
+              </span>
+            </div>
+          )}
+          {isAlmostFull && !isFull && !isClosed && !isOngoing && (
+            <div className="absolute bottom-3 right-3">
+              <span className="inline-block bg-[#8C2318] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 uppercase tracking-widest font-mono">
+                마감 임박 ({club.currentMembers}/{club.capacity})
+              </span>
+            </div>
+          )}
+          {!isAlmostFull && !isFull && !isClosed && !isOngoing && (
+            <div className="absolute bottom-3 right-3">
+              <span className="inline-block bg-[#8C2318] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 uppercase tracking-widest font-mono">
+                모집 중 {club.currentMembers}/{club.capacity}명
+              </span>
+            </div>
+          )}
         </div>
 
-        {/* Status Overlay & Badges */}
-        {isClosed && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <span className="bg-foreground-700 text-background-50 text-xs font-bold px-3 py-1.5 rounded-none uppercase tracking-wide">
-              종료된 모임
-            </span>
+        {/* Content */}
+        <div className="p-6 font-sans">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#1a1a1a]/60 block mb-1">
+            {club.location} — {club.sessions}주 코스
+          </span>
+          <h3 className="font-serif font-bold text-xl text-[#1a1a1a] mb-2 line-clamp-1 group-hover:text-[#8C2318] transition-colors duration-300">
+            {club.name}
+          </h3>
+          <p className="text-xs text-[#1a1a1a]/70 leading-relaxed mb-4 line-clamp-2">
+            {club.description}
+          </p>
+
+          {/* Leader */}
+          <div className="flex items-center gap-3 p-3 bg-[#e8e6df]/50 border border-[#1a1a1a]/10 mb-2">
+            <img
+              src={club.leaderImageUrl}
+              alt={club.leaderName}
+              className="w-8 h-8 object-cover border border-[#1a1a1a]/20 shrink-0"
+            />
+            <div className="flex flex-col min-w-0 font-sans">
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] truncate">{club.leaderName}</span>
+              <span className="text-[10px] text-[#1a1a1a]/60 truncate">{club.leaderTitle}</span>
+            </div>
           </div>
-        )}
-        {isOngoing && !isClosed && (
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-block bg-primary-600 text-background-50 text-xs font-bold px-2.5 py-1 rounded-none">
-              진행 중
-            </span>
-          </div>
-        )}
-        {isFull && !isClosed && !isOngoing && (
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-block bg-foreground-800 text-background-50 text-xs font-bold px-2.5 py-1 rounded-none">
-              마감
-            </span>
-          </div>
-        )}
-        {isAlmostFull && !isFull && !isClosed && !isOngoing && (
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-block bg-accent-500 text-background-50 text-xs font-bold px-2.5 py-1 rounded-none">
-              마감 임박 {club.currentMembers}/{club.capacity}
-            </span>
-          </div>
-        )}
-        {!isAlmostFull && !isFull && !isClosed && !isOngoing && (
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-block bg-primary-500 text-background-50 text-xs font-bold px-2.5 py-1 rounded-none">
-              모집 중 {club.currentMembers}/{club.capacity}명
-            </span>
-          </div>
-        )}
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-4 md:p-5 flex flex-col flex-1">
-        <h3 className="font-heading font-bold text-base md:text-lg text-foreground-900 mb-2 line-clamp-1 group-hover:text-primary-500 transition-colors">
-          {club.name}
-        </h3>
-        <p className="text-sm text-foreground-500 leading-relaxed mb-4 line-clamp-2 flex-1">
-          {club.description}
-        </p>
-
-        {/* Leader */}
-        <div className="flex items-center gap-2.5 mb-4">
-          <img
-            src={club.leaderImageUrl}
-            alt={club.leaderName}
-            className="w-7 h-7 rounded-none object-cover"
-          />
-          <div className="flex flex-col">
-            <span className="text-xs font-semibold text-foreground-800">{club.leaderName}</span>
-            <span className="text-xs text-foreground-500">{club.leaderTitle}</span>
-          </div>
-        </div>
-
-        {/* Meta */}
-        <div className="flex items-center justify-between pt-3 border-t border-background-200/70">
-          <div className="flex flex-col gap-0.5">
-            <span className="text-xs text-foreground-500">
-              <i className="ri-map-pin-line mr-1" />
-              {club.location}
-            </span>
-            <span className="text-xs text-foreground-500">
-              <i className="ri-calendar-line mr-1" />
-              {club.schedule}
-            </span>
-          </div>
-          <div className="text-right">
-            <span className="text-sm font-bold text-primary-500">
-              {formatPrice(club.price)}원
-            </span>
-            <span className="text-xs text-foreground-400 block">/{club.sessions}주</span>
-          </div>
-        </div>
+      {/* Footer Meta */}
+      <div className="px-6 py-3.5 bg-[#e8e6df]/40 border-t border-[#1a1a1a]/10 flex items-center justify-between font-sans text-xs">
+        <span className="text-[#1a1a1a]/70 font-medium">📅 {club.schedule}</span>
+        <span className="font-serif font-bold text-[#8C2318]">{formatPrice(club.price)}원</span>
       </div>
     </Link>
   );
@@ -123,6 +132,7 @@ export default function Clubs() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedRegion, setSelectedRegion] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
+  const [hoveredClubId, setHoveredClubId] = useState<string | number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const filteredClubs = useMemo(() => {
@@ -249,29 +259,38 @@ export default function Clubs() {
         </div>
       </div>
 
-      {/* Results */}
-      <div ref={sectionRef} className="flex-1 w-full px-4 md:px-8 lg:px-12 py-8 md:py-12 bg-background-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-sm md:text-base font-semibold text-foreground-800">
-              전체 <span className="text-primary-500">{filteredClubs.length}</span>개의 모임
+      {/* Results Section with Ace Hotel Contextual Background Transition */}
+      <div
+        ref={sectionRef}
+        className={`
+          flex-1 w-full px-6 md:px-12 lg:px-20 py-16 md:py-24 border-t border-[#1a1a1a]/10
+          transition-colors duration-700 ease-out-ace
+          ${hoveredClubId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
+        `}
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="font-serif text-xl md:text-2xl font-bold text-[#1a1a1a]">
+              전체 <span className="text-[#8C2318] font-mono">{filteredClubs.length}</span>개의 독서클럽
             </h2>
           </div>
 
           {filteredClubs.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-none bg-background-100 flex items-center justify-center">
-                <i className="ri-search-line text-2xl text-foreground-400" />
-              </div>
-              <p className="text-foreground-600 text-base font-medium mb-2">검색 결과가 없습니다</p>
-              <p className="text-foreground-400 text-sm">다른 검색어나 필터로 다시 시도해보세요</p>
+            <div className="text-center py-24 font-serif">
+              <p className="text-[#1a1a1a] text-xl font-bold mb-2">검색 결과가 없습니다</p>
+              <p className="text-[#1a1a1a]/60 text-sm font-sans">다른 검색어나 필터를 선택해보세요</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-              {filteredClubs.map((club, index) => (
-                <div key={club.id} className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-500 ease-out">
-                  <ClubCard club={club} index={index} />
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {filteredClubs.map((club) => (
+                <ClubCard
+                  key={club.id}
+                  club={club}
+                  isActive={hoveredClubId === club.id}
+                  isDimmed={hoveredClubId !== null && hoveredClubId !== club.id}
+                  onMouseEnter={() => setHoveredClubId(club.id)}
+                  onMouseLeave={() => setHoveredClubId(null)}
+                />
               ))}
             </div>
           )}

@@ -279,74 +279,88 @@ export default function ClubsSection() {
     );
   };
 
-  const renderRoomCard = (room: RoomItem, index: number) => {
-    const coverSrc = proxyBookCover(room.book_image_url);
-    const aladinUrl = room.aladin_url || `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${encodeURIComponent(room.book_title)}`;
+  // Hover state for Ace Hotel contextual dimming & 3D box effect
+  const [hoveredRoomId, setHoveredRoomId] = useState<string | null>(null);
+
+  // Render individual room card with Ace Hotel 3D Box Hover effect & sibling dimming
+  const renderRoomCard = (room: RoomItem, _index?: number) => {
+    const isHovered = hoveredRoomId === room.id;
+    const isDimmed = hoveredRoomId !== null && !isHovered;
+    const aladinUrl = room.aladin_url || `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${encodeURIComponent(room.book_title || room.title)}`;
 
     return (
       <div
         key={room.id}
         onClick={() => {
           setSelectedRoom(room);
-          setShowPaymentModal(false);
         }}
-        className="group bg-white rounded-none overflow-hidden border border-gray-200/80 hover:shadow-lg hover:shadow-primary-500/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+        onMouseEnter={() => setHoveredRoomId(room.id)}
+        onMouseLeave={() => setHoveredRoomId(null)}
+        className={`
+          group relative cursor-pointer bg-[#f4f3ee] border border-[#1a1a1a]/15 overflow-hidden flex flex-col justify-between
+          transition-all duration-700 ease-out-ace
+          ${isHovered ? "-translate-y-3 shadow-2xl border-[#1a1a1a] bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-none"}
+          ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
+        `}
       >
         <div>
-          {/* Cover & Status Header (Reduced by 30%) */}
-          <div className="relative aspect-[16/9] bg-gradient-to-br from-amber-50/50 to-orange-50/50 p-2.5 flex items-center justify-center overflow-hidden border-b border-gray-100">
+          {/* Card Image Banner */}
+          <div className="relative w-full h-44 bg-[#e8e6df] overflow-hidden flex items-center justify-center p-3">
             <img
-              src={coverSrc}
+              src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
               alt={room.book_title}
               referrerPolicy="no-referrer"
-              className="h-24 md:h-28 w-auto object-contain rounded-none shadow-sm group-hover:scale-105 transition-transform duration-500"
+              className="h-36 w-auto object-contain transition-transform duration-700 ease-out-ace group-hover:scale-105"
             />
-            <div className="absolute top-2 left-2 scale-90 origin-top-left">
+            <div className="absolute top-3 left-3">
               {renderStatusBadge(room.status)}
             </div>
-            <div className="absolute bottom-2 right-2 bg-black/65 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-0.5 rounded-none">
-              👥 정원 {room.max_capacity}명
+            <div className="absolute bottom-3 right-3 bg-[#1a1a1a]/80 text-[#f4f3ee] text-[10px] font-bold px-2 py-1 tracking-widest uppercase font-mono">
+              👥 {room.max_capacity}명 정원
             </div>
           </div>
 
-          {/* Content (Compact padding and 30% smaller fonts) */}
-          <div className="p-3.5 font-sans">
-            <h3 className="font-heading font-bold text-xs md:text-sm text-gray-950 mb-1 line-clamp-1 group-hover:text-[#b91c1c] transition-colors">
+          {/* Content */}
+          <div className="p-5 font-sans">
+            <span className="text-[10px] font-bold tracking-widest text-[#1a1a1a]/60 uppercase block mb-1">
+              {room.location} — {room.program_duration}
+            </span>
+            <h3 className="font-serif font-bold text-lg md:text-xl text-[#1a1a1a] mb-2 line-clamp-1 group-hover:text-[#8C2318] transition-colors duration-300">
               {room.title}
             </h3>
 
-            {/* Book Title & Aladin Link Button */}
-            <div className="flex items-center justify-between gap-1.5 mb-1.5">
-              <p className="text-[11px] font-semibold text-amber-800 truncate min-w-0">
-                📖 {room.book_title} · {room.book_author}
+            {/* Book Info */}
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <p className="text-xs font-semibold text-[#8C2318] truncate min-w-0 font-serif">
+                📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans">({room.book_author})</span>
               </p>
               <a
                 href={aladinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="shrink-0 inline-flex items-center gap-0.5 text-[10px] font-bold text-amber-900 hover:text-white bg-amber-100 hover:bg-amber-700 border border-amber-300 px-1.5 py-0.5 rounded-none transition-all"
+                className="shrink-0 text-[10px] font-bold text-[#1a1a1a] uppercase tracking-wider hover:text-[#8C2318] border-b border-[#1a1a1a]/30 transition-colors"
               >
-                📚 알라딘 ↗
+                알라딘 ↗
               </a>
             </div>
 
-            <p className="text-[11px] text-gray-600 leading-snug mb-2.5 line-clamp-2">
+            <p className="text-xs text-[#1a1a1a]/70 leading-relaxed mb-4 line-clamp-2">
               {room.book_description}
             </p>
 
-            {/* Club Leader Pill (Compact 30% smaller) */}
-            <div className="flex items-center gap-2 p-2 bg-amber-50/60 rounded-none border border-amber-100/60 mb-2.5">
+            {/* Leader Pill */}
+            <div className="flex items-center gap-3 p-2.5 bg-[#e8e6df]/60 border border-[#1a1a1a]/10 mb-2">
               <img
                 src={room.leader.image_url}
                 alt={room.leader.name}
-                className="w-7 h-7 rounded-none object-cover border border-amber-200 shrink-0"
+                className="w-8 h-8 object-cover border border-[#1a1a1a]/20 shrink-0"
               />
               <div className="flex flex-col min-w-0">
-                <span className="text-[11px] font-bold text-gray-900 truncate">
+                <span className="text-xs font-serif font-bold text-[#1a1a1a] truncate">
                   클럽장 {room.leader.name}
                 </span>
-                <span className="text-[10px] text-amber-800 font-medium truncate">
+                <span className="text-[10px] text-[#1a1a1a]/60 truncate">
                   {room.leader.title}
                 </span>
               </div>
@@ -354,89 +368,89 @@ export default function ClubsSection() {
           </div>
         </div>
 
-        {/* Footer Meta (Compact 30% smaller) */}
-        <div className="px-3.5 py-2.5 bg-gray-50/80 border-t border-gray-100 flex items-center justify-between font-sans">
-          <div className="flex flex-col gap-0.5 text-[11px] text-gray-600">
-            <span>📅 {room.schedule_text}</span>
-            <span>📍 {room.location}</span>
-          </div>
-          <div className="text-right">
-            <span className="text-xs font-bold text-[#b91c1c] block">
-              {room.price_text}
-            </span>
-            <span className="text-[9px] text-gray-400">({room.program_duration})</span>
-          </div>
+        {/* Footer Meta */}
+        <div className="px-5 py-3 bg-[#e8e6df]/40 border-t border-[#1a1a1a]/10 flex items-center justify-between font-sans text-xs">
+          <span className="text-[#1a1a1a]/70 font-medium">📅 {room.schedule_text}</span>
+          <span className="font-serif font-bold text-[#8C2318]">{room.price_text}</span>
         </div>
       </div>
     );
   };
 
   return (
-    <section id="clubs" ref={sectionRef} className="w-full px-4 md:px-8 lg:px-12 py-20 md:py-28 bg-[#F6F5F1] border-t border-[#D8D4CA]">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="clubs"
+      ref={sectionRef}
+      className={`
+        w-full px-6 md:px-12 lg:px-20 py-24 md:py-32 border-t border-[#1a1a1a]/10
+        transition-colors duration-700 ease-out-ace
+        ${hoveredRoomId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
+      `}
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Main Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <span className="inline-block text-[#8C2318] text-xs font-extrabold tracking-widest uppercase mb-2 font-heading">
-              FEATURED READING CLUBS
+            <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
+              FEATURED EDITORIAL CLUBS
             </span>
-            <h2 className="font-heading font-black text-2xl md:text-4xl text-[#111111] leading-tight uppercase tracking-tight">
-              이번 달 추천 독서모임
+            <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight tracking-tight">
+              이번 달 독서모임 현황
             </h2>
-            <p className="text-xs md:text-sm text-gray-600 mt-2 font-sans">
-              클럽장이 직접 진행하는 3개의 상태별(모집중 · 진행중 · 종료) 실전 독서클럽 현황입니다.
+            <p className="text-sm text-[#1a1a1a]/70 mt-3 font-sans max-w-xl">
+              클럽장이 직접 이끄는 3개 트랙(모집중 · 진행중 · 완료)의 프리미엄 독서클럽 라인업입니다.
             </p>
           </div>
 
           {/* Status Filter Tabs */}
-          <div className="flex items-center gap-1 bg-[#EBE7DF] p-1 border border-[#D0CBC0] rounded-none self-start sm:self-auto font-sans">
+          <div className="flex flex-wrap items-center gap-2 border-b border-[#1a1a1a]/20 pb-2 self-start md:self-auto font-sans">
             <button
               onClick={() => setActiveTab("all")}
-              className={`px-3.5 py-1.5 text-xs font-bold rounded-none transition-all ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === "all"
-                  ? "bg-[#111111] text-white"
-                  : "text-gray-700 hover:text-[#111111]"
+                  ? "bg-[#1a1a1a] text-[#f4f3ee]"
+                  : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
               }`}
             >
-              전체 보기 ({rooms.length})
+              전체 ({rooms.length})
             </button>
             <button
               onClick={() => setActiveTab("recruiting")}
-              className={`px-3.5 py-1.5 text-xs font-bold rounded-none transition-all ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === "recruiting"
-                  ? "bg-[#8C2318] text-white"
-                  : "text-gray-700 hover:text-[#8C2318]"
+                  ? "bg-[#8C2318] text-[#f4f3ee]"
+                  : "text-[#1a1a1a]/60 hover:text-[#8C2318]"
               }`}
             >
-              🔥 모집중 ({recruitingRooms.length})
+              모집중 ({recruitingRooms.length})
             </button>
             <button
               onClick={() => setActiveTab("in_progress")}
-              className={`px-3.5 py-1.5 text-xs font-bold rounded-none transition-all ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === "in_progress"
-                  ? "bg-[#3B4836] text-white"
-                  : "text-gray-700 hover:text-[#3B4836]"
+                  ? "bg-[#4A5340] text-[#f4f3ee]"
+                  : "text-[#1a1a1a]/60 hover:text-[#4A5340]"
               }`}
             >
-              ⚡ 진행중 ({inProgressRooms.length})
+              진행중 ({inProgressRooms.length})
             </button>
             <button
               onClick={() => setActiveTab("completed")}
-              className={`px-3.5 py-1.5 text-xs font-bold rounded-none transition-all ${
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === "completed"
-                  ? "bg-gray-800 text-white"
-                  : "text-gray-700 hover:text-gray-900"
+                  ? "bg-[#1a1a1a]/80 text-[#f4f3ee]"
+                  : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
               }`}
             >
-              ✅ 종료 ({completedRooms.length})
+              종료 ({completedRooms.length})
             </button>
           </div>
         </div>
 
         {/* Loading Spinner */}
         {loading && (
-          <div className="py-16 text-center text-gray-500 font-medium">
-            Supabase DB에서 독서모임 데이터를 불러오는 중...
+          <div className="py-20 text-center text-[#1a1a1a]/50 font-serif text-lg">
+            독서모임 리스트를 불러오는 중...
           </div>
         )}
 

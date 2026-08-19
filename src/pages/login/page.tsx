@@ -44,185 +44,144 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background-50 text-foreground-950 font-body">
+    <div className="min-h-screen flex flex-col bg-[#f4f3ee] text-[#1a1a1a] font-sans">
       <Navbar />
 
-      <main className="flex-1 pt-24 md:pt-28 pb-16">
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-0">
-          {/* Left: Brand & Visual */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left py-8 lg:py-16 lg:pr-16">
-            <div className="mb-8">
-              <div className="w-16 h-16 rounded-none bg-accent-100 flex items-center justify-center mb-6 border border-accent-200">
-                <i className="ri-book-open-line text-2xl text-accent-500" />
-              </div>
-              <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground-950 mb-4 leading-tight">
-                다시 만나는<br />당신의 독서 모임
-              </h1>
-              <p className="text-foreground-600 text-base leading-relaxed max-w-md">
-                책을 읽고 질문을 나누는 순간,<br />
-                새로운 인연이 시작됩니다.<br />
-                지금 바로 퀘스처니티에서 당신의 클럽을 찾아보세요.
+      <main className="flex-1 flex flex-col lg:flex-row pt-24 md:pt-28 min-h-[calc(100vh-80px)]">
+        {/* Left: Full-bleed Editorial Image & Quote */}
+        <div className="lg:w-1/2 relative bg-[#1a1a1a] text-[#f4f3ee] min-h-[400px] lg:min-h-full flex items-end p-8 md:p-16 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
+            alt="Questionity Ace Editorial Venue"
+            className="absolute inset-0 w-full h-full object-cover filter brightness-60 contrast-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
+          
+          <div className="relative z-10 max-w-lg">
+            <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#f4f3ee]/70 block mb-3 border-b border-[#f4f3ee]/30 pb-1 w-max">
+              QUESTIONITY EDITORIAL ARCHITECTURE
+            </span>
+            <h1 className="font-serif font-bold text-3xl md:text-5xl text-[#f4f3ee] leading-tight mb-6">
+              책으로 이어지는<br />
+              <span className="italic font-normal text-[#e8e6df]">특별한 소모임.</span>
+            </h1>
+            <p className="font-sans text-sm text-[#f4f3ee]/80 leading-relaxed">
+              분당태성빌딩 B1 오마드랩스를 거점으로 2,000+ 멤버들이 활발히 토론하는 프리미엄 커뮤니티입니다.
+            </p>
+          </div>
+        </div>
+
+        {/* Right: Borderless Editorial Form */}
+        <div className="lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#f4f3ee]">
+          <div className="w-full max-w-md space-y-10">
+            <div>
+              <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#8C2318] block mb-2">
+                WELCOME BACK
+              </span>
+              <h2 className="font-serif font-bold text-3xl md:text-4xl text-[#1a1a1a] leading-tight mb-3">
+                다시 만나서 반가워요!<br />
+                <span className="text-xl md:text-2xl font-normal text-[#1a1a1a]/70">2,000+ 명이 함께 읽고 있어요</span>
+              </h2>
+              <p className="font-sans text-sm text-[#1a1a1a]/60">
+                계정이 없으신가요?{" "}
+                <Link to="/signup" className="text-[#8C2318] font-bold uppercase tracking-wider hover:underline">
+                  회원가입
+                </Link>
               </p>
             </div>
 
-            <div className="hidden lg:flex flex-col gap-4 mt-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-none bg-accent-100 flex items-center justify-center shrink-0 border border-accent-200">
-                  <i className="ri-user-star-line text-accent-500 text-lg" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground-900">150+ 활성 클럽</p>
-                  <p className="text-xs text-foreground-500">전국 각지에서 모임 중</p>
-                </div>
+            {error && (
+              <div className="p-4 bg-[#8C2318]/10 border-l-4 border-[#8C2318] text-[#8C2318] text-xs font-sans font-semibold">
+                {error}
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-none bg-secondary-100 flex items-center justify-center shrink-0 border border-secondary-200">
-                  <i className="ri-chat-smile-2-line text-secondary-500 text-lg" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground-900">5,000+ 회원</p>
-                  <p className="text-xs text-foreground-500">함께 읽고 대화하는 사람들</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-none bg-primary-100 flex items-center justify-center shrink-0 border border-primary-200">
-                  <i className="ri-heart-line text-accent-500 text-lg" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground-900">98% 재참여율</p>
-                  <p className="text-xs text-foreground-500">한 번 시작하면 멈출 수 없는 경험</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            )}
 
-          {/* Right: Login Form */}
-          <div className="w-full lg:w-1/2 max-w-md mx-auto lg:mx-0">
-            <div className="bg-background-50 border border-background-200 rounded-none p-8 md:p-10 shadow-md">
-              <div className="mb-8">
-                <h2 className="font-heading text-2xl font-bold text-foreground-950 mb-2">로그인</h2>
-                <p className="text-sm text-foreground-600">
-                  아직 계정이 없으신가요?{" "}
-                  <Link to="/signup" className="text-accent-500 font-semibold hover:text-primary-500 transition-colors">
-                    회원가입
-                  </Link>
-                </p>
+            <form onSubmit={handleSubmit} className="space-y-8 font-sans">
+              {/* Email Underline Input */}
+              <div className="relative pt-4">
+                <input
+                  id="login-email"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder=" "
+                  autoComplete="email"
+                  className="peer w-full bg-transparent border-b-2 border-[#1a1a1a] py-2 text-base text-[#1a1a1a] focus:outline-none focus:border-[#8C2318] transition-colors"
+                />
+                <label
+                  htmlFor="login-email"
+                  className="absolute left-0 top-0 text-xs font-bold uppercase tracking-widest text-[#1a1a1a]/60 transition-all duration-300 peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#1a1a1a]/50 peer-focus:top-0 peer-focus:text-xs peer-focus:font-bold peer-focus:text-[#8C2318]"
+                >
+                  이메일 주소
+                </label>
               </div>
 
-              {error && (
-                <div className="mb-6 p-4 rounded-none bg-accent-50 border border-accent-200 flex items-start gap-3">
-                  <i className="ri-error-warning-line text-accent-500 text-lg shrink-0 mt-0.5" />
-                  <p className="text-sm text-accent-900">{error}</p>
-                </div>
-              )}
+              {/* Password Underline Input */}
+              <div className="relative pt-4">
+                <input
+                  id="login-password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder=" "
+                  autoComplete="current-password"
+                  className="peer w-full bg-transparent border-b-2 border-[#1a1a1a] py-2 text-base text-[#1a1a1a] focus:outline-none focus:border-[#8C2318] transition-colors pr-10"
+                />
+                <label
+                  htmlFor="login-password"
+                  className="absolute left-0 top-0 text-xs font-bold uppercase tracking-widest text-[#1a1a1a]/60 transition-all duration-300 peer-placeholder-shown:top-6 peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal peer-placeholder-shown:text-[#1a1a1a]/50 peer-focus:top-0 peer-focus:text-xs peer-focus:font-bold peer-focus:text-[#8C2318]"
+                >
+                  비밀번호
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-0 bottom-2 text-[#1a1a1a]/60 hover:text-[#1a1a1a] text-sm"
+                >
+                  <i className={`ri-${showPassword ? "eye-off" : "eye"}-line`} />
+                </button>
+              </div>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                {/* Email */}
-                <div>
-                  <label htmlFor="login-email" className="block text-sm font-medium text-foreground-800 mb-1.5">
-                    이메일
-                  </label>
-                  <div className="relative">
-                    <i className="ri-mail-line absolute left-3.5 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
-                    <input
-                      id="login-email"
-                      type="email"
-                      name="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="hello@example.com"
-                      autoComplete="email"
-                      className="w-full pl-10 pr-4 py-3 rounded-none border border-background-200 bg-background-50 text-sm text-foreground-900 placeholder:text-foreground-400 focus:outline-none focus:ring-2 focus:ring-accent-500/30 focus:border-accent-500 transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* Password */}
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label htmlFor="login-password" className="block text-sm font-medium text-foreground-800">
-                      비밀번호
-                    </label>
-                    <a href="#" className="text-xs text-accent-500 hover:text-primary-500 transition-colors font-medium">
-                      비밀번호 찾기
-                    </a>
-                  </div>
-                  <div className="relative">
-                    <i className="ri-lock-line absolute left-3.5 top-1/2 -translate-y-1/2 text-foreground-400 text-sm" />
-                    <input
-                      id="login-password"
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="비밀번호를 입력하세요"
-                      autoComplete="current-password"
-                      className="w-full pl-10 pr-12 py-3 rounded-none border border-background-200 bg-background-50 text-sm text-foreground-900 placeholder:text-foreground-400 focus:outline-none focus:ring-2 focus:ring-accent-500/30 focus:border-accent-500 transition-all"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-foreground-400 hover:text-foreground-600 transition-colors"
-                      aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
-                    >
-                      <i className={`ri-${showPassword ? "eye-off" : "eye"}-line text-sm`} />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Remember me */}
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between text-xs font-sans">
+                <label className="flex items-center gap-2 cursor-pointer text-[#1a1a1a]/80 font-medium">
                   <input
-                    id="remember-me"
                     type="checkbox"
-                    className="w-4 h-4 rounded-none border-background-300 text-accent-500 focus:ring-accent-500 cursor-pointer"
+                    className="w-4 h-4 rounded-none accent-[#8C2318] cursor-pointer"
                   />
-                  <label htmlFor="remember-me" className="text-sm text-foreground-600 cursor-pointer select-none">
-                    로그인 상태 유지
-                  </label>
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-primary-500 text-background-50 font-semibold text-sm py-3 rounded-none hover:bg-accent-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap mt-1"
-                >
-                  {loading ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <i className="ri-loader-4-line animate-spin" />
-                      로그인 중...
-                    </span>
-                  ) : (
-                    "로그인"
-                  )}
-                </button>
-              </form>
-
-              {/* Divider */}
-              <div className="flex items-center gap-3 my-6">
-                <div className="flex-1 h-px bg-background-200" />
-                <span className="text-xs text-foreground-400 font-medium">또는</span>
-                <div className="flex-1 h-px bg-background-200" />
+                  <span>로그인 상태 유지</span>
+                </label>
+                <a href="#" className="text-[#8C2318] hover:underline uppercase tracking-wider font-bold">
+                  비밀번호 찾기
+                </a>
               </div>
 
-              {/* Social Login */}
-              <div className="flex flex-col gap-3">
-                <button
-                  type="button"
-                  className="w-full flex items-center justify-center gap-3 border border-background-200 rounded-none py-3 text-sm font-medium text-foreground-700 hover:bg-background-100 transition-colors whitespace-nowrap"
-                >
-                  <i className="ri-google-line text-lg" />
-                  Google로 계속하기
-                </button>
-                <button
-                  type="button"
-                  className="w-full flex items-center justify-center gap-3 border border-background-200 rounded-none py-3 text-sm font-medium text-foreground-700 hover:bg-background-100 transition-colors whitespace-nowrap"
-                >
-                  <i className="ri-kakao-talk-line text-lg" />
-                  카카오로 계속하기
-                </button>
-              </div>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-bold text-xs uppercase tracking-widest py-4 transition-all duration-700 ease-out-ace hover:-translate-y-1 hover:shadow-2xl disabled:opacity-50 cursor-pointer"
+              >
+                {loading ? "로그인 진행 중..." : "로그인하기"}
+              </button>
+            </form>
+
+            <div className="border-t border-[#1a1a1a]/15 pt-8 space-y-3 font-sans">
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 border border-[#1a1a1a] bg-white hover:bg-[#e8e6df] py-3.5 text-xs font-bold uppercase tracking-widest text-[#1a1a1a] transition-all"
+              >
+                <i className="ri-google-line text-lg" />
+                Google 로 접속
+              </button>
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 border border-[#1a1a1a] bg-[#FEE500] text-[#191919] hover:opacity-90 py-3.5 text-xs font-bold uppercase tracking-widest transition-all"
+              >
+                <i className="ri-kakao-talk-line text-lg" />
+                카카오로 접속
+              </button>
             </div>
           </div>
         </div>

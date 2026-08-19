@@ -71,19 +71,19 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out-ace ${
         scrolled
-          ? "bg-background-50/95 backdrop-blur-md border-b border-background-300/80 shadow-xs"
-          : "bg-transparent"
+          ? "bg-[#f4f3ee]/95 backdrop-blur-md border-b border-[#1a1a1a]/10 shadow-sm py-4"
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="w-full px-4 md:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="w-full px-6 md:px-12 lg:px-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 shrink-0">
             <span
-              className={`font-heading font-extrabold text-xl md:text-2xl tracking-wider uppercase transition-colors ${
-                scrolled ? "text-foreground-950" : "text-background-50"
+              className={`font-serif font-bold text-2xl md:text-3xl tracking-widest uppercase transition-colors duration-500 ${
+                scrolled ? "text-[#1a1a1a]" : "text-white"
               }`}
             >
               QUESTIONITY
@@ -91,14 +91,16 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-xs md:text-sm font-bold tracking-tight transition-colors hover:opacity-80 whitespace-nowrap ${
-                  scrolled ? "text-foreground-900 hover:text-primary-500" : "text-background-50"
+                className={`text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:opacity-100 whitespace-nowrap ${
+                  scrolled
+                    ? "text-[#1a1a1a]/80 hover:text-[#8C2318]"
+                    : "text-white/90 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -107,50 +109,45 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA / User Menu */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
             {isLoading ? null : isAuthenticated && user ? (
               /* Logged in */
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className={`flex items-center gap-2 transition-colors whitespace-nowrap ${
+                  className={`flex items-center gap-3 transition-colors uppercase tracking-widest text-xs font-bold whitespace-nowrap ${
                     scrolled
-                      ? "text-foreground-800 hover:text-primary-500"
-                      : "text-background-50 hover:text-background-50/80"
+                      ? "text-[#1a1a1a] hover:text-[#8C2318]"
+                      : "text-white hover:text-white/80"
                   }`}
                 >
-                  <div className="w-8 h-8 rounded-none bg-primary-100 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-none bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center shrink-0 font-serif font-bold">
                     {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={user.name} className="w-8 h-8 rounded-none object-cover" />
+                      <img src={user.avatarUrl} alt={user.name} className="w-8 h-8 object-cover" />
                     ) : (
-                      <span className={`text-sm font-bold ${scrolled ? "text-primary-500" : "text-primary-600"}`}>
-                        {user.name.charAt(0)}
-                      </span>
+                      <span>{user.name.charAt(0)}</span>
                     )}
                   </div>
-                  <span className="text-sm font-medium">{user.name}</span>
-                  <i className={`ri-arrow-down-s-line text-sm transition-transform ${userMenuOpen ? "rotate-180" : ""}`} />
+                  <span>{user.name}</span>
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-background-50 border border-background-200/70 rounded-none shadow-lg py-2 z-50">
-                    <div className="px-4 py-2.5 border-b border-background-200/70">
-                      <p className="text-sm font-semibold text-foreground-900 truncate">{user.name}</p>
-                      <p className="text-xs text-foreground-500 truncate">{user.email}</p>
+                  <div className="absolute right-0 mt-3 w-56 bg-[#f4f3ee] border border-[#1a1a1a] shadow-2xl py-3 z-50">
+                    <div className="px-5 py-3 border-b border-[#1a1a1a]/10">
+                      <p className="text-sm font-serif font-bold text-[#1a1a1a] truncate">{user.name}</p>
+                      <p className="text-xs font-sans text-[#1a1a1a]/60 truncate">{user.email}</p>
                     </div>
                     <Link
                       to="/mypage"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground-700 hover:bg-background-100 transition-colors"
+                      className="flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-widest text-[#1a1a1a] hover:bg-[#e8e6df] transition-colors"
                     >
-                      <i className="ri-user-line text-base" />
                       마이페이지
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      className="w-full flex items-center gap-3 px-5 py-3 text-xs uppercase tracking-widest text-[#8C2318] hover:bg-[#e8e6df] transition-colors text-left"
                     >
-                      <i className="ri-logout-box-line text-base" />
                       로그아웃
                     </button>
                   </div>
@@ -161,15 +158,15 @@ export default function Navbar() {
               <>
                 <Link
                   to="/login"
-                  className={`text-sm font-medium transition-colors hover:opacity-80 whitespace-nowrap ${
-                    scrolled ? "text-foreground-800" : "text-background-50"
+                  className={`text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap ${
+                    scrolled ? "text-[#1a1a1a] hover:text-[#8C2318]" : "text-white hover:text-white/80"
                   }`}
                 >
                   로그인
                 </Link>
                 <Link
                   to="/signup"
-                  className="bg-primary-500 text-background-50 text-sm font-semibold px-5 py-2.5 rounded-none hover:bg-primary-600 transition-colors whitespace-nowrap"
+                  className="bg-[#8C2318] text-[#f4f3ee] text-xs font-bold uppercase tracking-widest px-6 py-3 transition-all duration-300 hover:bg-[#1a1a1a] shadow-lg whitespace-nowrap"
                 >
                   시작하기
                 </Link>
@@ -179,26 +176,26 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className={`md:hidden p-2 rounded-md transition-colors ${
-              scrolled ? "text-foreground-800" : "text-background-50"
+            className={`md:hidden p-2 transition-colors ${
+              scrolled ? "text-[#1a1a1a]" : "text-white"
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="메뉴 열기"
           >
-            <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-xl`} />
+            <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-2xl`} />
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background-50 border-t border-background-200/70 px-4 py-6 shadow-lg">
-          <div className="flex flex-col gap-4">
+        <div className="md:hidden bg-[#f4f3ee] border-t border-[#1a1a1a]/20 px-6 py-8 shadow-2xl">
+          <div className="flex flex-col gap-5">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-foreground-800 text-base font-medium py-2 hover:text-primary-500 transition-colors"
+                className="text-[#1a1a1a] font-serif text-xl font-bold uppercase tracking-wider py-1 hover:text-[#8C2318] transition-colors"
                 onClick={(e) => {
                   setMobileMenuOpen(false);
                   handleNavClick(e, link.href);
@@ -207,31 +204,29 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="border-t border-background-200/70 pt-4 flex flex-col gap-3">
+            <div className="border-t border-[#1a1a1a]/10 pt-6 flex flex-col gap-4">
               {isAuthenticated && user ? (
                 <>
                   <div className="flex items-center gap-3 py-2">
-                    <div className="w-10 h-10 rounded-none bg-primary-100 flex items-center justify-center shrink-0">
-                      <span className="text-sm font-bold text-primary-500">{user.name.charAt(0)}</span>
+                    <div className="w-10 h-10 bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center font-serif text-lg font-bold">
+                      <span>{user.name.charAt(0)}</span>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-foreground-900">{user.name}</p>
-                      <p className="text-xs text-foreground-500">{user.email}</p>
+                      <p className="text-base font-serif font-bold text-[#1a1a1a]">{user.name}</p>
+                      <p className="text-xs text-[#1a1a1a]/60">{user.email}</p>
                     </div>
                   </div>
                   <Link
                     to="/mypage"
-                    className="text-foreground-800 text-base font-medium py-2 flex items-center gap-2"
+                    className="text-[#1a1a1a] text-sm uppercase tracking-widest py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <i className="ri-user-line" />
                     마이페이지
                   </Link>
                   <button
                     onClick={() => { logout(); navigate("/"); setMobileMenuOpen(false); }}
-                    className="text-red-600 text-base font-medium py-2 flex items-center gap-2 text-left"
+                    className="text-[#8C2318] text-sm uppercase tracking-widest py-2 text-left"
                   >
-                    <i className="ri-logout-box-line" />
                     로그아웃
                   </button>
                 </>
@@ -239,14 +234,14 @@ export default function Navbar() {
                 <>
                   <Link
                     to="/login"
-                    className="text-foreground-800 text-base font-medium py-2"
+                    className="text-[#1a1a1a] text-sm uppercase tracking-widest py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     로그인
                   </Link>
                   <Link
                     to="/signup"
-                    className="bg-primary-500 text-background-50 text-center text-base font-semibold px-5 py-3 rounded-none hover:bg-primary-600 transition-colors"
+                    className="bg-[#8C2318] text-[#f4f3ee] text-center text-sm font-bold uppercase tracking-widest px-6 py-3 hover:bg-[#1a1a1a] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     시작하기

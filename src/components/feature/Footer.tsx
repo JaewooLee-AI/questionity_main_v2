@@ -29,48 +29,56 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-background-100 border-t border-background-200/70">
-      <div className="w-full px-4 md:px-8 lg:px-12 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand */}
+    <footer className="bg-[#1a1a1a] text-[#f4f3ee] border-t border-[#1a1a1a]">
+      <div className="w-full px-6 md:px-12 lg:px-20 py-20 md:py-24">
+        {/* Massive Serif Title */}
+        <div className="border-b border-[#f4f3ee]/20 pb-12 mb-16">
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest uppercase text-[#f4f3ee]/90">
+            QUESTIONITY
+          </h2>
+          <p className="font-sans text-xs md:text-sm text-[#f4f3ee]/60 uppercase tracking-widest mt-4">
+            Editorial Reading Community & Coworking Venue | Bundang Taeseong Bldg B1, Omad Labs
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          {/* Brand Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="inline-block mb-4">
-              <span className="font-heading font-bold text-xl text-primary-500 tracking-tight">
-                Questionity
-              </span>
-            </Link>
-            <p className="text-sm text-foreground-600 leading-relaxed mb-6">
-              독서를 통해 사람들을 연결하는
-              <br />
-              온라인 독서클럽 플랫폼
+            <p className="font-serif text-lg text-[#f4f3ee]/80 leading-relaxed mb-6">
+              책으로 이어지는 특별한 사람들의 프리미엄 에디토리얼 커뮤니티.
             </p>
-            <div className="flex items-center gap-3">
+            <p className="font-sans text-xs text-[#f4f3ee]/50 leading-relaxed mb-6">
+              경기도 성남시 분당구 분당태성빌딩 지하 1층 오마드랩스
+              <br />
+              누적 독서 멤버 2,000+ 명 | 5,000+ 건의 독후감 데이터
+            </p>
+            <div className="flex items-center gap-4">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="w-9 h-9 flex items-center justify-center rounded-none bg-background-200/70 text-foreground-600 hover:bg-primary-500 hover:text-background-50 transition-colors"
+                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
                 aria-label="Instagram"
               >
-                <i className="ri-instagram-line text-base" />
+                <i className="ri-instagram-line text-lg" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="w-9 h-9 flex items-center justify-center rounded-none bg-background-200/70 text-foreground-600 hover:bg-primary-500 hover:text-background-50 transition-colors"
+                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
                 aria-label="YouTube"
               >
-                <i className="ri-youtube-line text-base" />
+                <i className="ri-youtube-line text-lg" />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="w-9 h-9 flex items-center justify-center rounded-none bg-background-200/70 text-foreground-600 hover:bg-primary-500 hover:text-background-50 transition-colors"
+                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
                 aria-label="LinkedIn"
               >
-                <i className="ri-linkedin-line text-base" />
+                <i className="ri-linkedin-line text-lg" />
               </a>
             </div>
           </div>
@@ -78,15 +86,15 @@ export default function Footer() {
           {/* Links */}
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h4 className="font-semibold text-sm text-foreground-900 mb-4">
+              <h4 className="font-sans text-xs font-bold uppercase tracking-widest text-[#f4f3ee]/40 mb-6">
                 {group.title}
               </h4>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col gap-3">
                 {group.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-foreground-600 hover:text-primary-500 transition-colors"
+                      className="font-serif text-sm text-[#f4f3ee]/80 hover:text-[#8C2318] transition-colors"
                     >
                       {link.label}
                     </a>
@@ -98,12 +106,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-background-200/70 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-foreground-500">
-            퀘스처니티 (Questionity) | 대표: [이름]
+        <div className="mt-16 pt-8 border-t border-[#f4f3ee]/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-[#f4f3ee]/40">
+          <p>
+            퀘스처니티 (Questionity) | 오마드랩스 (황윤철 대표) | 분당태성빌딩 B1
           </p>
-          <p className="text-xs text-foreground-500">
-            &copy; 2025 Questionity. All rights reserved.
+          <p>
+            &copy; 2026 QUESTIONITY. All rights reserved.
           </p>
         </div>
       </div>

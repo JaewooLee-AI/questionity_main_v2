@@ -100,42 +100,42 @@ export default function ClubDetail() {
   const progress = (club.currentMembers / club.capacity) * 100;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background-50 text-foreground-950 font-body">
+    <div className="min-h-screen flex flex-col bg-[#f4f3ee] text-[#1a1a1a] font-sans">
       <Navbar />
 
-      <main className="flex-1 pt-16 md:pt-20">
-        {/* Hero */}
-        <div className="relative h-[320px] md:h-[420px] overflow-hidden">
+      <main className="flex-1 pt-20 md:pt-24">
+        {/* Full-bleed Hero */}
+        <div className="relative h-[380px] md:h-[480px] overflow-hidden bg-[#1a1a1a]">
           <img
             src={club.imageUrl}
             alt={club.name}
-            className="w-full h-full object-cover object-center brightness-90"
+            className="w-full h-full object-cover object-center filter brightness-75 contrast-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent" />
 
-          <div className="absolute bottom-0 left-0 right-0 px-4 md:px-8 lg:px-12 pb-6 md:pb-8">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="bg-accent-500 text-background-50 text-xs font-semibold px-3 py-1 rounded-none">
+          <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 lg:px-20 pb-10 md:pb-12">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                <span className="bg-[#8C2318] text-[#f4f3ee] font-mono text-xs font-bold px-3 py-1 uppercase tracking-widest">
                   {club.category}
                 </span>
-                <span className="bg-background-50/20 backdrop-blur-sm text-background-50 text-xs font-medium px-3 py-1 rounded-none">
+                <span className="bg-[#f4f3ee]/20 text-[#f4f3ee] font-mono text-xs font-medium px-3 py-1 uppercase tracking-widest backdrop-blur-sm">
                   {club.subCategory}
                 </span>
-                <span className={`text-xs font-bold px-3 py-1 rounded-none ${
-                  isClosed ? "bg-foreground-700 text-background-50" :
-                  isOngoing ? "bg-primary-600 text-background-50" :
-                  isFull ? "bg-foreground-800 text-background-50" :
-                  "bg-emerald-600 text-background-50"
+                <span className={`text-xs font-bold uppercase tracking-widest px-3 py-1 font-mono ${
+                  isClosed ? "bg-gray-800 text-white" :
+                  isOngoing ? "bg-[#4A5340] text-white" :
+                  isFull ? "bg-black text-white" :
+                  "bg-[#8C2318] text-white"
                 }`}>
-                  {isClosed ? "종료된 모임" : isOngoing ? "진행 중인 모임" : isFull ? "마감" : "모집 중"}
+                  {isClosed ? "종료된 클럽" : isOngoing ? "진행 중" : isFull ? "마감" : "모집 중"}
                 </span>
               </div>
-              <h1 className="font-heading font-bold text-xl md:text-3xl lg:text-4xl text-background-50 leading-tight mb-2">
+              <h1 className="font-serif font-bold text-2xl md:text-4xl lg:text-6xl text-[#f4f3ee] leading-tight mb-3">
                 {club.name}
               </h1>
-              <p className="text-background-100/90 text-sm md:text-base">
-                {club.bookTitle} - {club.bookAuthor}
+              <p className="font-serif italic text-base md:text-xl text-[#f4f3ee]/80">
+                📖 {club.bookTitle} — <span className="font-sans not-italic text-sm">{club.bookAuthor}</span>
               </p>
             </div>
           </div>

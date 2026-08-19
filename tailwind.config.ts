@@ -7,13 +7,30 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['"Pretendard"', '"Outfit"', '"GmarketSansBold"', 'sans-serif'],
+        heading: ['"Playfair Display"', '"Noto Serif KR"', '"Pretendard"', 'serif'],
         body: ['"Pretendard"', '"Noto Sans KR"', '-apple-system', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', '"Noto Serif KR"', 'Georgia', 'serif'],
         label: ['"Pretendard"', '"Noto Sans KR"', 'sans-serif'],
         sans: ['"Pretendard"', '"Noto Sans KR"', 'sans-serif'],
       },
+      transitionDuration: {
+        '700': '700ms',
+      },
+      transitionTimingFunction: {
+        'out-ace': 'cubic-bezier(0.25, 1, 0.5, 1)',
+      },
+      letterSpacing: {
+        'tightest': '-0.03em',
+      },
       colors: {
+        ace: {
+          base: '#f4f3ee',
+          hover: '#e8e6df',
+          main: '#1a1a1a',
+          brick: '#8C2318',
+          olive: '#4A5340',
+          muted: '#666666',
+        },
         background: {
           50: 'oklch(var(--background-50))',
           100: 'oklch(var(--background-100))',

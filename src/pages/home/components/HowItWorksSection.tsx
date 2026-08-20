@@ -34,8 +34,9 @@ export default function HowItWorksSection() {
           <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4" style={{ transitionDelay: "0.1s" }}>
             이렇게 시작해요
           </h2>
-          <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans tracking-tightest" style={{ transitionDelay: "0.2s" }}>
-            원하는 수량의 패스(2장 · 6장 · 10장)를 충전한 뒤, 독서클럽 신청 시 1장씩 간편하게 차감하는 에이스 방식입니다.
+          <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#1a1a1a]/75 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans tracking-tight break-keep" style={{ transitionDelay: "0.2s" }}>
+            원하는 수량의 패스(2장 &bull; 6장 &bull; 10장)를 충전한 뒤,<br className="hidden sm:inline" />
+            독서클럽 신청 시 1장씩 간편하게 차감하는 에이스 방식입니다.
           </p>
         </div>
 

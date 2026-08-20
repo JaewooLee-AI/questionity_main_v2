@@ -99,27 +99,16 @@ export default function HeroSection() {
       {/* Centered Ace Hotel Hero Composition */}
       <div className="relative z-30 w-full px-6 md:px-12 lg:px-20 pt-20 pb-12 md:pt-24 md:pb-14 max-w-3xl mx-auto text-center flex flex-col items-center">
         
-        {/* Top Tag Badge */}
-        <div className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out mb-4">
-          <span className="inline-block border border-white/40 bg-black/70 backdrop-blur-md px-4 py-1 text-white text-[11px] font-mono font-bold tracking-normal uppercase">
-            ROOM NO. 101 — WELCOME TO QUESTIONITY
-          </span>
-        </div>
-
-        {/* Ace Hotel Style Signature Typography (Italic Script + Heavy Serif) */}
+        {/* Ace Hotel Exact Display Typography Matching Screenshot (Tall Condensed All-Caps) */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white leading-[0.95] mb-5 tracking-tight text-center select-none"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-bebas text-white leading-[0.88] mb-6 text-center select-none tracking-wider"
           style={{
-            fontSize: "clamp(48px, 7vw, 96px)",
+            fontSize: "clamp(54px, 8.5vw, 110px)",
             transitionDelay: "0.2s"
           }}
         >
-          <span className="font-instrument italic font-normal text-white/90 block mb-1 text-[0.88em]">
-            Welcome to
-          </span>
-          <span className="font-serif font-black uppercase tracking-tighter block text-white">
-            Questionity
-          </span>
+          <span className="block drop-shadow-sm">WELCOME TO</span>
+          <span className="block drop-shadow-sm">QUESTIONITY</span>
         </h1>
 
         {/* Subtitles */}

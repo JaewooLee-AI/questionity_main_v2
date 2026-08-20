@@ -127,7 +127,7 @@ export default function ClubsSection() {
     fetchDbRooms();
 
     const channel = supabase
-      .channel("rooms-realtime-channel-v4")
+      .channel("rooms-realtime-channel-v5")
       .on("postgres_changes", { event: "*", schema: "public", table: "rooms" }, () => {
         fetchDbRooms();
       })
@@ -150,53 +150,31 @@ export default function ClubsSection() {
           .or(`room_id.eq.${selectedRoom.id},book_title.eq.${selectedRoom.book_title}`)
           .order("created_at", { ascending: false });
 
-        if (data && data.length > 0) {
+        if (data) {
           setRoomReviews(data);
-        } else {
-          // Default Sample Long Detailed Reviews for rich UI
-          setRoomReviews([
-            {
-              id: "rev-sample-1",
-              author_name: "김민재",
-              author_role: "5년차 IT 서비스 기획자",
-              rating: 5,
-              content: `혼자 읽을 때는 그저 인상 깊은 구절에 밑줄만 긋고 넘어갔던 『${selectedRoom.book_title}』의 핵심 통찰을, 독서모임에 참여하면서 내 커리어와 일상에 어떻게 직접 적용할지 깊이 있게 고민하게 되었습니다.\n\n특히 2주차 토론에서 클럽장님과 동료 멤버들이 각자의 직무 현장에서 겪었던 실제 시행착오 사례를 들으며 '아, 이렇게 관점을 바꿀 수도 있구나' 하는 커다란 깨달음을 얻었습니다.\n\n매주 주어지는 실천 미션 덕분에 책 속 지식이 머리로만 남지 않고 삶의 실질적인 행동 변화로 이어졌어요. 직장 생활의 타성에 젖어있던 나에게 새로운 영감과 활력을 불어넣어 준 4주였습니다!`,
-              created_at: "2026.08.10"
-            },
-            {
-              id: "rev-sample-2",
-              author_name: "박지영",
-              author_role: "브랜드 마케팅 팀장 / 독서 3년차",
-              rating: 5,
-              content: `독서모임의 가장 큰 매력은 서로 다른 배경을 가진 분들의 다양한 시선을 통해 책의 스펙트럼을 넓히는 것이라는 점을 다시금 실감했습니다. 『${selectedRoom.book_title}』은 저에게 쉽지 않은 책이었지만, 소규모 그룹 토론과 클럽장님의 섬세한 피드백 덕분에 난해했던 개념들이 명쾌하게 다가왔습니다.\n\n격의 없이 솔직한 고민을 나누는 따뜻한 분위기 속에서 매주 일요일 모임 시간이 진심으로 기다려졌습니다. 제 생각의 지평을 넓혀준 퀘스처니티 독서클럽을 주변 지인들에게도 적극 추천하고 싶습니다.`,
-              created_at: "2026.08.12"
-            }
-          ]);
         }
-      } catch (e) {
-        console.error("Failed to fetch room reviews:", e);
+      } catch (err) {
+        console.error("Failed to fetch reviews for room:", err);
       }
     }
 
     fetchReviewsForRoom();
   }, [selectedRoom]);
 
-  // Smooth Horizontal Scroll Helper
+  const uniqueRooms = deduplicateRooms(rooms);
+  const recruitingRooms = uniqueRooms.filter((r) => r.status === "recruiting");
+  const inProgressRooms = uniqueRooms.filter((r) => r.status === "in_progress");
+  const completedRooms = uniqueRooms.filter((r) => r.status === "completed");
+
   const scrollRow = (ref: React.RefObject<HTMLDivElement | null>, direction: "left" | "right") => {
     if (!ref.current) return;
-    const scrollAmount = ref.current.clientWidth;
+    const amount = ref.current.clientWidth * 0.8;
     ref.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
+      left: direction === "left" ? -amount : amount,
       behavior: "smooth"
     });
   };
 
-  // Group and Deduplicate rooms strictly from DB
-  const recruitingRooms = deduplicateRooms(rooms.filter((r) => r.status === "recruiting"));
-  const inProgressRooms = deduplicateRooms(rooms.filter((r) => r.status === "in_progress"));
-  const completedRooms = deduplicateRooms(rooms.filter((r) => r.status === "completed"));
-
-  // Payment Submission Handler (Mock Process)
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!applicantName || !applicantPhone) return;
@@ -245,7 +223,6 @@ export default function ClubsSection() {
       }, 3000);
     } catch (err) {
       console.error("Failed to insert review:", err);
-      // Fallback local update
       setRoomReviews((prev) => [newRevObj, ...prev]);
       setReviewSubmitSuccess(true);
       setNewReviewContent("");
@@ -258,126 +235,145 @@ export default function ClubsSection() {
   const renderStatusBadge = (status: RoomItem["status"]) => {
     if (status === "recruiting") {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-600 border border-amber-500/30 text-xs font-bold rounded-none">
-          <span className="w-1.5 h-1.5 bg-amber-500 animate-pulse" />
-          🔥 모집중
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#8C2318] text-[#f4f3ee] font-mono text-[10px] font-bold uppercase tracking-wider">
+          <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+          RECRUITING / 모집중
         </span>
       );
     }
     if (status === "in_progress") {
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-xs font-bold rounded-none">
-          <span className="w-1.5 h-1.5 bg-emerald-500 animate-ping" />
-          ⚡ 진행중
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#1a1a1a] text-[#f4f3ee] font-mono text-[10px] font-bold uppercase tracking-wider">
+          <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping" />
+          IN PROGRESS / 진행중
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-500/10 text-gray-500 border border-gray-500/30 text-xs font-semibold rounded-none">
-        ✅ 종료
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#1a1a1a]/60 text-[#f4f3ee] font-mono text-[10px] font-bold uppercase tracking-wider">
+        COMPLETED / 종료
       </span>
     );
   };
 
-  // Hover state for Ace Hotel contextual dimming & 3D box effect
+  // Hover state for Ace Hotel contextual dimming
   const [hoveredRoomId, setHoveredRoomId] = useState<string | null>(null);
 
-  // Render individual room card with Ace Hotel 3D Box Hover effect & sibling dimming
+  // Render individual room card (ACE HOTEL OFFERS CONCEPT UI)
   const renderRoomCard = (room: RoomItem, index?: number) => {
     const isHovered = hoveredRoomId === room.id;
     const isDimmed = hoveredRoomId !== null && !isHovered;
-    const aladinUrl = room.aladin_url || `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${encodeURIComponent(room.book_title || room.title)}`;
+    const isRecruiting = room.status === "recruiting";
 
     return (
       <div
         key={room.id}
-        onClick={() => {
-          setSelectedRoom(room);
-        }}
         onMouseEnter={() => setHoveredRoomId(room.id)}
         onMouseLeave={() => setHoveredRoomId(null)}
         className={`
-          group relative cursor-pointer bg-white border border-black overflow-hidden flex flex-col justify-between
-          transition-all duration-300
-          ${isHovered ? "-translate-y-2 shadow-lg bg-white z-10 scale-[1.02]" : "translate-y-0 shadow-sm"}
-          ${isDimmed ? "opacity-60 grayscale-[30%]" : "opacity-100 grayscale-0"}
+          group relative bg-[#e8e6df]/40 hover:bg-white text-[#1a1a1a] transition-all duration-500
+          flex flex-col justify-between overflow-hidden cursor-pointer
+          ${isHovered ? "-translate-y-1 z-10 shadow-lg" : "translate-y-0 shadow-xs"}
+          ${isDimmed ? "opacity-75" : "opacity-100"}
         `}
       >
         <div>
-          {/* Card Header Stamp */}
-          <div className="bg-black text-white px-4 py-2 flex items-center justify-between font-mono text-[10px] font-bold tracking-normal uppercase border-b border-black">
-            <span>ROOM NO. {index !== undefined ? String(index + 1).padStart(3, '0') : '001'}</span>
-            <span className="text-white">{(room as any).category_label || (room as any).category || "CLUB"}</span>
-          </div>
-
-          {/* Card Image Banner */}
-          <div className="relative w-full h-44 bg-gray-100 overflow-hidden flex items-center justify-center p-3 border-b border-black/15">
+          {/* TOP: Book Cover Image Banner (Ace Hotel Offer Image) */}
+          <div
+            onClick={() => {
+              setSelectedRoom(room);
+              setShowPaymentModal(false);
+            }}
+            className="relative w-full aspect-[4/3] bg-[#1a1a1a] overflow-hidden flex items-center justify-center p-4 cursor-pointer"
+          >
             <img
               src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
               alt={room.book_title}
               referrerPolicy="no-referrer"
-              className="h-36 w-auto object-contain transition-transform duration-700 ease-out-ace group-hover:scale-105"
+              className="h-full w-auto object-contain transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-95"
             />
-            <div className="absolute top-3 left-3">
+            {/* Top Overlay Badges */}
+            <div className="absolute top-2.5 left-2.5">
               {renderStatusBadge(room.status)}
             </div>
-            <div className="absolute bottom-3 right-3 bg-[#1a1a1a] text-[#f4f3ee] text-[10px] font-bold px-2.5 py-1 tracking-widest uppercase font-mono border border-[#f4f3ee]/20">
-              👥 {room.max_capacity}명 정원
+            <div className="absolute top-2.5 right-2.5 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase">
+              ROOM {index !== undefined ? String(index + 1).padStart(3, "0") : "001"} &bull; {room.max_capacity}명
             </div>
           </div>
 
-          {/* Content */}
-          <div className="p-6 font-sans">
-            <span className="text-[10px] font-bold tracking-widest text-[#1a1a1a]/60 uppercase block mb-1">
-              {room.location} — {room.program_duration}
+          {/* MIDDLE: Text Details (Title, Description, Meta) */}
+          <div className="p-5 font-sans">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-1">
+              {room.location} &bull; {room.program_duration}
             </span>
-            <h3 className="font-serif font-bold text-xl text-[#1a1a1a] mb-2 line-clamp-1 group-hover:text-[#8C2318] transition-colors duration-300">
+
+            {/* Club Title (Ace Hotel Bold Serif Condensed Header) */}
+            <h3
+              onClick={() => {
+                setSelectedRoom(room);
+                setShowPaymentModal(false);
+              }}
+              className="font-serif font-bold text-lg md:text-xl uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-1 mb-1"
+            >
               {room.title}
             </h3>
 
-            {/* Book Info */}
-            <div className="flex items-center justify-between gap-2 mb-3">
-              <p className="text-xs font-semibold text-[#8C2318] truncate min-w-0 font-serif">
-                📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans">({room.book_author})</span>
-              </p>
-              <a
-                href={aladinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="shrink-0 text-[10px] font-bold text-[#1a1a1a] uppercase tracking-wider hover:text-[#8C2318] border-b border-[#1a1a1a] transition-colors"
-              >
-                알라딘 ↗
-              </a>
-            </div>
+            <p className="text-xs font-serif font-semibold text-[#8C2318] truncate mb-2">
+              📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans text-[11px]">({room.book_author})</span>
+            </p>
 
-            <p className="text-xs text-[#1a1a1a]/70 leading-relaxed mb-4 line-clamp-2">
+            {/* Description Excerpt (Displaying as much as possible) */}
+            <p className="text-xs text-[#1a1a1a]/75 leading-relaxed line-clamp-2 mb-4 font-sans">
               {room.book_description}
             </p>
 
-            {/* Leader Pill */}
-            <div className="flex items-center gap-3 p-3 bg-[#e8e6df]/60 border border-[#1a1a1a]/20 mb-2">
-              <img
-                src={room.leader.image_url}
-                alt={room.leader.name}
-                className="w-8 h-8 object-cover border border-[#1a1a1a]/30 shrink-0"
-              />
-              <div className="flex flex-col min-w-0 font-sans">
-                <span className="text-xs font-serif font-bold text-[#1a1a1a] truncate">
-                  클럽장 {room.leader.name}
-                </span>
-                <span className="text-[10px] text-[#1a1a1a]/60 truncate">
-                  {room.leader.title}
-                </span>
-              </div>
+            {/* Info Badges (Schedule & Price) */}
+            <div className="flex items-center justify-between text-[11px] font-mono pt-3 border-t border-[#1a1a1a]/10 text-[#1a1a1a]/70">
+              <span>📅 {room.schedule_text}</span>
+              <span className="font-bold text-[#8C2318] text-xs font-serif">{room.price_text}</span>
             </div>
           </div>
         </div>
 
-        {/* Footer Meta */}
-        <div className="px-6 py-4 bg-[#e8e6df]/40 border-t border-[#1a1a1a] flex items-center justify-between font-sans text-xs">
-          <span className="text-[#1a1a1a]/70 font-medium">📅 {room.schedule_text}</span>
-          <span className="font-serif font-bold text-[#8C2318] text-sm">{room.price_text}</span>
+        {/* BOTTOM: ACE HOTEL OFFERS BUTTONS (BOOK NOW / VIEW OFFER) */}
+        <div className="p-5 pt-0">
+          {isRecruiting ? (
+            /* Recruiting: 2 Buttons (BOOK NOW + VIEW OFFER) */
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedRoom(room);
+                  setShowPaymentModal(true);
+                }}
+                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:-translate-y-0.5"
+              >
+                BOOK NOW
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedRoom(room);
+                  setShowPaymentModal(false);
+                }}
+                className="border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+              >
+                VIEW OFFER
+              </button>
+            </div>
+          ) : (
+            /* In-Progress or Completed: 1 Button ONLY (VIEW OFFER) */
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedRoom(room);
+                setShowPaymentModal(false);
+              }}
+              className="w-full border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+            >
+              VIEW OFFER
+            </button>
+          )}
         </div>
       </div>
     );
@@ -395,7 +391,7 @@ export default function ClubsSection() {
     >
       <div className="max-w-7xl mx-auto">
         {/* Main Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
               FEATURED EDITORIAL CLUBS
@@ -462,28 +458,28 @@ export default function ClubsSection() {
 
         {/* ROW 1: 🔥 모집중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "recruiting") && recruitingRooms.length > 0 && (
-          <div className="mb-14">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">🔥</span>
-                <h3 className="font-heading font-bold text-xl text-gray-900">
+                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
                   모집중인 독서모임
                 </h3>
-                <span className="text-xs font-semibold px-2.5 py-0.5 bg-amber-100 text-amber-700 rounded-full">
-                  {recruitingRooms.length}개 모임
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
+                  {recruitingRooms.length} CLUBS RECRUITING
                 </span>
               </div>
               {recruitingRooms.length > 3 && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 font-mono">
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "left")}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-sm"
+                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
                   >
                     &lt;
                   </button>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "right")}
-                    className="w-8 h-8 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold hover:bg-primary-700 transition-colors shadow-sm text-sm"
+                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
                   >
                     &gt;
                   </button>
@@ -507,28 +503,28 @@ export default function ClubsSection() {
 
         {/* ROW 2: ⚡ 진행중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "in_progress") && inProgressRooms.length > 0 && (
-          <div className="mb-14">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">⚡</span>
-                <h3 className="font-heading font-bold text-xl text-gray-900">
+                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
                   진행중인 독서모임
                 </h3>
-                <span className="text-xs font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-700 rounded-full">
-                  {inProgressRooms.length}개 모임
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#1a1a1a] text-[#f4f3ee]">
+                  {inProgressRooms.length} CLUBS ACTIVE
                 </span>
               </div>
               {inProgressRooms.length > 3 && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 font-mono">
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "left")}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-sm"
+                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
                   >
                     &lt;
                   </button>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "right")}
-                    className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold hover:bg-emerald-700 transition-colors shadow-sm text-sm"
+                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
                   >
                     &gt;
                   </button>
@@ -552,28 +548,28 @@ export default function ClubsSection() {
 
         {/* ROW 3: ✅ 종료된 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "completed") && completedRooms.length > 0 && (
-          <div className="mb-14">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">✅</span>
-                <h3 className="font-heading font-bold text-xl text-gray-900">
+                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
                   종료된 독서모임
                 </h3>
-                <span className="text-xs font-semibold px-2.5 py-0.5 bg-gray-200 text-gray-700 rounded-full">
-                  {completedRooms.length}개 모임
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#1a1a1a]/60 text-[#f4f3ee]">
+                  {completedRooms.length} CLUBS ARCHIVED
                 </span>
               </div>
               {completedRooms.length > 3 && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 font-mono">
                   <button
                     onClick={() => scrollRow(completedRowRef, "left")}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-sm"
+                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
                   >
                     &lt;
                   </button>
                   <button
                     onClick={() => scrollRow(completedRowRef, "right")}
-                    className="w-8 h-8 rounded-full bg-gray-700 text-white flex items-center justify-center font-bold hover:bg-gray-800 transition-colors shadow-sm text-sm"
+                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
                   >
                     &gt;
                   </button>
@@ -597,445 +593,314 @@ export default function ClubsSection() {
       </div>
 
       {/* ============================================================================== */}
-      {/* DETAILED ROOM CARD MODAL POPUP (STATUS BASED LAYOUT & ALADIN LINK) */}
+      {/* 1. VIEW OFFER DETAIL MODAL (EDITORIAL DETAILS WITHOUT PAYMENT FORM) */}
       {/* ============================================================================== */}
-      {selectedRoom && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in overflow-y-auto font-sans">
+      {selectedRoom && !showPaymentModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in font-sans">
           <div
-            className="bg-white w-full max-w-5xl rounded-none shadow-2xl overflow-hidden my-6 border border-gray-200 flex flex-col max-h-[92vh]"
+            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[#1a1a1a]/20 shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Top Header Bar */}
-            <div className="sticky top-0 bg-white/95 backdrop-blur border-b border-gray-100 px-6 py-4 flex items-center justify-between z-20">
+            {/* Modal Header Stamp Bar */}
+            <div className="sticky top-0 bg-[#1a1a1a] text-[#f4f3ee] px-6 py-4 flex items-center justify-between z-20 font-mono text-xs">
               <div className="flex items-center gap-3">
                 {renderStatusBadge(selectedRoom.status)}
-                <span className="text-xs font-semibold text-gray-500">
-                  {selectedRoom.program_duration} / {selectedRoom.schedule_text}
+                <span className="font-bold tracking-widest uppercase text-[#f4f3ee]/80">
+                  {selectedRoom.program_duration} &bull; {selectedRoom.schedule_text}
                 </span>
               </div>
               <button
-                onClick={() => {
-                  setSelectedRoom(null);
-                  setShowPaymentModal(false);
-                }}
-                className="w-8 h-8 rounded-none bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-800 transition-colors font-bold"
+                onClick={() => setSelectedRoom(null)}
+                className="w-8 h-8 bg-[#8C2318] text-white flex items-center justify-center font-bold hover:bg-[#a62b1e] transition-colors cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            {/* Modal Body: 2-Column Layout */}
-            <div className="p-6 md:p-8 overflow-y-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                
-                {/* LEFT COLUMN: Main Info Sections & Reviews */}
-                <div className="lg:col-span-2 space-y-8">
-                  {/* 1. 모임 소개 */}
-                  <div className="space-y-3">
-                    <h3 className="font-heading font-bold text-xl text-gray-950">모임 소개</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed font-normal">
-                      {selectedRoom.title}. {selectedRoom.book_description} 클럽장과 함께 실천 방법을 나누고 서로 독려하며 성장해요.
+            {/* Modal Content Body */}
+            <div className="p-6 md:p-10 space-y-10">
+              {/* Title & Introduction */}
+              <div>
+                <span className="text-xs font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-1">
+                  EDITORIAL OFFER DETAILS
+                </span>
+                <h2 className="font-serif font-bold text-2xl md:text-4xl text-[#1a1a1a] mb-3 leading-tight uppercase">
+                  {selectedRoom.title}
+                </h2>
+                <p className="text-sm text-[#1a1a1a]/80 leading-relaxed font-sans max-w-3xl">
+                  {selectedRoom.book_description} 클럽장과 함께 커리큘럼을 실천하고 사유를 넓혀가는 프리미엄 독서 모임입니다.
+                </p>
+              </div>
+
+              {/* Book Spotlight Box (With Aladin Link) */}
+              <div className="bg-[#e8e6df] p-6 md:p-8 space-y-5 border border-[#1a1a1a]/10">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-[#1a1a1a]/15">
+                  <span className="text-xs font-mono font-bold tracking-widest text-[#8C2318] uppercase">
+                    FEATURED CURATED BOOK / 이번 달의 책
+                  </span>
+                  <a
+                    href={selectedRoom.aladin_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm"
+                  >
+                    <span>VIEW ON ALADIN / 알라딘 바로가기</span>
+                    <i className="ri-external-link-line" />
+                  </a>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-6 items-start">
+                  <img
+                    src={proxyBookCover(selectedRoom.book_image_url)}
+                    alt={selectedRoom.book_title}
+                    referrerPolicy="no-referrer"
+                    className="w-32 md:w-36 h-auto object-contain bg-white p-2 border border-[#1a1a1a]/15 shadow-sm shrink-0"
+                  />
+                  <div className="space-y-3 flex-1">
+                    <h3 className="font-serif font-bold text-xl md:text-2xl text-[#1a1a1a]">
+                      {selectedRoom.book_title}
+                    </h3>
+                    <p className="text-xs font-bold text-[#8C2318] font-sans">
+                      {selectedRoom.book_author}
+                    </p>
+                    <p className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans">
+                      {selectedRoom.book_description}
                     </p>
                   </div>
+                </div>
+              </div>
 
-                  {/* 2. 이번 달의 책 (With Aladin Link) */}
-                  <div style={{ backgroundColor: "#fdf8f5", border: "1px solid #f3e6de" }} className="p-6 rounded-none space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-heading font-bold text-lg text-gray-950">이번 달의 책</h4>
-                      <a
-                        href={selectedRoom.aladin_url || `https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&SearchWord=${encodeURIComponent(selectedRoom.book_title)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs rounded-none transition-colors shadow-xs"
-                      >
-                        📚 알라딘 도서 바로가기 ↗
-                      </a>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-5 items-start">
-                      <img
-                        src={proxyBookCover(selectedRoom.book_image_url)}
-                        alt={selectedRoom.book_title}
-                        referrerPolicy="no-referrer"
-                        className="w-28 md:w-32 h-auto object-contain rounded-none shadow border border-gray-200/60 shrink-0 self-center sm:self-start"
-                      />
-                      <div className="space-y-2 flex-1">
-                        <h4 className="font-heading font-bold text-lg text-gray-950">{selectedRoom.book_title}</h4>
-                        <p className="text-xs text-gray-500 font-medium">{selectedRoom.book_author}</p>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          {selectedRoom.book_description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 3. 클럽장 소개 */}
-                  <div style={{ backgroundColor: "#fdf8f5", border: "1px solid #f3e6de" }} className="p-6 rounded-2xl space-y-4">
-                    <h4 className="font-bold text-lg text-gray-900">클럽장 소개</h4>
-                    <div className="flex items-start gap-4">
-                      <img
-                        src={selectedRoom.leader.image_url}
-                        alt={selectedRoom.leader.name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-amber-200 shrink-0 shadow-sm"
-                      />
-                      <div className="space-y-1.5">
-                        <h3 className="font-bold text-xl text-gray-900">{selectedRoom.leader.name}</h3>
-                        <p className="text-xs font-semibold text-[#b91c1c]">
-                          {selectedRoom.leader.title}
-                        </p>
-                        <p className="text-xs text-gray-600 leading-relaxed pt-1">
-                          {selectedRoom.leader.bio}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 4. 모임 정보 */}
-                  <div className="space-y-4">
-                    <h3 className="font-bold text-xl text-gray-900">모임 정보</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="flex items-center gap-3.5 bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
-                        <div className="w-10 h-10 rounded-full bg-red-50 text-[#b91c1c] flex items-center justify-center text-lg shrink-0">
-                          📅
-                        </div>
-                        <div>
-                          <span className="text-xs text-gray-400 block">모임 일정</span>
-                          <strong className="text-sm text-gray-900">{selectedRoom.schedule_text}</strong>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3.5 bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
-                        <div className="w-10 h-10 rounded-full bg-red-50 text-[#b91c1c] flex items-center justify-center text-lg shrink-0">
-                          📍
-                        </div>
-                        <div>
-                          <span className="text-xs text-gray-400 block">모임 장소</span>
-                          <strong className="text-sm text-gray-900">{selectedRoom.location}</strong>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3.5 bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
-                        <div className="w-10 h-10 rounded-full bg-red-50 text-[#b91c1c] flex items-center justify-center text-lg shrink-0">
-                          🕒
-                        </div>
-                        <div>
-                          <span className="text-xs text-gray-400 block">프로그램 기간</span>
-                          <strong className="text-sm text-gray-900">{selectedRoom.program_duration}</strong>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3.5 bg-white p-4 rounded-xl border border-gray-200/80 shadow-sm">
-                        <div className="w-10 h-10 rounded-full bg-red-50 text-[#b91c1c] flex items-center justify-center text-lg shrink-0">
-                          👥
-                        </div>
-                        <div>
-                          <span className="text-xs text-gray-400 block">정원</span>
-                          <strong className="text-sm text-gray-900">{selectedRoom.max_capacity}명</strong>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 5. 주차별 커리큘럼 */}
-                  <div className="space-y-4">
-                    <h3 className="font-bold text-xl text-gray-900">주차별 커리큘럼</h3>
-                    <div className="space-y-3">
-                      {Object.entries(selectedRoom.weeks).map(([weekKey, weekContent]) => (
-                        <div
-                          key={weekKey}
-                          className="p-4 bg-white rounded-xl border border-gray-200/80 space-y-1.5 shadow-sm"
-                        >
-                          <span className="text-xs font-bold text-[#b91c1c] block">
-                            {weekKey}
-                          </span>
-                          <div className="text-xs text-gray-800 leading-relaxed font-medium space-y-1">
-                            {typeof weekContent === "string" ? (
-                              <p>{weekContent}</p>
-                            ) : typeof weekContent === "object" && weekContent !== null ? (
-                              Object.entries(weekContent as Record<string, any>).map(([k, v]) => (
-                                <div key={k} className="flex flex-col sm:flex-row sm:gap-2 text-xs">
-                                  <span className="font-bold text-[#b91c1c] shrink-0">{k}:</span>
-                                  <span>{String(v)}</span>
-                                </div>
-                              ))
-                            ) : (
-                              <p>{String(weekContent || "")}</p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* 6. ✍️ 모임 후기 목록 & 후기 작성 폼 */}
-                  <div ref={reviewFormRef} id="write-review-section" className="space-y-6 pt-4 border-t border-gray-200">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-xl text-gray-900 flex items-center gap-2">
-                        💬 생생 모임 후기 <span className="text-xs font-semibold px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded-full">{roomReviews.length}개</span>
-                      </h3>
-                      {selectedRoom.status !== "recruiting" && (
-                        <span className="text-xs text-[#b91c1c] font-bold">
-                          ✨ 진행 중/종료 모임 전용 후기 등록 가능
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Existing Reviews List */}
-                    <div className="space-y-4">
-                      {roomReviews.map((rev, rIdx) => (
-                        <div key={rev.id || rIdx} className="p-4 bg-gray-50/80 rounded-xl border border-gray-200/80 space-y-2">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-xs">
-                                {(rev.author_name || "독자")[0]}
-                              </div>
-                              <div>
-                                <strong className="text-xs text-gray-900 block">{rev.author_name || "모임 멤버"}</strong>
-                                <span className="text-[11px] text-gray-400">{rev.author_role || "독서 회원"}</span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1 text-amber-500 text-xs">
-                              {"⭐".repeat(rev.rating || 5)}
-                              <span className="text-[11px] text-gray-400 ml-1">{rev.created_at ? String(rev.created_at).slice(0, 10) : "최근"}</span>
-                            </div>
-                          </div>
-                          <p className="text-xs text-gray-700 leading-relaxed font-normal pt-1 whitespace-pre-line">
-                            {rev.content}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* WRITE REVIEW FORM */}
-                    <div className="p-6 bg-[#fdf8f5] border border-[#f3e6de] rounded-2xl space-y-4 shadow-sm">
-                      <h4 className="font-bold text-base text-gray-900 flex items-center gap-2">
-                        ✍️ 생생한 독서모임 후기 남기기
-                      </h4>
-                      <p className="text-xs text-gray-500">
-                        모임에 참여하며 깨달은 소중한 인사이트와 소감을 다른 분들과 공유해보세요!
-                      </p>
-
-                      {reviewSubmitSuccess ? (
-                        <div className="p-4 bg-emerald-500/10 text-emerald-700 text-center font-bold text-xs rounded-xl border border-emerald-500/30">
-                          🎉 후기가 성공적으로 등록되었습니다! 감사드립니다.
-                        </div>
-                      ) : (
-                        <form onSubmit={handleReviewSubmit} className="space-y-3">
-                          {/* Rating Star Picker */}
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-gray-700">별점 평가:</span>
-                            <div className="flex items-center gap-1 cursor-pointer">
-                              {[1, 2, 3, 4, 5].map((star) => (
-                                <button
-                                  key={star}
-                                  type="button"
-                                  onClick={() => setNewRating(star)}
-                                  className={`text-lg transition-transform ${star <= newRating ? "text-amber-500 scale-110" : "text-gray-300"}`}
-                                >
-                                  ★
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <input
-                              type="text"
-                              placeholder="작성자 성함 (예: 홍길동)"
-                              value={newAuthorName}
-                              onChange={(e) => setNewAuthorName(e.target.value)}
-                              required
-                              className="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-xs text-gray-900 focus:outline-none focus:border-[#b91c1c]"
-                            />
-                            <input
-                              type="text"
-                              placeholder="직업/소속 (예: IT 개발자 / 독서 2년차)"
-                              value={newAuthorRole}
-                              onChange={(e) => setNewAuthorRole(e.target.value)}
-                              className="px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-xs text-gray-900 focus:outline-none focus:border-[#b91c1c]"
-                            />
-                          </div>
-
-                          <textarea
-                            rows={3}
-                            placeholder="독서모임 참여 소감 및 책에서 얻은 솔직한 인사이트를 남겨주세요..."
-                            value={newReviewContent}
-                            onChange={(e) => setNewReviewContent(e.target.value)}
-                            required
-                            className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-xs text-gray-900 focus:outline-none focus:border-[#b91c1c]"
-                          />
-
-                          <button
-                            type="submit"
-                            disabled={isSubmittingReview}
-                            className="w-full py-3 bg-[#b91c1c] hover:bg-[#a01818] text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-red-900/10 disabled:opacity-50"
-                          >
-                            {isSubmittingReview ? "등록 중..." : "✍️ 독서모임 후기 작성 등록하기"}
-                          </button>
-                        </form>
-                      )}
-                    </div>
+              {/* Club Leader Section */}
+              <div className="bg-[#e8e6df]/70 p-6 md:p-8 space-y-4 border border-[#1a1a1a]/10">
+                <span className="text-xs font-mono font-bold tracking-widest text-[#8C2318] uppercase block">
+                  CLUB LEADER / 클럽장 소개
+                </span>
+                <div className="flex flex-col sm:flex-row items-start gap-5">
+                  <img
+                    src={selectedRoom.leader.image_url}
+                    alt={selectedRoom.leader.name}
+                    className="w-20 h-20 object-cover border border-[#1a1a1a] shrink-0"
+                  />
+                  <div className="space-y-2">
+                    <h4 className="font-serif font-bold text-xl text-[#1a1a1a]">
+                      클럽장 {selectedRoom.leader.name}
+                    </h4>
+                    <p className="text-xs font-bold text-[#8C2318] font-sans">
+                      {selectedRoom.leader.title}
+                    </p>
+                    <p className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans">
+                      {selectedRoom.leader.bio}
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* RIGHT COLUMN: Sticky Card (STATUS DEPENDENT) */}
-                <div className="space-y-6 lg:sticky lg:top-20">
-                  
-                  {/* CASE 1: 🔥 모집중 (RECRUITING ROOM) -> Show Price & Participate Button */}
-                  {selectedRoom.status === "recruiting" && (
-                    <div className="bg-white border border-gray-200/90 shadow-xl rounded-2xl p-6 space-y-5">
-                      <div>
-                        <span className="text-xs text-gray-400 block mb-1">참여 비용</span>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                            {selectedRoom.price_text.replace("원", "").trim()}
-                          </span>
-                          <span className="text-lg font-bold text-gray-900">원</span>
-                        </div>
-                        <span className="text-xs text-gray-400 block mt-1">
-                          {selectedRoom.program_duration} / 1인 기준
-                        </span>
+              {/* Information Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+                <div className="bg-[#e8e6df]/50 p-4 border border-[#1a1a1a]/10">
+                  <span className="text-[#1a1a1a]/60 block mb-1 text-[10px] uppercase">SCHEDULE</span>
+                  <strong className="text-[#1a1a1a] font-bold block">{selectedRoom.schedule_text}</strong>
+                </div>
+                <div className="bg-[#e8e6df]/50 p-4 border border-[#1a1a1a]/10">
+                  <span className="text-[#1a1a1a]/60 block mb-1 text-[10px] uppercase">LOCATION</span>
+                  <strong className="text-[#1a1a1a] font-bold block truncate">{selectedRoom.location}</strong>
+                </div>
+                <div className="bg-[#e8e6df]/50 p-4 border border-[#1a1a1a]/10">
+                  <span className="text-[#1a1a1a]/60 block mb-1 text-[10px] uppercase">DURATION</span>
+                  <strong className="text-[#1a1a1a] font-bold block">{selectedRoom.program_duration}</strong>
+                </div>
+                <div className="bg-[#e8e6df]/50 p-4 border border-[#1a1a1a]/10">
+                  <span className="text-[#1a1a1a]/60 block mb-1 text-[10px] uppercase">PRICE</span>
+                  <strong className="text-[#8C2318] font-bold block">{selectedRoom.price_text}</strong>
+                </div>
+              </div>
+
+              {/* Weekly Curriculum */}
+              <div className="space-y-4">
+                <h3 className="font-serif font-bold text-xl text-[#1a1a1a] uppercase">
+                  WEEKLY CURRICULUM / 주차별 커리큘럼
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {Object.entries(selectedRoom.weeks).map(([weekKey, weekContent]) => (
+                    <div key={weekKey} className="p-4 bg-white border border-[#1a1a1a]/15 space-y-2">
+                      <span className="text-xs font-mono font-bold text-[#8C2318] block uppercase">
+                        {weekKey}
+                      </span>
+                      <div className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans">
+                        {typeof weekContent === "string" ? (
+                          <p>{weekContent}</p>
+                        ) : typeof weekContent === "object" && weekContent !== null ? (
+                          Object.entries(weekContent as Record<string, any>).map(([k, v]) => (
+                            <div key={k} className="flex flex-col sm:flex-row sm:gap-2 text-xs">
+                              <span className="font-bold text-[#8C2318] shrink-0">{k}:</span>
+                              <span>{String(v)}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <p>{String(weekContent || "")}</p>
+                        )}
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                      <button
-                        onClick={() => setShowPaymentModal(true)}
-                        className="w-full py-4 bg-[#b91c1c] hover:bg-[#a01818] text-white font-bold text-base rounded-xl transition-all shadow-lg shadow-red-900/20 active:scale-[0.98]"
-                      >
-                        참여 신청하기
-                      </button>
+              {/* Member Reviews & Form */}
+              <div ref={reviewFormRef} className="space-y-6 pt-6 border-t border-[#1a1a1a]/15">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-serif font-bold text-xl text-[#1a1a1a]">
+                    MEMBER REVIEWS / 생생 모임 후기 ({roomReviews.length})
+                  </h3>
+                </div>
 
-                      <p className="text-[11px] text-gray-400 text-center leading-normal">
-                        신청 후 24시간 이내에 결제 안내 메일이 발송됩니다
+                <div className="space-y-3">
+                  {roomReviews.map((rev, rIdx) => (
+                    <div key={rev.id || rIdx} className="p-4 bg-[#e8e6df]/40 border border-[#1a1a1a]/10 space-y-1.5">
+                      <div className="flex items-center justify-between text-xs font-mono">
+                        <span className="font-bold text-[#1a1a1a]">
+                          {rev.author_name || "모임 멤버"} ({rev.author_role || "회원"})
+                        </span>
+                        <span className="text-[#8C2318]">{"★".repeat(rev.rating || 5)}</span>
+                      </div>
+                      <p className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans whitespace-pre-line">
+                        {rev.content}
                       </p>
                     </div>
-                  )}
-
-                  {/* CASE 2: ⚡ 진행중 (IN PROGRESS ROOM) -> NO PAYMENT BUTTON! SHOW REVIEW CTA */}
-                  {selectedRoom.status === "in_progress" && (
-                    <div className="bg-emerald-50/80 border border-emerald-200 shadow-lg rounded-2xl p-6 space-y-5">
-                      <div className="space-y-2">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">
-                          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                          ⚡ 현재 진행 중인 모임 (신청 마감)
-                        </span>
-                        <h4 className="font-bold text-base text-gray-900 pt-1">
-                          모집이 마감되어 활발히 진행 중입니다
-                        </h4>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          본 모임은 현재 정원이 차서 활발하게 독서 토론이 진행되고 있습니다. 참여 중인 멤버는 생생한 모임 후기를 남겨주세요!
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          reviewFormRef.current?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-emerald-700/20 active:scale-[0.98]"
-                      >
-                        ✍️ 생생 후기 작성하러 가기
-                      </button>
-                    </div>
-                  )}
-
-                  {/* CASE 3: ✅ 종료 (COMPLETED ROOM) -> SHOW COMPLETED STATUS & REVIEWS CTA */}
-                  {selectedRoom.status === "completed" && (
-                    <div className="bg-gray-100 border border-gray-300 shadow-lg rounded-2xl p-6 space-y-5">
-                      <div className="space-y-2">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-700 text-white text-xs font-semibold rounded-full">
-                          ✅ 종료된 모임
-                        </span>
-                        <h4 className="font-bold text-base text-gray-900 pt-1">
-                          성공적으로 마감된 모임입니다
-                        </h4>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          참여 멤버들의 생생한 후기를 둘러보시고, 다음 시즌 독서방 개설 알림을 기다려보세요.
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          reviewFormRef.current?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="w-full py-3.5 bg-gray-800 hover:bg-gray-900 text-white font-bold text-sm rounded-xl transition-all shadow-md active:scale-[0.98]"
-                      >
-                        💬 후기 둘러보기 및 작성하기
-                      </button>
-                    </div>
-                  )}
-
-                  {/* 간편 정보 Card */}
-                  <div style={{ backgroundColor: "#fdf8f5", border: "1px solid #f3e6de" }} className="p-6 rounded-2xl space-y-3">
-                    <h4 className="font-bold text-sm text-gray-900 mb-2">간편 정보</h4>
-                    <ul className="space-y-2.5 text-xs text-gray-700">
-                      <li className="flex items-center gap-2">
-                        <span className="text-[#b91c1c] font-bold">✓</span> 전문 클럽장 진행
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-[#b91c1c] font-bold">✓</span> {selectedRoom.program_duration} 완성 프로그램
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-[#b91c1c] font-bold">✓</span> 독후감 피드백 제공
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-[#b91c1c] font-bold">✓</span> 소규모 그룹 토론
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-[#b91c1c] font-bold">✓</span> 온라인 커뮤니티 참여
-                      </li>
-                    </ul>
-                  </div>
-
+                  ))}
                 </div>
+
+                {/* Review Form */}
+                <form onSubmit={handleReviewSubmit} className="bg-[#e8e6df] p-6 space-y-4 border border-[#1a1a1a]/15">
+                  <h4 className="font-serif font-bold text-base text-[#1a1a1a]">
+                    WRITE A REVIEW / 모임 후기 작성하기
+                  </h4>
+                  {reviewSubmitSuccess && (
+                    <div className="p-3 bg-[#8C2318] text-[#f4f3ee] text-xs font-bold font-mono">
+                      ✓ 후기가 성공적으로 등록되었습니다.
+                    </div>
+                  )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans">
+                    <input
+                      type="text"
+                      placeholder="작성자 이름 (예: 김독자)"
+                      value={newAuthorName}
+                      onChange={(e) => setNewAuthorName(e.target.value)}
+                      required
+                      className="px-3.5 py-2.5 bg-white border border-[#1a1a1a]/20 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#8C2318]"
+                    />
+                    <input
+                      type="text"
+                      placeholder="소속/직함 (예: 1기 멤버)"
+                      value={newAuthorRole}
+                      onChange={(e) => setNewAuthorRole(e.target.value)}
+                      className="px-3.5 py-2.5 bg-white border border-[#1a1a1a]/20 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#8C2318]"
+                    />
+                  </div>
+                  <textarea
+                    rows={3}
+                    placeholder="모임 참여 경험 및 솔직한 후기를 남겨주세요."
+                    value={newReviewContent}
+                    onChange={(e) => setNewReviewContent(e.target.value)}
+                    required
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#1a1a1a]/20 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#8C2318]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmittingReview}
+                    className="px-6 py-3 bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-sm cursor-pointer"
+                  >
+                    {isSubmittingReview ? "등록 중..." : "SUBMIT REVIEW / 후기 등록"}
+                  </button>
+                </form>
+              </div>
+
+              {/* Bottom Action Footer */}
+              <div className="pt-6 border-t border-[#1a1a1a]/20 flex items-center justify-between">
+                <span className="font-mono text-xs font-bold text-[#8C2318]">
+                  PRICE: {selectedRoom.price_text}
+                </span>
+
+                {selectedRoom.status === "recruiting" ? (
+                  <button
+                    onClick={() => setShowPaymentModal(true)}
+                    className="px-8 py-3.5 bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer"
+                  >
+                    BOOK NOW / 참여 신청하기 ↗
+                  </button>
+                ) : (
+                  <span className="font-mono text-xs font-bold text-[#1a1a1a]/60 uppercase">
+                    {selectedRoom.status === "in_progress" ? "CURRENTLY ACTIVE / 진행 중인 모임" : "ARCHIVED OFFER / 종료된 모임"}
+                  </span>
+                )}
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* MOCK PAYMENT OVERLAY DIALOG (ONLY FOR RECRUITING ROOMS) */}
+      {/* ============================================================================== */}
+      {/* 2. BOOK NOW PAYMENT MODAL (STRICTLY PAYMENT ONLY - ACE HOTEL UI) */}
+      {/* ============================================================================== */}
       {showPaymentModal && selectedRoom && selectedRoom.status === "recruiting" && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in font-sans">
           <div
-            className="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-gray-100 p-6 space-y-6"
+            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-lg border border-[#1a1a1a]/20 shadow-2xl p-6 md:p-8 space-y-6 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-[#1a1a1a]/20">
               <div>
-                <h3 className="font-bold text-lg text-gray-900">💳 모임 참가비 결제 (Demo)</h3>
-                <p className="text-xs text-gray-500">{selectedRoom.title}</p>
+                <span className="text-[10px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-1">
+                  OFFER BOOKING & PAYMENT
+                </span>
+                <h3 className="font-serif font-bold text-2xl uppercase text-[#1a1a1a]">
+                  BOOK NOW / 모임 참여 결제
+                </h3>
               </div>
               <button
                 onClick={() => setShowPaymentModal(false)}
-                className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-700"
+                className="w-8 h-8 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-colors cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             {paymentSuccess ? (
-              <div className="py-8 text-center space-y-3">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto animate-bounce">
-                  🎉
+              <div className="py-8 text-center space-y-4">
+                <div className="w-16 h-16 bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center text-3xl mx-auto shadow-md">
+                  ✓
                 </div>
-                <h4 className="font-bold text-xl text-gray-900">결제가 완료되었습니다!</h4>
-                <p className="text-xs text-gray-500 leading-relaxed">
-                  [테스트 결제 완료] 모임 참여 확정 및 안내 카톡이 입력하신 번호로 발송됩니다.
+                <h4 className="font-serif font-bold text-2xl text-[#1a1a1a]">PAYMENT SUCCESSFUL!</h4>
+                <p className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans">
+                  [{selectedRoom.title}] 독서 모임 참여 결제가 정상적으로 완료되었습니다.<br />
+                  안내 카카오톡이 입력하신 번호({applicantPhone})로 발송됩니다.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handlePaymentSubmit} className="space-y-4">
-                <div className="p-4 bg-red-50/60 rounded-xl border border-red-100 flex items-center justify-between">
-                  <span className="text-xs font-bold text-gray-700">최종 결제 금액</span>
-                  <span className="text-xl font-extrabold text-[#b91c1c]">{selectedRoom.price_text}</span>
+              <form onSubmit={handlePaymentSubmit} className="space-y-5">
+                {/* Summary Box */}
+                <div className="bg-[#e8e6df] p-4 space-y-2 border border-[#1a1a1a]/15">
+                  <p className="font-serif font-bold text-base text-[#1a1a1a]">{selectedRoom.title}</p>
+                  <p className="text-xs font-sans text-[#8C2318] font-bold">📖 {selectedRoom.book_title}</p>
+                  <div className="flex items-center justify-between text-xs font-mono text-[#1a1a1a]/70 pt-2 border-t border-[#1a1a1a]/10">
+                    <span>📅 {selectedRoom.schedule_text}</span>
+                    <span className="font-bold text-base text-[#8C2318] font-serif">{selectedRoom.price_text}</span>
+                  </div>
                 </div>
 
+                {/* Payment Method Selector */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-700 block">결제 수단 선택</label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <label className="text-xs font-mono font-bold text-[#1a1a1a] uppercase block">
+                    PAYMENT METHOD / 결제 수단 선택
+                  </label>
+                  <div className="grid grid-cols-2 gap-2 font-mono text-xs">
                     <button
                       type="button"
                       onClick={() => setSelectedPayMethod("card")}
-                      className={`p-2.5 text-xs font-bold rounded-xl border transition-all ${
+                      className={`p-3 font-bold border transition-all cursor-pointer ${
                         selectedPayMethod === "card"
-                          ? "border-[#b91c1c] bg-red-50/40 text-[#b91c1c]"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                          ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] shadow-sm"
+                          : "bg-white text-[#1a1a1a] border-[#1a1a1a]/20 hover:bg-[#e8e6df]"
                       }`}
                     >
                       💳 신용/체크카드
@@ -1043,10 +908,10 @@ export default function ClubsSection() {
                     <button
                       type="button"
                       onClick={() => setSelectedPayMethod("kakao")}
-                      className={`p-2.5 text-xs font-bold rounded-xl border transition-all ${
+                      className={`p-3 font-bold border transition-all cursor-pointer ${
                         selectedPayMethod === "kakao"
-                          ? "border-amber-400 bg-amber-50 text-amber-800"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                          ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] shadow-sm"
+                          : "bg-white text-[#1a1a1a] border-[#1a1a1a]/20 hover:bg-[#e8e6df]"
                       }`}
                     >
                       🟡 카카오페이
@@ -1054,10 +919,10 @@ export default function ClubsSection() {
                     <button
                       type="button"
                       onClick={() => setSelectedPayMethod("toss")}
-                      className={`p-2.5 text-xs font-bold rounded-xl border transition-all ${
+                      className={`p-3 font-bold border transition-all cursor-pointer ${
                         selectedPayMethod === "toss"
-                          ? "border-blue-500 bg-blue-50 text-blue-800"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                          ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] shadow-sm"
+                          : "bg-white text-[#1a1a1a] border-[#1a1a1a]/20 hover:bg-[#e8e6df]"
                       }`}
                     >
                       🔵 토스페이
@@ -1065,10 +930,10 @@ export default function ClubsSection() {
                     <button
                       type="button"
                       onClick={() => setSelectedPayMethod("vbank")}
-                      className={`p-2.5 text-xs font-bold rounded-xl border transition-all ${
+                      className={`p-3 font-bold border transition-all cursor-pointer ${
                         selectedPayMethod === "vbank"
-                          ? "border-gray-800 bg-gray-800 text-white"
-                          : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                          ? "bg-[#1a1a1a] text-[#f4f3ee] border-[#1a1a1a] shadow-sm"
+                          : "bg-white text-[#1a1a1a] border-[#1a1a1a]/20 hover:bg-[#e8e6df]"
                       }`}
                     >
                       🏦 무통장입금
@@ -1076,15 +941,18 @@ export default function ClubsSection() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-700 block">신청자 정보</label>
+                {/* Applicant Info Inputs */}
+                <div className="space-y-2 font-sans">
+                  <label className="text-xs font-mono font-bold text-[#1a1a1a] uppercase block">
+                    APPLICANT INFO / 신청자 정보
+                  </label>
                   <input
                     type="text"
                     placeholder="신청자 성함"
                     value={applicantName}
                     onChange={(e) => setApplicantName(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 focus:outline-none focus:border-[#b91c1c]"
+                    className="w-full px-4 py-3 bg-white border border-[#1a1a1a]/20 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#8C2318]"
                   />
                   <input
                     type="tel"
@@ -1092,16 +960,16 @@ export default function ClubsSection() {
                     value={applicantPhone}
                     onChange={(e) => setApplicantPhone(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 focus:outline-none focus:border-[#b91c1c]"
+                    className="w-full px-4 py-3 bg-white border border-[#1a1a1a]/20 text-xs text-[#1a1a1a] focus:outline-none focus:border-[#8C2318]"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isProcessingPay}
-                  className="w-full py-3.5 bg-[#b91c1c] hover:bg-[#a01818] text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-red-900/20 disabled:opacity-50"
+                  className="w-full py-4 bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer disabled:opacity-50"
                 >
-                  {isProcessingPay ? "결제 처리 중..." : `${selectedRoom.price_text} 테스트 결제 완료하기`}
+                  {isProcessingPay ? "PROCESSING / 결제 처리 중..." : `PAY NOW (${selectedRoom.price_text}) / 결제 완료하기`}
                 </button>
               </form>
             )}

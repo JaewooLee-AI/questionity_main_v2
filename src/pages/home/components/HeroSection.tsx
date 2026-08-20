@@ -52,7 +52,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[58vh] md:min-h-[62vh] flex items-center justify-center overflow-hidden bg-black text-white">
+    <section ref={sectionRef} className="relative min-h-[58vh] md:min-h-[62vh] pt-14 md:pt-16 flex items-center justify-center overflow-hidden bg-black text-white">
       {/* Ace Hotel Style Animated Moving Media Crossfade Slider */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {HERO_SLIDES.map((slide, idx) => (

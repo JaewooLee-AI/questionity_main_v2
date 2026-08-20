@@ -5,31 +5,33 @@ import { useAuth } from "@/hooks/useAuth";
 export default function Navbar() {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading, logout } = useAuth();
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
+  const [locSelectOpen, setLocSelectOpen] = useState(false);
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+
+  const [selectedLocation, setSelectedLocation] = useState("Choose Location *");
+  const [codeType, setCodeType] = useState("Select Code Type");
+  const [lang, setLang] = useState("EN");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const userMenuRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const navRef = useRef<HTMLDivElement>(null);
 
-  // Close user menu on outside click
+  // Close all dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setLocationsOpen(false);
+        setLocSelectOpen(false);
+        setCodeOpen(false);
+        setLangOpen(false);
         setUserMenuOpen(false);
       }
     };
-    if (userMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [userMenuOpen]);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -39,6 +41,7 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "모임 둘러보기", href: "/#clubs" },
+    { label: "카테고리 도서", href: "/#categories" },
     { label: "후기", href: "/#reviews" },
     { label: "결제방법", href: "/#how-it-works" },
     { label: "오시는길", href: "/#location" },
@@ -70,83 +73,251 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out-ace ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-black/10 shadow-sm py-2"
-          : "bg-transparent py-2.5 md:py-3"
-      }`}
-    >
-      <div className="w-full px-6 md:px-12 lg:px-20">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 shrink-0">
-            <span
-              className={`font-sans font-normal text-xs md:text-sm tracking-normal uppercase transition-colors duration-500 ${
-                scrolled ? "text-black" : "text-white"
-              }`}
-            >
-              QUESTIONITY
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#e8e6df] border-b border-[#1a1a1a] shadow-sm font-sans select-none">
+      {/* ACE HOTEL NAVBAR CONTAINER */}
+      <div className="w-full h-14 md:h-16 flex items-center justify-between">
+        
+        {/* 1. ACE HOTEL LOGO BOX (LEFTMOST) */}
+        <Link
+          to="/"
+          onClick={handleLogoClick}
+          className="h-full px-4 md:px-7 flex items-center justify-center border-r border-[#1a1a1a] bg-[#e8e6df] hover:bg-[#dedcd4] transition-colors shrink-0"
+        >
+          <div className="border-[2.5px] border-[#1a1a1a] px-2.5 py-1 bg-transparent hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all">
+            <span className="font-serif font-black text-sm md:text-base tracking-tighter uppercase leading-none block">
+              ACE HOTEL
             </span>
-          </Link>
+          </div>
+        </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-[11px] font-bold uppercase tracking-normal transition-all duration-300 hover:opacity-100 whitespace-nowrap ${
-                  scrolled
-                    ? "text-black/80 hover:text-black"
-                    : "text-white/90 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+        {/* DESKTOP ACE HOTEL TOP BAR NAVIGATION GRID */}
+        <div className="hidden lg:flex items-center h-full flex-1">
+          
+          {/* 2. LOCATIONS DROPDOWN & LANGUAGE SELECTOR */}
+          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-6 shrink-0 min-w-[170px]">
+            {/* Locations Button */}
+            <button
+              onClick={() => {
+                setLocationsOpen(!locationsOpen);
+                setLocSelectOpen(false);
+                setCodeOpen(false);
+                setLangOpen(false);
+              }}
+              className="flex items-center gap-1.5 font-serif font-bold text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer"
+            >
+              <i className={`ri-arrow-down-s-line text-lg transition-transform ${locationsOpen ? "rotate-180" : ""}`} />
+              <span>Locations</span>
+            </button>
+
+            {/* Language Selector */}
+            <button
+              onClick={() => {
+                setLangOpen(!langOpen);
+                setLocationsOpen(false);
+                setLocSelectOpen(false);
+                setCodeOpen(false);
+              }}
+              className="flex items-center gap-1 font-sans text-xs font-bold text-[#1a1a1a]/80 hover:text-[#1a1a1a] cursor-pointer"
+            >
+              <span>{lang}</span>
+              <i className="ri-arrow-down-s-line text-xs" />
+            </button>
+
+            {/* Language Dropdown Menu */}
+            {langOpen && (
+              <div className="absolute top-full right-0 mt-0 w-28 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
+                <button
+                  onClick={() => { setLang("EN"); setLangOpen(false); }}
+                  className="w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
+                >
+                  EN (English)
+                </button>
+                <button
+                  onClick={() => { setLang("KO"); setLangOpen(false); }}
+                  className="w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
+                >
+                  KO (한국어)
+                </button>
+              </div>
+            )}
+
+            {/* Locations Dropdown Panel */}
+            {locationsOpen && (
+              <div className="absolute top-full left-0 mt-0 w-72 bg-[#f4f3ee] border border-[#1a1a1a] shadow-2xl p-4 z-50 font-sans space-y-4">
+                <div>
+                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-2">
+                    GLOBAL HOTELS & CLUBS
+                  </span>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-serif font-bold text-[#1a1a1a]">
+                    <span className="hover:text-[#8C2318] cursor-pointer">Brooklyn</span>
+                    <span className="hover:text-[#8C2318] cursor-pointer">Kyoto</span>
+                    <span className="hover:text-[#8C2318] cursor-pointer">New York</span>
+                    <span className="hover:text-[#8C2318] cursor-pointer">Sydney</span>
+                    <span className="hover:text-[#8C2318] cursor-pointer">Toronto</span>
+                    <span className="hover:text-[#8C2318] cursor-pointer font-bold text-[#8C2318]">Seoul (Questionity)</span>
+                  </div>
+                </div>
+
+                <div className="border-t border-[#1a1a1a]/15 pt-3 space-y-2">
+                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 uppercase block mb-1">
+                    SITE NAVIGATION
+                  </span>
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      onClick={(e) => {
+                        setLocationsOpen(false);
+                        handleNavClick(e, link.href);
+                      }}
+                      className="block text-xs font-bold text-[#1a1a1a] hover:text-[#8C2318] uppercase tracking-wider py-1"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Desktop CTA / User Menu */}
-          <div className="hidden md:flex items-center gap-3">
-            {isLoading ? null : isAuthenticated && user ? (
-              /* Logged in */
-              <div className="relative" ref={userMenuRef}>
+          {/* 3. LOCATION CELL */}
+          <div
+            onClick={() => {
+              setLocSelectOpen(!locSelectOpen);
+              setLocationsOpen(false);
+              setCodeOpen(false);
+              setLangOpen(false);
+            }}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
+              LOCATION
+            </span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
+              <span className="truncate">{selectedLocation}</span>
+              <i className="ri-arrow-down-s-line text-sm text-[#1a1a1a]/70 ml-1" />
+            </div>
+
+            {/* Location Selector Dropdown */}
+            {locSelectOpen && (
+              <div className="absolute top-full left-0 mt-0 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
+                {["Choose Location *", "서울 강남 클럽", "서울 성수 클럽", "서울 홍대 클럽", "온라인 클럽"].map((loc) => (
+                  <button
+                    key={loc}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedLocation(loc);
+                      setLocSelectOpen(false);
+                    }}
+                    className={`w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold ${
+                      selectedLocation === loc ? "bg-[#1a1a1a] text-[#f4f3ee]" : ""
+                    }`}
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* 4. CHECK IN CELL */}
+          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
+              CHECK IN
+            </span>
+            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
+              August 19, 2026
+            </span>
+          </div>
+
+          {/* 5. CHECK OUT CELL */}
+          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
+              CHECK OUT
+            </span>
+            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
+              August 20, 2026
+            </span>
+          </div>
+
+          {/* 6. GUESTS CELL */}
+          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
+              GUESTS
+            </span>
+            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
+              1 Adult, 0 Children
+            </span>
+          </div>
+
+          {/* 7. HAVE A CODE? CELL */}
+          <div
+            onClick={() => {
+              setCodeOpen(!codeOpen);
+              setLocationsOpen(false);
+              setLocSelectOpen(false);
+              setLangOpen(false);
+            }}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
+              HAVE A CODE?
+            </span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
+              <span className="truncate">{codeType}</span>
+              <i className="ri-arrow-down-s-line text-sm text-[#1a1a1a]/70 ml-1" />
+            </div>
+
+            {/* Code Type Dropdown */}
+            {codeOpen && (
+              <div className="absolute top-full left-0 mt-0 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
+                {["Select Code Type", "PROMO CODE", "CORPORATE CODE", "GROUP CODE"].map((code) => (
+                  <button
+                    key={code}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCodeType(code);
+                      setCodeOpen(false);
+                    }}
+                    className={`w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold ${
+                      codeType === code ? "bg-[#1a1a1a] text-[#f4f3ee]" : ""
+                    }`}
+                  >
+                    {code}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* USER AUTH MENU (COMPACT INTEGRATED CELL) */}
+          <div className="relative h-full px-3 border-r border-[#1a1a1a] flex items-center justify-center shrink-0">
+            {!isLoading && isAuthenticated && user ? (
+              <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className={`flex items-center gap-2 transition-colors uppercase tracking-normal text-[11px] font-bold whitespace-nowrap ${
-                    scrolled
-                      ? "text-black hover:text-black"
-                      : "text-white hover:text-white/80"
-                  }`}
+                  className="flex items-center gap-2 text-xs font-bold text-[#1a1a1a] hover:text-[#8C2318] cursor-pointer"
                 >
-                  <div className="w-6 h-6 rounded-none bg-black text-white flex items-center justify-center shrink-0 font-sans font-bold text-[10px]">
-                    {user.avatarUrl ? (
-                      <img src={user.avatarUrl} alt={user.name} className="w-6 h-6 object-cover" />
-                    ) : (
-                      <span>{user.name.charAt(0)}</span>
-                    )}
+                  <div className="w-6 h-6 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold text-[10px]">
+                    {user.name.charAt(0)}
                   </div>
-                  <span>{user.name}</span>
+                  <span className="truncate max-w-[80px]">{user.name}</span>
                 </button>
-
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-52 bg-white border border-black shadow-2xl py-2 z-50">
-                    <div className="px-4 py-2 border-b border-black/10">
-                      <p className="text-xs font-sans font-bold text-black truncate">{user.name}</p>
-                      <p className="text-[10px] font-sans text-black/60 truncate">{user.email}</p>
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-2xl py-2 z-50 text-xs font-mono">
+                    <div className="px-3 py-1.5 border-b border-[#1a1a1a]/15 font-bold truncate">
+                      {user.name}
                     </div>
                     <Link
                       to="/mypage"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2 text-[11px] uppercase tracking-normal text-black hover:bg-gray-100 transition-colors"
+                      className="block px-3 py-2 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
                     >
                       마이페이지
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-4 py-2 text-[11px] uppercase tracking-normal text-black hover:bg-gray-100 transition-colors text-left"
+                      className="w-full text-left px-3 py-2 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
                     >
                       로그아웃
                     </button>
@@ -154,101 +325,84 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              /* Not logged in */
-              <>
-                <Link
-                  to="/login"
-                  className={`text-[11px] font-bold uppercase tracking-normal transition-colors whitespace-nowrap ${
-                    scrolled ? "text-black hover:text-black" : "text-white hover:text-white/80"
-                  }`}
-                >
-                  로그인
-                </Link>
-                <Link
-                  to="/signup"
-                  className="bg-black text-white text-[11px] font-bold uppercase tracking-normal px-4 py-1.5 transition-all duration-300 hover:bg-gray-900 shadow-md whitespace-nowrap"
-                >
-                  시작하기
-                </Link>
-              </>
+              <Link
+                to="/login"
+                className="text-xs font-mono font-bold uppercase tracking-wider text-[#1a1a1a] hover:text-[#8C2318] whitespace-nowrap"
+              >
+                LOGIN
+              </Link>
             )}
           </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            className={`md:hidden p-2 transition-colors ${
-              scrolled ? "text-[#1a1a1a]" : "text-white"
-            }`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="메뉴 열기"
-          >
-            <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-2xl`} />
-          </button>
         </div>
+
+        {/* 8. RIGHTMOST VIBRANT ORANGE "BOOK NOW" ACTION BUTTON */}
+        <a
+          href="#clubs"
+          onClick={(e) => handleNavClick(e, "/#clubs")}
+          className="h-full px-6 md:px-8 bg-[#FF6433] hover:bg-[#e05324] text-[#1a1a1a] font-serif font-black text-base md:text-lg tracking-widest uppercase flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
+        >
+          BOOK NOW
+        </a>
+
+        {/* MOBILE HAMBURGER BUTTON */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden h-full px-4 border-l border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#dedcd4] cursor-pointer"
+          aria-label="Toggle Menu"
+        >
+          <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-2xl`} />
+        </button>
+
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE EXPANDED MENU */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-black/20 px-6 py-8 shadow-2xl">
-          <div className="flex flex-col gap-5">
+        <div className="lg:hidden bg-[#f4f3ee] border-t border-[#1a1a1a] p-6 space-y-5 shadow-2xl animate-fade-in">
+          <div className="grid grid-cols-2 gap-3 text-xs font-mono font-bold">
+            <div className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20">
+              <span className="text-[9px] text-[#1a1a1a]/60 block mb-1">LOCATION</span>
+              <span className="text-[#1a1a1a]">{selectedLocation}</span>
+            </div>
+            <div className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20">
+              <span className="text-[9px] text-[#1a1a1a]/60 block mb-1">PROMO CODE</span>
+              <span className="text-[#1a1a1a]">{codeType}</span>
+            </div>
+          </div>
+
+          <div className="border-t border-[#1a1a1a]/15 pt-4 space-y-3 font-sans">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-black font-sans text-xl font-bold uppercase tracking-normal py-1 hover:text-gray-700 transition-colors"
                 onClick={(e) => {
                   setMobileMenuOpen(false);
                   handleNavClick(e, link.href);
                 }}
+                className="block text-base font-serif font-bold text-[#1a1a1a] hover:text-[#8C2318] uppercase"
               >
                 {link.label}
               </a>
             ))}
-            <div className="border-t border-black/10 pt-6 flex flex-col gap-4">
-              {isAuthenticated && user ? (
-                <>
-                  <div className="flex items-center gap-3 py-2">
-                    <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-sans text-lg font-bold">
-                      <span>{user.name.charAt(0)}</span>
-                    </div>
-                    <div>
-                      <p className="text-base font-sans font-bold text-black">{user.name}</p>
-                      <p className="text-xs text-black/60">{user.email}</p>
-                    </div>
-                  </div>
-                  <Link
-                    to="/mypage"
-                    className="text-black text-sm uppercase tracking-normal py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    마이페이지
-                  </Link>
-                  <button
-                    onClick={() => { logout(); navigate("/"); setMobileMenuOpen(false); }}
-                    className="text-black text-sm uppercase tracking-normal py-2 text-left"
-                  >
-                    로그아웃
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    className="text-black text-sm uppercase tracking-normal py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    로그인
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="bg-black text-white text-center text-sm font-bold uppercase tracking-normal px-6 py-3 hover:bg-gray-900 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    시작하기
-                  </Link>
-                </>
-              )}
-            </div>
+          </div>
+
+          <div className="border-t border-[#1a1a1a]/15 pt-4 flex items-center justify-between font-mono text-xs">
+            {isAuthenticated && user ? (
+              <div className="flex items-center justify-between w-full">
+                <span className="font-bold text-[#1a1a1a]">{user.name}</span>
+                <button onClick={handleLogout} className="text-[#8C2318] font-bold underline">
+                  LOGOUT
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-bold text-[#1a1a1a] underline uppercase"
+              >
+                LOGIN / SIGNUP
+              </Link>
+            )}
           </div>
         </div>
       )}

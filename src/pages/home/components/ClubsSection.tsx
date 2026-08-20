@@ -335,20 +335,20 @@ export default function ClubsSection() {
           </div>
         </div>
 
-        {/* BOTTOM: ACE HOTEL OFFERS BUTTONS (BOOK NOW / VIEW OFFER) */}
+        {/* BOTTOM: ACE HOTEL OFFERS BUTTONS (참여하기 / 상세내용) */}
         <div className="p-5 pt-0">
           {isRecruiting ? (
-            /* Recruiting: 2 Buttons (BOOK NOW + VIEW OFFER) */
-            <div className="grid grid-cols-2 gap-2">
+            /* Recruiting: 2 Buttons (참여하기 + 상세내용) */
+            <div className="grid grid-cols-2 gap-2 font-sans">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedRoom(room);
                   setShowPaymentModal(true);
                 }}
-                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:-translate-y-0.5"
+                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:-translate-y-0.5"
               >
-                BOOK NOW
+                참여하기
               </button>
               <button
                 onClick={(e) => {
@@ -356,22 +356,22 @@ export default function ClubsSection() {
                   setSelectedRoom(room);
                   setShowPaymentModal(false);
                 }}
-                className="border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+                className="border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
               >
-                VIEW OFFER
+                상세내용
               </button>
             </div>
           ) : (
-            /* In-Progress or Completed: 1 Button ONLY (VIEW OFFER) */
+            /* In-Progress or Completed: 1 Button ONLY (상세내용) */
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setSelectedRoom(room);
                 setShowPaymentModal(false);
               }}
-              className="w-full border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-mono font-bold tracking-widest uppercase py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="w-full border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer font-sans"
             >
-              VIEW OFFER
+              상세내용
             </button>
           )}
         </div>
@@ -844,9 +844,9 @@ export default function ClubsSection() {
                 {selectedRoom.status === "recruiting" ? (
                   <button
                     onClick={() => setShowPaymentModal(true)}
-                    className="px-8 py-3.5 bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer"
+                    className="px-8 py-3.5 bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md cursor-pointer"
                   >
-                    BOOK NOW / 참여 신청하기 ↗
+                    참여하기 (결제 신청) ↗
                   </button>
                 ) : (
                   <span className="font-mono text-xs font-bold text-[#1a1a1a]/60 uppercase">
@@ -881,7 +881,7 @@ export default function ClubsSection() {
                   OFFER BOOKING & PAYMENT
                 </span>
                 <h3 className="font-serif font-bold text-2xl uppercase text-[#1a1a1a]">
-                  BOOK NOW / 모임 참여 결제
+                  독서모임 참여하기 (결제)
                 </h3>
               </div>
               <button

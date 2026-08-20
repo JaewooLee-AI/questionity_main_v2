@@ -254,19 +254,10 @@ export default function Navbar() {
 
         </div>
 
-        {/* 8. RIGHTMOST VIBRANT ORANGE "BOOK NOW" ACTION BUTTON */}
-        <a
-          href="#clubs"
-          onClick={(e) => handleNavClick(e, "/#clubs")}
-          className="h-full px-5 md:px-8 bg-[#FF6433] hover:bg-[#e05324] text-[#1a1a1a] font-serif font-black text-sm md:text-lg tracking-widest uppercase flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
-        >
-          BOOK NOW
-        </a>
-
         {/* MOBILE HAMBURGER BUTTON */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden h-full px-4 border-l border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#dedcd4] cursor-pointer"
+          className="md:hidden h-full px-4 border-l border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#dedcd4] cursor-pointer shrink-0"
           aria-label="Toggle Menu"
         >
           <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-2xl`} />

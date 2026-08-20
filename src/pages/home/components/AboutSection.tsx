@@ -58,13 +58,13 @@ export default function AboutSection() {
             </p>
 
             <p className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-[#1a1a1a]/70 leading-relaxed text-base md:text-lg mb-10 font-sans tracking-tightest" style={{ transitionDelay: "0.4s" }}>
-              매월 분야별로 엄선하는 50선 도서 큐레이션부터 소수 정예 오프라인 독서 모임까지,
+              매월 카테고리별로 엄선하는 300선 도서 큐레이션부터 소수 정예 오프라인 독서 모임까지,
               나만의 질문을 발견하고 깊이 있는 지적 교류를 함께 시작할 첫 기수 멤버를 기다립니다.
             </p>
 
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out flex flex-wrap gap-4" style={{ transitionDelay: "0.5s" }}>
               <div className="px-5 py-3 border border-black bg-white font-sans text-xs font-bold uppercase tracking-normal text-black hover:bg-black hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg">
-                매월 엄선 도서 50선
+                엄선 도서 300선
               </div>
               <div className="px-5 py-3 border border-black bg-white font-sans text-xs font-bold uppercase tracking-normal text-black hover:bg-black hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg">
                 혜화 오프라인 독서 아지트

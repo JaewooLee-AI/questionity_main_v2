@@ -477,14 +477,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />
@@ -528,14 +528,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />
@@ -579,14 +579,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(completedRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(completedRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />

@@ -206,39 +206,39 @@ export default function ReviewsSection() {
                   onMouseEnter={() => setHoveredReviewId(`${item.id}-${index}`)}
                   onMouseLeave={() => setHoveredReviewId(null)}
                   className={`
-                    w-[82%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-[#f4f3ee] border border-[#1a1a1a]
+                    w-[82%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 bg-[#f4f3ee]
                     flex flex-col justify-between overflow-hidden transition-all duration-500 cursor-pointer group
-                    ${isHovered ? "-translate-y-2 shadow-2xl bg-white border-[#8C2318]" : "translate-y-0 shadow-sm"}
+                    ${isHovered ? "-translate-y-2 shadow-2xl bg-white" : "translate-y-0 shadow-sm"}
                     ${isDimmed ? "opacity-75" : "opacity-100"}
                   `}
                 >
                   <div>
-                    {/* TOP: Book Cover Image Banner (65% Compact Height, Full Book Cover Visible with object-contain) */}
+                    {/* TOP: Full-Bleed Book Cover Image Banner (Edge-to-Edge, 0 Black Background Gaps) */}
                     <div
                       onClick={() => setSelectedReview(item)}
-                      className="relative w-full h-44 sm:h-52 bg-[#1a1a1a] p-3 overflow-hidden cursor-pointer flex items-center justify-center border-b border-[#1a1a1a]/15"
+                      className="relative w-full aspect-[4/5] overflow-hidden cursor-pointer bg-[#e8e6df]"
                     >
                       <ReviewBookCover
                         item={item}
-                        className="max-h-full max-w-full object-contain shadow-md transition-transform duration-700 ease-out-ace group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-[0.98]"
                       />
-                      <div className="absolute top-2.5 right-2.5 bg-black/85 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10 shadow-sm">
+                      <div className="absolute top-2.5 right-2.5 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10 shadow-sm">
                         REV NO. {String(index + 1).padStart(3, "0")}
                       </div>
                     </div>
 
-                    {/* MIDDLE: Text Details (Headline, Author, Rating & Short Excerpt) */}
-                    <div className="p-5 font-sans">
+                    {/* MIDDLE: Compact Text Details (Book Title, Member Meta & Short Excerpt) */}
+                    <div className="p-4 font-sans">
                       {/* Bold Uppercase Condensed Book Title Headline */}
                       <h3
                         onClick={() => setSelectedReview(item)}
-                        className="font-serif font-bold text-lg md:text-xl uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-2 mb-1.5"
+                        className="font-serif font-bold text-base md:text-lg uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-1 mb-1"
                       >
                         {(item as any).displayTitle || item.bookTitle}
                       </h3>
 
                       {/* Meta Subline: Member Name & Rating */}
-                      <div className="flex items-center justify-between text-xs text-[#1a1a1a]/70 font-sans mb-3">
+                      <div className="flex items-center justify-between text-xs text-[#1a1a1a]/70 font-sans mb-2">
                         <span className="font-bold text-[#8C2318] truncate">
                           {item.name} &bull; {item.role}
                         </span>
@@ -246,30 +246,30 @@ export default function ReviewsSection() {
                           {Array.from({ length: 5 }).map((_, i) => (
                             <i
                               key={i}
-                              className={`ri-star-${i < item.rating ? "fill" : "line"} text-[11px]`}
+                              className={`ri-star-${i < item.rating ? "fill" : "line"} text-[10px]`}
                             />
                           ))}
                         </div>
                       </div>
 
-                      {/* Short Review Excerpt (2-3 lines max) */}
-                      <p className="text-xs text-[#1a1a1a]/80 leading-relaxed font-sans line-clamp-3 mb-4">
+                      {/* Short Review Excerpt (2 lines max for compact layout) */}
+                      <p className="text-xs text-[#1a1a1a]/75 leading-relaxed font-sans line-clamp-2 mb-3">
                         &ldquo;{item.content}&rdquo;
                       </p>
                     </div>
                   </div>
 
                   {/* BOTTOM: ACE HOTEL READ MORE BUTTON LINK */}
-                  <div className="px-5 pb-5 pt-0 flex items-center justify-between font-mono text-xs border-t border-[#1a1a1a]/10 mt-auto">
+                  <div className="px-4 pb-4 pt-0 flex items-center justify-between font-mono text-xs border-t border-[#1a1a1a]/10 mt-auto">
                     <button
                       onClick={() => setSelectedReview(item)}
-                      className="font-mono font-bold text-xs uppercase tracking-widest text-[#1a1a1a] group-hover:text-[#8C2318] underline underline-offset-4 decoration-1 hover:decoration-2 transition-all cursor-pointer pt-3"
+                      className="font-mono font-bold text-xs uppercase tracking-widest text-[#1a1a1a] group-hover:text-[#8C2318] underline underline-offset-4 decoration-1 hover:decoration-2 transition-all cursor-pointer pt-2.5"
                     >
                       READ MORE
                     </button>
                     <button
                       onClick={(e) => handleLike(item.id, e)}
-                      className="flex items-center gap-1 text-xs text-[#8C2318] font-bold cursor-pointer hover:scale-110 transition-transform pt-3"
+                      className="flex items-center gap-1 text-xs text-[#8C2318] font-bold cursor-pointer hover:scale-110 transition-transform pt-2.5"
                       aria-label="Like"
                     >
                       <i className="ri-heart-3-fill text-xs" />

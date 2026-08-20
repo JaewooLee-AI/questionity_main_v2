@@ -384,7 +384,7 @@ export default function ClubsSection() {
       id="clubs"
       ref={sectionRef}
       className={`
-        w-full px-6 md:px-12 lg:px-20 pt-6 pb-24 md:pt-8 md:pb-32 border-t border-[#1a1a1a]/10
+        w-full px-6 md:px-12 lg:px-20 pt-6 pb-12 md:pt-8 md:pb-16 border-t border-[#1a1a1a]/10
         transition-colors duration-700 ease-out-ace
         ${hoveredRoomId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
       `}
@@ -458,7 +458,7 @@ export default function ClubsSection() {
 
         {/* ROW 1: 🔥 모집중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "recruiting") && recruitingRooms.length > 0 && (
-          <div className="mb-16">
+          <div className="mb-8 md:mb-10">
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">🔥</span>
@@ -509,7 +509,7 @@ export default function ClubsSection() {
 
         {/* ROW 2: ⚡ 진행중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "in_progress") && inProgressRooms.length > 0 && (
-          <div className="mb-16">
+          <div className="mb-8 md:mb-10">
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">⚡</span>
@@ -560,7 +560,7 @@ export default function ClubsSection() {
 
         {/* ROW 3: ✅ 종료된 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "completed") && completedRooms.length > 0 && (
-          <div className="mb-16">
+          <div className="mb-0">
             <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">✅</span>

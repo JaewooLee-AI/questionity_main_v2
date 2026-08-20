@@ -106,16 +106,20 @@ export default function HeroSection() {
           </span>
         </div>
 
-        {/* Ace Hotel Style Exact Responsive Typography (70% Scale) */}
+        {/* Ace Hotel Style Signature Typography (Italic Script + Heavy Serif) */}
         <h1
-          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-toronto font-light text-white leading-[1.05] mb-4 tracking-[-1px]"
+          className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-white leading-[0.95] mb-5 tracking-tight text-center select-none"
           style={{
-            fontSize: "clamp(42px, 5.5vw, 85px)",
+            fontSize: "clamp(48px, 7vw, 96px)",
             transitionDelay: "0.2s"
           }}
         >
-          Welcome to<br />
-          <span className="font-normal">Questionity</span>
+          <span className="font-instrument italic font-normal text-white/90 block mb-1 text-[0.88em]">
+            Welcome to
+          </span>
+          <span className="font-serif font-black uppercase tracking-tighter block text-white">
+            Questionity
+          </span>
         </h1>
 
         {/* Subtitles */}

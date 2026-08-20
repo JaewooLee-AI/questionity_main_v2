@@ -489,11 +489,11 @@ export default function ClubsSection() {
 
             <div
               ref={recruitingRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {recruitingRooms.map((room, idx) => (
-                <div key={room.id} className="w-full md:w-[calc(33.333%-16px)] shrink-0">
+                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}
@@ -534,11 +534,11 @@ export default function ClubsSection() {
 
             <div
               ref={inProgressRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {inProgressRooms.map((room, idx) => (
-                <div key={room.id} className="w-full md:w-[calc(33.333%-16px)] shrink-0">
+                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}
@@ -579,11 +579,11 @@ export default function ClubsSection() {
 
             <div
               ref={completedRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {completedRooms.map((room, idx) => (
-                <div key={room.id} className="w-full md:w-[calc(33.333%-16px)] shrink-0">
+                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}

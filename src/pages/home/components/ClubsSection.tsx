@@ -388,7 +388,7 @@ export default function ClubsSection() {
       id="clubs"
       ref={sectionRef}
       className={`
-        w-full px-6 md:px-12 lg:px-20 py-24 md:py-32 border-t border-[#1a1a1a]/10
+        w-full px-6 md:px-12 lg:px-20 pt-6 pb-24 md:pt-8 md:pb-32 border-t border-[#1a1a1a]/10
         transition-colors duration-700 ease-out-ace
         ${hoveredRoomId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
       `}

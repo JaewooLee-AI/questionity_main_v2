@@ -9,11 +9,6 @@ export default function Navbar() {
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [locSelectOpen, setLocSelectOpen] = useState(false);
   const [codeOpen, setCodeOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-
-  const [selectedLocation, setSelectedLocation] = useState("Choose Location *");
-  const [codeType, setCodeType] = useState("Select Code Type");
-  const [lang, setLang] = useState("EN");
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navRef = useRef<HTMLDivElement>(null);
@@ -25,7 +20,6 @@ export default function Navbar() {
         setLocationsOpen(false);
         setLocSelectOpen(false);
         setCodeOpen(false);
-        setLangOpen(false);
         setUserMenuOpen(false);
       }
     };
@@ -94,49 +88,19 @@ export default function Navbar() {
         {/* RESPONSIVE ACE HOTEL TOP BAR NAVIGATION GRID (Desktop & Tablet) */}
         <div className="hidden md:flex items-center h-full flex-1 overflow-x-auto scroll-smooth" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           
-          {/* 2. ABOUT QUESTIONITY & LANGUAGE SELECTOR (Cell 1) */}
-          <div className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-3 shrink-0 min-w-[170px] lg:min-w-[200px]">
-            {/* About Questionity Anchor Link */}
-            <a
-              href="#about"
-              onClick={(e) => handleNavClick(e, "/#about")}
-              className="flex items-center gap-1 font-serif font-bold text-xs md:text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer uppercase tracking-tight whitespace-nowrap"
-            >
-              <span>ABOUT QUESTIONITY</span>
-            </a>
-
-            {/* Language Selector */}
-            <button
-              onClick={() => {
-                setLangOpen(!langOpen);
-                setLocationsOpen(false);
-                setLocSelectOpen(false);
-                setCodeOpen(false);
-              }}
-              className="flex items-center gap-0.5 font-sans text-xs font-bold text-[#1a1a1a]/80 hover:text-[#1a1a1a] cursor-pointer shrink-0"
-            >
-              <span>{lang}</span>
-              <i className="ri-arrow-down-s-line text-xs" />
-            </button>
-
-            {/* Language Dropdown Menu */}
-            {langOpen && (
-              <div className="absolute top-full right-0 mt-0 w-28 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
-                <button
-                  onClick={() => { setLang("EN"); setLangOpen(false); }}
-                  className="w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
-                >
-                  EN (English)
-                </button>
-                <button
-                  onClick={() => { setLang("KO"); setLangOpen(false); }}
-                  className="w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold"
-                >
-                  KO (한국어)
-                </button>
-              </div>
-            )}
-          </div>
+          {/* 2. ABOUT QUESTIONITY CELL -> #about (Cell 1) */}
+          <a
+            href="#about"
+            onClick={(e) => handleNavClick(e, "/#about")}
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] lg:min-w-[160px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-0.5 group-hover:text-[#1a1a1a] whitespace-nowrap">
+              BRAND
+            </span>
+            <div className="flex items-center justify-between text-xs font-serif font-bold text-[#1a1a1a] uppercase whitespace-nowrap tracking-tight">
+              <span className="truncate">ABOUT QUESTIONITY</span>
+            </div>
+          </a>
 
           {/* 3. CURATED 300 BOOKS CELL -> #categories (Cell 2) */}
           <a
@@ -350,22 +314,8 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Bottom Controls (Language & User Auth) */}
-          <div className="border-t border-[#1a1a1a]/15 pt-3 flex items-center justify-between font-mono text-xs">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setLang("EN")}
-                className={`px-2 py-1 text-[10px] font-bold border ${lang === "EN" ? "bg-[#1a1a1a] text-white border-[#1a1a1a]" : "bg-white text-black border-black/20"}`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => setLang("KO")}
-                className={`px-2 py-1 text-[10px] font-bold border ${lang === "KO" ? "bg-[#1a1a1a] text-white border-[#1a1a1a]" : "bg-white text-black border-black/20"}`}
-              >
-                KO
-              </button>
-            </div>
+          {/* Bottom Controls (User Auth) */}
+          <div className="border-t border-[#1a1a1a]/15 pt-3 flex items-center justify-end font-mono text-xs">
 
             {isAuthenticated && user ? (
               <div className="flex items-center gap-3">

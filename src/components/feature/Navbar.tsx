@@ -85,7 +85,7 @@ export default function Navbar() {
         >
           <div className="border-[2.5px] border-[#1a1a1a] px-2.5 py-1 bg-transparent hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all">
             <span className="font-serif font-black text-sm md:text-base tracking-tighter uppercase leading-none block">
-              ACE HOTEL
+              QUESTIONITY
             </span>
           </div>
         </Link>

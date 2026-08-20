@@ -3,98 +3,103 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   const footerLinks = [
     {
-      title: "서비스",
+      title: "NAVIGATION",
       links: [
-        { label: "독서모임", href: "/#clubs" },
-        { label: "결제방법", href: "/#how-it-works" },
-        { label: "오시는길", href: "/#location" },
+        { label: "ABOUT QUESTIONITY", href: "/#about" },
+        { label: "300 BOOKS & CATEGORIES", href: "/#categories" },
+        { label: "EDITORIAL CLUBS", href: "/#clubs" },
+        { label: "HOW IT WORKS", href: "/#how-it-works" },
       ],
     },
     {
-      title: "회사",
+      title: "SUPPORT & LEGAL",
       links: [
-        { label: "퀘스처니티 소개", href: "/" },
-        { label: "채용", href: "/" },
-      ],
-    },
-    {
-      title: "지원",
-      links: [
-        { label: "FAQ", href: "/faq" },
-        { label: "1:1 문의하기", href: "/faq#contact" },
-        { label: "이용약관", href: "/terms" },
-        { label: "개인정보처리방침", href: "/privacy" },
+        { label: "SEOUL LOUNGE", href: "/#location" },
+        { label: "MEMBER REVIEWS", href: "/#reviews" },
+        { label: "FAQ / 1:1 INQUIRIES", href: "/faq" },
+        { label: "TERMS OF SERVICE", href: "/terms" },
+        { label: "PRIVACY POLICY", href: "/privacy" },
       ],
     },
   ];
 
   return (
     <footer className="bg-[#1a1a1a] text-[#f4f3ee] border-t border-[#1a1a1a]">
-      <div className="w-full px-6 md:px-12 lg:px-20 py-20 md:py-24">
-        {/* Massive Serif Title */}
-        <div className="border-b border-[#f4f3ee]/20 pb-12 mb-16">
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-9xl font-bold tracking-widest uppercase text-[#f4f3ee]/90">
-            QUESTIONITY
-          </h2>
-          <p className="font-sans text-xs md:text-sm text-[#f4f3ee]/60 uppercase tracking-widest mt-4">
-            Editorial Reading Community & Coworking Venue | Seoul, Korea
-          </p>
+      <div className="w-full px-6 md:px-12 lg:px-20 py-8 md:py-10">
+        
+        {/* Top Header: Boxed Logo & Brand Subline (Compact 30% scale) */}
+        <div className="border-b border-[#f4f3ee]/15 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {/* Boxed Logo matching top Navbar */}
+            <Link to="/" className="inline-block">
+              <div className="border-[2px] border-[#f4f3ee] px-3 py-1 bg-transparent hover:bg-[#f4f3ee] hover:text-[#1a1a1a] transition-all">
+                <span className="font-serif font-black text-sm md:text-base tracking-tighter uppercase leading-none block">
+                  QUESTIONITY
+                </span>
+              </div>
+            </Link>
+            <span className="font-mono text-[11px] text-[#f4f3ee]/60 uppercase tracking-wider hidden md:inline">
+              EDITORIAL BOOK SALON & CULTURE LOUNGE &bull; SEOUL &bull; EST. 2026
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="w-7 h-7 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
+              aria-label="Instagram"
+            >
+              <i className="ri-instagram-line text-sm" />
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="w-7 h-7 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
+              aria-label="YouTube"
+            >
+              <i className="ri-youtube-line text-sm" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="w-7 h-7 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <i className="ri-linkedin-line text-sm" />
+            </a>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+        {/* Compact Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 items-start">
           {/* Brand Info */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <p className="font-serif text-lg text-[#f4f3ee]/80 leading-relaxed mb-6">
-              책으로 이어지는 특별한 사람들의 프리미엄 에디토리얼 커뮤니티.
+          <div className="md:col-span-2 space-y-2">
+            <p className="font-gmarket text-sm font-bold text-[#f4f3ee]/90 leading-snug">
+              좋은 질문으로 시작하는 새로운 독서 문화의 첫걸음.
             </p>
-            <p className="font-sans text-xs text-[#f4f3ee]/50 leading-relaxed mb-6">
-              서울특별시 종로구 창경궁로 270 (혜화역 4번 출구 도보 3분)
+            <p className="font-sans text-xs text-[#f4f3ee]/60 leading-relaxed">
+              서울특별시 종로구 창경궁로 270 (혜화 독서 라운지 아지트)
               <br />
-              누적 독서 멤버 2,000+ 명 | 5,000+ 건의 독후감 데이터
+              매월 엄선 도서 300선 &bull; 혜화 독서 라운지 &bull; 1st Season 멤버 모집 중
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
-                aria-label="Instagram"
-              >
-                <i className="ri-instagram-line text-lg" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
-                aria-label="YouTube"
-              >
-                <i className="ri-youtube-line text-lg" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="w-10 h-10 flex items-center justify-center border border-[#f4f3ee]/30 text-[#f4f3ee] hover:bg-[#8C2318] hover:border-[#8C2318] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <i className="ri-linkedin-line text-lg" />
-              </a>
-            </div>
           </div>
 
           {/* Links */}
           {footerLinks.map((group) => (
-            <div key={group.title}>
-              <h4 className="font-sans text-xs font-bold uppercase tracking-widest text-[#f4f3ee]/40 mb-6">
+            <div key={group.title} className="space-y-2">
+              <h4 className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#8C2318]">
                 {group.title}
               </h4>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-1.5 font-sans text-xs">
                 {group.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="font-serif text-sm text-[#f4f3ee]/80 hover:text-[#8C2318] transition-colors"
+                      className="text-[#f4f3ee]/75 hover:text-[#f4f3ee] transition-colors uppercase font-bold tracking-tight"
                     >
                       {link.label}
                     </a>
@@ -105,13 +110,13 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-[#f4f3ee]/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-[#f4f3ee]/40">
+        {/* Bottom Bar (Compact 1-line) */}
+        <div className="mt-6 pt-4 border-t border-[#f4f3ee]/10 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] text-[#f4f3ee]/40">
           <p>
-            퀘스처니티 (Questionity) | 서울특별시 종로구 창경궁로 270
+            QUESTIONITY &bull; CHANGGYEONGGUNG-RO 270 SEOUL
           </p>
           <p>
-            &copy; 2026 QUESTIONITY. All rights reserved.
+            &copy; 2026 QUESTIONITY. ALL RIGHTS RESERVED.
           </p>
         </div>
       </div>

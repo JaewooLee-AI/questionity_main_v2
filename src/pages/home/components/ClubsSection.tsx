@@ -259,7 +259,7 @@ export default function ClubsSection() {
   // Hover state for Ace Hotel contextual dimming
   const [hoveredRoomId, setHoveredRoomId] = useState<string | null>(null);
 
-  // Render individual room card (ACE HOTEL OFFERS CONCEPT UI)
+  // Render individual room card (ACE HOTEL OFFERS CONCEPT UI - DARK THEME)
   const renderRoomCard = (room: RoomItem, index?: number) => {
     const isHovered = hoveredRoomId === room.id;
     const isDimmed = hoveredRoomId !== null && !isHovered;
@@ -271,9 +271,9 @@ export default function ClubsSection() {
         onMouseEnter={() => setHoveredRoomId(room.id)}
         onMouseLeave={() => setHoveredRoomId(null)}
         className={`
-          group relative bg-[#e8e6df]/40 hover:bg-white text-[#1a1a1a] transition-all duration-500
-          flex flex-col justify-between overflow-hidden cursor-pointer
-          ${isHovered ? "-translate-y-1 z-10 shadow-lg" : "translate-y-0 shadow-xs"}
+          group relative bg-[#242424] hover:bg-[#2c2c2c] text-[#f4f3ee] transition-all duration-500
+          flex flex-col justify-between overflow-hidden cursor-pointer border border-[#f4f3ee]/15
+          ${isHovered ? "-translate-y-1 z-10 shadow-2xl border-[#8C2318]/60" : "translate-y-0 shadow-sm"}
           ${isDimmed ? "opacity-75" : "opacity-100"}
         `}
       >
@@ -284,26 +284,26 @@ export default function ClubsSection() {
               setSelectedRoom(room);
               setShowPaymentModal(false);
             }}
-            className="relative w-full aspect-[16/10] bg-gray-200 overflow-hidden cursor-pointer"
+            className="relative w-full aspect-[16/10] bg-[#1a1a1a] overflow-hidden cursor-pointer"
           >
             <img
               src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
               alt={room.book_title}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-95"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-90 contrast-105"
             />
             {/* Top Overlay Badges */}
             <div className="absolute top-3 left-3">
               {renderStatusBadge(room.status)}
             </div>
-            <div className="absolute top-3 right-3 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase">
+            <div className="absolute top-3 right-3 bg-black/85 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10">
               ROOM {index !== undefined ? String(index + 1).padStart(3, "0") : "001"} &bull; {room.max_capacity}명
             </div>
           </div>
 
           {/* MIDDLE: Text Details (Title, Description, Meta) */}
           <div className="p-5 font-sans">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-1">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#FF6433] uppercase block mb-1">
               {room.location} &bull; {room.program_duration}
             </span>
 
@@ -313,24 +313,24 @@ export default function ClubsSection() {
                 setSelectedRoom(room);
                 setShowPaymentModal(false);
               }}
-              className="font-serif font-bold text-lg md:text-xl uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-1 mb-1"
+              className="font-serif font-bold text-lg md:text-xl uppercase leading-snug tracking-tight text-[#f4f3ee] group-hover:text-[#FF6433] transition-colors duration-300 line-clamp-1 mb-1"
             >
               {room.title}
             </h3>
 
-            <p className="text-xs font-serif font-semibold text-[#8C2318] truncate mb-2">
-              📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans text-[11px]">({room.book_author})</span>
+            <p className="text-xs font-serif font-semibold text-[#FF6433] truncate mb-2">
+              📖 {room.book_title} <span className="text-[#f4f3ee]/60 font-sans text-[11px]">({room.book_author})</span>
             </p>
 
             {/* Description Excerpt */}
-            <p className="text-xs text-[#1a1a1a]/75 leading-relaxed line-clamp-2 mb-4 font-sans">
+            <p className="text-xs text-[#f4f3ee]/75 leading-relaxed line-clamp-2 mb-4 font-sans">
               {room.book_description}
             </p>
 
             {/* Info Badges (Schedule & Price) */}
-            <div className="flex items-center justify-between text-xs font-mono pt-3 border-t border-[#1a1a1a]/10 text-[#1a1a1a]/70">
+            <div className="flex items-center justify-between text-xs font-mono pt-3 border-t border-[#f4f3ee]/15 text-[#f4f3ee]/70">
               <span>📅 {room.schedule_text}</span>
-              <span className="font-bold text-[#8C2318] text-xs font-serif">{room.price_text}</span>
+              <span className="font-bold text-[#FF6433] text-xs font-serif">{room.price_text}</span>
             </div>
           </div>
         </div>
@@ -346,7 +346,7 @@ export default function ClubsSection() {
                   setSelectedRoom(room);
                   setShowPaymentModal(true);
                 }}
-                className="bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:-translate-y-0.5"
+                className="bg-[#8C2318] hover:bg-[#a62b1e] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hover:-translate-y-0.5"
               >
                 참여하기
               </button>
@@ -356,7 +356,7 @@ export default function ClubsSection() {
                   setSelectedRoom(room);
                   setShowPaymentModal(false);
                 }}
-                className="border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+                className="border border-[#f4f3ee]/40 hover:bg-[#f4f3ee] hover:text-[#1a1a1a] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
               >
                 상세내용
               </button>
@@ -369,7 +369,7 @@ export default function ClubsSection() {
                 setSelectedRoom(room);
                 setShowPaymentModal(false);
               }}
-              className="w-full border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer font-sans"
+              className="w-full border border-[#f4f3ee]/40 hover:bg-[#f4f3ee] hover:text-[#1a1a1a] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer font-sans"
             >
               상세내용
             </button>
@@ -384,9 +384,8 @@ export default function ClubsSection() {
       id="clubs"
       ref={sectionRef}
       className={`
-        w-full px-6 md:px-12 lg:px-20 pt-6 pb-12 md:pt-8 md:pb-16 border-t border-[#1a1a1a]/10
-        transition-colors duration-700 ease-out-ace
-        ${hoveredRoomId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
+        w-full px-6 md:px-12 lg:px-20 pt-6 pb-12 md:pt-8 md:pb-16 border-t border-[#1a1a1a]
+        transition-colors duration-700 ease-out-ace bg-[#1a1a1a] text-[#f4f3ee]
       `}
     >
       <div className="max-w-7xl mx-auto">
@@ -396,10 +395,10 @@ export default function ClubsSection() {
             <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
               FEATURED EDITORIAL CLUBS
             </span>
-            <h2 className="font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight tracking-tight">
+            <h2 className="font-gmarket font-bold text-3xl md:text-5xl text-[#f4f3ee] leading-tight tracking-tight">
               이번 달 독서모임 현황
             </h2>
-            <p className="text-sm text-[#1a1a1a]/70 mt-3 font-sans max-w-xl">
+            <p className="text-sm text-[#f4f3ee]/70 mt-3 font-sans max-w-xl">
               클럽장이 직접 이끄는 3개 트랙(모집중 · 진행중 · 완료)의 프리미엄 독서클럽 라인업입니다.
             </p>
           </div>
@@ -411,7 +410,7 @@ export default function ClubsSection() {
               className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "all"
                   ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
-                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                  : "bg-[#2c2c2c] text-[#f4f3ee]/80 hover:bg-[#383838] hover:text-[#f4f3ee]"
               }`}
             >
               전체 ({rooms.length})
@@ -421,7 +420,7 @@ export default function ClubsSection() {
               className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "recruiting"
                   ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
-                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                  : "bg-[#2c2c2c] text-[#f4f3ee]/80 hover:bg-[#383838] hover:text-[#f4f3ee]"
               }`}
             >
               모집중 ({recruitingRooms.length})
@@ -430,8 +429,8 @@ export default function ClubsSection() {
               onClick={() => setActiveTab("in_progress")}
               className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "in_progress"
-                  ? "bg-[#1a1a1a] text-[#f4f3ee] shadow-md"
-                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                  ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                  : "bg-[#2c2c2c] text-[#f4f3ee]/80 hover:bg-[#383838] hover:text-[#f4f3ee]"
               }`}
             >
               진행중 ({inProgressRooms.length})
@@ -440,8 +439,8 @@ export default function ClubsSection() {
               onClick={() => setActiveTab("completed")}
               className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "completed"
-                  ? "bg-[#1a1a1a] text-[#f4f3ee] shadow-md"
-                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
+                  ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                  : "bg-[#2c2c2c] text-[#f4f3ee]/80 hover:bg-[#383838] hover:text-[#f4f3ee]"
               }`}
             >
               종료 ({completedRooms.length})
@@ -459,10 +458,10 @@ export default function ClubsSection() {
         {/* ROW 1: 🔥 모집중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "recruiting") && recruitingRooms.length > 0 && (
           <div className="mb-8 md:mb-10">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">🔥</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
+                <h3 className="font-serif font-bold text-2xl text-[#f4f3ee]">
                   모집중인 독서모임
                 </h3>
                 <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
@@ -477,14 +476,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />
@@ -510,13 +509,13 @@ export default function ClubsSection() {
         {/* ROW 2: ⚡ 진행중인 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "in_progress") && inProgressRooms.length > 0 && (
           <div className="mb-8 md:mb-10">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">⚡</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
+                <h3 className="font-serif font-bold text-2xl text-[#f4f3ee]">
                   진행중인 독서모임
                 </h3>
-                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#1a1a1a] text-[#f4f3ee]">
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
                   {inProgressRooms.length} CLUBS ACTIVE
                 </span>
               </div>
@@ -528,14 +527,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />
@@ -561,13 +560,13 @@ export default function ClubsSection() {
         {/* ROW 3: ✅ 종료된 독서모임 */}
         {!loading && (activeTab === "all" || activeTab === "completed") && completedRooms.length > 0 && (
           <div className="mb-0">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#1a1a1a]/15 font-sans">
+            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
               <div className="flex items-center gap-2.5">
                 <span className="text-lg">✅</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">
+                <h3 className="font-serif font-bold text-2xl text-[#f4f3ee]">
                   종료된 독서모임
                 </h3>
-                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#1a1a1a]/60 text-[#f4f3ee]">
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
                   {completedRooms.length} CLUBS ARCHIVED
                 </span>
               </div>
@@ -579,14 +578,14 @@ export default function ClubsSection() {
                 <>
                   <button
                     onClick={() => scrollRow(completedRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Previous"
                   >
                     <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(completedRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
                     aria-label="Next"
                   >
                     <i className="ri-arrow-right-line text-xl font-bold" />

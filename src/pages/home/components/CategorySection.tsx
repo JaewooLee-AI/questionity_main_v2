@@ -211,7 +211,7 @@ export default function CategorySection() {
   };
 
   return (
-    <section id="categories" className="w-full px-6 md:px-12 lg:px-20 pt-6 pb-6 md:pt-8 md:pb-8 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 relative">
+    <section id="categories" className="w-full px-6 md:px-12 lg:px-20 pt-6 pb-6 md:pt-8 md:pb-8 bg-[#e8e6df] border-t border-[#1a1a1a]/15 relative">
       <div className="max-w-7xl mx-auto">
         {/* Section Title Header */}
         <div className="text-center mb-8 md:mb-10">
@@ -228,7 +228,7 @@ export default function CategorySection() {
         </div>
 
         {/* Search Input Bar & Category Filter Directory Index (ABOVE PHOTO CARDS - BORDERLESS) */}
-        <div className="bg-[#e8e6df]/40 p-6 mb-10">
+        <div className="bg-[#f4f3ee] p-6 mb-10 border border-[#1a1a1a]/10">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search Input & Buttons */}
             <div className="flex w-full lg:w-auto items-center gap-3 flex-1 max-w-xl">

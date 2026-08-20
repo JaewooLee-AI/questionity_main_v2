@@ -154,9 +154,9 @@ export default function ReviewsSection() {
       id="reviews"
       ref={sectionRef}
       className={`
-        w-full py-24 md:py-32 border-t border-[#1a1a1a]/10 overflow-hidden font-sans
+        w-full pt-12 pb-6 md:pt-16 md:pb-8 border-t border-[#1a1a1a]/15 overflow-hidden font-sans
         transition-colors duration-700 ease-out-ace
-        ${hoveredReviewId !== null ? "bg-[#e8e6df]" : "bg-[#f4f3ee]"}
+        ${hoveredReviewId !== null ? "bg-[#dedcd4]" : "bg-[#e8e6df]"}
       `}
     >
       {/* Section Header */}

@@ -23,7 +23,7 @@ export default function HowItWorksSection() {
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="w-full px-6 md:px-12 lg:px-20 pt-12 pb-6 md:pt-16 md:pb-8 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 font-sans">
+    <section id="how-it-works" ref={sectionRef} className="w-full px-6 md:px-12 lg:px-20 pt-12 pb-6 md:pt-16 md:pb-8 bg-[#e8e6df] border-t border-[#1a1a1a]/15 font-sans">
       <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
         
         {/* Section Title Header */}

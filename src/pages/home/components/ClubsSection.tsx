@@ -396,7 +396,7 @@ export default function ClubsSection() {
             <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
               FEATURED EDITORIAL CLUBS
             </span>
-            <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight tracking-tight">
+            <h2 className="font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight tracking-tight">
               이번 달 독서모임 현황
             </h2>
             <p className="text-sm text-[#1a1a1a]/70 mt-3 font-sans max-w-xl">

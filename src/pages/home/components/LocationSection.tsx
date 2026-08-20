@@ -44,7 +44,7 @@ export default function LocationSection() {
             OFFLINE LOUNGE & ARCHITECTURE
           </span>
           <h2
-            className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] tracking-tight leading-tight"
+            className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] tracking-tight leading-tight"
             style={{ transitionDelay: "0.1s" }}
           >
             오시는 길

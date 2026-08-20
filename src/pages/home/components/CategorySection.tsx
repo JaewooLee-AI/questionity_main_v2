@@ -218,7 +218,7 @@ export default function CategorySection() {
           <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
             CURATED ALADIN 300 BOOKS & CATEGORIES (50 BOOKS EACH)
           </span>
-          <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
+          <h2 className="font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
             관심 주제로 독서 모임 도서를 탐색해보세요
           </h2>
           <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-sans tracking-tightest">

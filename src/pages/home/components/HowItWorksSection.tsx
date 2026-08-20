@@ -31,7 +31,7 @@ export default function HowItWorksSection() {
           <span className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out inline-block px-3.5 py-1 bg-[#111111] text-white text-xs font-bold tracking-widest uppercase rounded-none font-heading">
             PAYMENT & COUPON GUIDE
           </span>
-          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-heading font-black text-3xl md:text-4xl text-[#111111] uppercase tracking-tight leading-tight" style={{ transitionDelay: "0.1s" }}>
+          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-4xl text-[#111111] tracking-tight leading-tight" style={{ transitionDelay: "0.1s" }}>
             이렇게 시작해요
           </h2>
           <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-gray-700 text-base md:text-lg max-w-2xl mx-auto font-sans break-keep" style={{ transitionDelay: "0.2s" }}>

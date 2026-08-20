@@ -41,9 +41,9 @@ export default function CTASection() {
             JOIN QUESTIONITY COMMUNITY
           </span>
           
-          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-serif font-bold text-4xl md:text-6xl text-[#f4f3ee] leading-tight mb-6" style={{ transitionDelay: "0.1s" }}>
+          <h2 className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-4xl md:text-6xl text-[#f4f3ee] leading-tight mb-6" style={{ transitionDelay: "0.1s" }}>
             지금 바로 독서 클럽에<br />
-            <span className="italic font-normal text-[#e8e6df]">참여하세요.</span>
+            <span className="font-normal text-[#e8e6df]">참여하세요.</span>
           </h2>
           
           <p className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out text-[#f4f3ee]/80 text-base md:text-xl leading-relaxed mb-12 max-w-xl mx-auto font-sans tracking-tightest" style={{ transitionDelay: "0.2s" }}>

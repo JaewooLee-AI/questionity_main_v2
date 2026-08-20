@@ -164,8 +164,8 @@ export default function ReviewsSection() {
         <span className="inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-3 font-sans">
           MEMBER TESTIMONIALS & EDITORIAL REVIEWS
         </span>
-        <h2 className="font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
-          2,000+ 멤버들의 생생한 독서 후기
+        <h2 className="font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-4">
+          멤버들의 솔직한 독서 후기
         </h2>
         <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-sans tracking-tightest">
           카드를 클릭하면 상세 도서 정보와 독서클럽 스케줄을 확인하실 수 있습니다.

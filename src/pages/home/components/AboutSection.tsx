@@ -47,9 +47,9 @@ export default function AboutSection() {
               </span>
             </div>
 
-            <h2 className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-8" style={{ transitionDelay: "0.2s" }}>
+            <h2 className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-8" style={{ transitionDelay: "0.2s" }}>
               좋은 질문으로 시작하는<br />
-              <span className="italic font-normal text-[#8C2318]">새로운 독서 문화의</span> 첫걸음.
+              <span className="font-normal text-[#8C2318]">새로운 독서 문화의</span> 첫걸음.
             </h2>
 
             <p className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-[#1a1a1a]/80 leading-relaxed text-base md:text-lg mb-6 font-sans tracking-tightest" style={{ transitionDelay: "0.3s" }}>

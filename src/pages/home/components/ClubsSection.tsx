@@ -408,44 +408,44 @@ export default function ClubsSection() {
             </p>
           </div>
 
-          {/* Status Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 border-b border-[#1a1a1a]/20 pb-2 self-start md:self-auto font-sans">
+          {/* Status Filter Tabs (Ace Hotel Borderless Tag Style) */}
+          <div className="flex flex-wrap items-center gap-2 font-mono self-start md:self-auto">
             <button
               onClick={() => setActiveTab("all")}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "all"
-                  ? "bg-[#1a1a1a] text-[#f4f3ee]"
-                  : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
+                  ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
               }`}
             >
               전체 ({rooms.length})
             </button>
             <button
               onClick={() => setActiveTab("recruiting")}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "recruiting"
-                  ? "bg-[#8C2318] text-[#f4f3ee]"
-                  : "text-[#1a1a1a]/60 hover:text-[#8C2318]"
+                  ? "bg-[#8C2318] text-[#f4f3ee] shadow-md"
+                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
               }`}
             >
               모집중 ({recruitingRooms.length})
             </button>
             <button
               onClick={() => setActiveTab("in_progress")}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "in_progress"
-                  ? "bg-[#4A5340] text-[#f4f3ee]"
-                  : "text-[#1a1a1a]/60 hover:text-[#4A5340]"
+                  ? "bg-[#1a1a1a] text-[#f4f3ee] shadow-md"
+                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
               }`}
             >
               진행중 ({inProgressRooms.length})
             </button>
             <button
               onClick={() => setActiveTab("completed")}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`px-3.5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
                 activeTab === "completed"
-                  ? "bg-[#1a1a1a]/80 text-[#f4f3ee]"
-                  : "text-[#1a1a1a]/60 hover:text-[#1a1a1a]"
+                  ? "bg-[#1a1a1a] text-[#f4f3ee] shadow-md"
+                  : "bg-[#e8e6df] text-[#1a1a1a] hover:bg-white hover:-translate-y-0.5 hover:shadow-sm"
               }`}
             >
               종료 ({completedRooms.length})

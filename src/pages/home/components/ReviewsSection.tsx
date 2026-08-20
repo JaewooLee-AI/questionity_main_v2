@@ -95,7 +95,15 @@ export default function ReviewsSection() {
               isAiGenerated: r.is_ai_generated ?? true,
             };
           });
-          setReviewList(mapped);
+          // Combine Supabase data with fallbackReviews so all 20 AI items remain available
+          const mergedMap = new Map<string, ReviewItem>();
+          mapped.forEach(item => mergedMap.set(item.id, item));
+          fallbackReviews.forEach(fb => {
+            if (!mergedMap.has(fb.id)) {
+              mergedMap.set(fb.id, fb);
+            }
+          });
+          setReviewList(Array.from(mergedMap.values()));
         } else {
           setReviewList(fallbackReviews);
         }
@@ -119,30 +127,11 @@ export default function ReviewsSection() {
     return item.likeCount + (likesMap[item.id] || 0);
   };
 
-  const getBaseBookTitle = (title: string): string => {
-    if (!title) return "";
-    let base = title.split("-")[0].split(":")[0].split("(")[0].split("[")[0].trim();
-    if (base.includes("오뒷세이아") || base.includes("오디세이아")) return "오디세이아";
-    if (base.includes("세네카")) return "세네카";
-    return base;
-  };
-
   const uniqueReviews = useMemo(() => {
-    const seen = new Set<string>();
-    return reviewList
-      .map((item) => {
-        const cleanT = getBaseBookTitle(item.bookTitle);
-        return {
-          ...item,
-          displayTitle: cleanT || item.bookTitle,
-        };
-      })
-      .filter((item) => {
-        const key = item.displayTitle;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
+    return reviewList.map((item) => ({
+      ...item,
+      displayTitle: item.bookTitle,
+    }));
   }, [reviewList]);
 
   // Smooth scroll carousel helper (Left / Right)

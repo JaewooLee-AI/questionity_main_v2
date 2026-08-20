@@ -278,13 +278,13 @@ export default function ClubsSection() {
         `}
       >
         <div>
-          {/* TOP: Book Cover Image Banner (Ace Hotel Offer Image - Full Object Cover, No Black Margins) */}
+          {/* TOP: Book Cover Image Banner (Ace Hotel OFFERS Landscape Banner Aspect 16/10) */}
           <div
             onClick={() => {
               setSelectedRoom(room);
               setShowPaymentModal(false);
             }}
-            className="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden cursor-pointer"
+            className="relative w-full aspect-[16/10] bg-gray-200 overflow-hidden cursor-pointer"
           >
             <img
               src={room.book_image_url ? proxyBookCover(room.book_image_url) : "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400"}
@@ -293,42 +293,42 @@ export default function ClubsSection() {
               className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-95"
             />
             {/* Top Overlay Badges */}
-            <div className="absolute top-2.5 left-2.5">
+            <div className="absolute top-3 left-3">
               {renderStatusBadge(room.status)}
             </div>
-            <div className="absolute top-2.5 right-2.5 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase">
+            <div className="absolute top-3 right-3 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase">
               ROOM {index !== undefined ? String(index + 1).padStart(3, "0") : "001"} &bull; {room.max_capacity}명
             </div>
           </div>
 
-          {/* MIDDLE: Compact Text Details (Title, Description, Meta) */}
-          <div className="p-4 font-sans">
+          {/* MIDDLE: Text Details (Title, Description, Meta) */}
+          <div className="p-5 font-sans">
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-1">
               {room.location} &bull; {room.program_duration}
             </span>
 
-            {/* Club Title (Ace Hotel Bold Serif Header) */}
+            {/* Club Title (Ace Hotel Bold Serif Condensed Header) */}
             <h3
               onClick={() => {
                 setSelectedRoom(room);
                 setShowPaymentModal(false);
               }}
-              className="font-serif font-bold text-base md:text-lg uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-1 mb-1"
+              className="font-serif font-bold text-lg md:text-xl uppercase leading-snug tracking-tight text-[#1a1a1a] group-hover:text-[#8C2318] transition-colors duration-300 line-clamp-1 mb-1"
             >
               {room.title}
             </h3>
 
-            <p className="text-[11px] font-serif font-semibold text-[#8C2318] truncate mb-1.5">
-              📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans text-[10px]">({room.book_author})</span>
+            <p className="text-xs font-serif font-semibold text-[#8C2318] truncate mb-2">
+              📖 {room.book_title} <span className="text-[#1a1a1a]/60 font-sans text-[11px]">({room.book_author})</span>
             </p>
 
             {/* Description Excerpt */}
-            <p className="text-[11px] text-[#1a1a1a]/75 leading-relaxed line-clamp-2 mb-3 font-sans">
+            <p className="text-xs text-[#1a1a1a]/75 leading-relaxed line-clamp-2 mb-4 font-sans">
               {room.book_description}
             </p>
 
             {/* Info Badges (Schedule & Price) */}
-            <div className="flex items-center justify-between text-[10px] font-mono pt-2 border-t border-[#1a1a1a]/10 text-[#1a1a1a]/70">
+            <div className="flex items-center justify-between text-xs font-mono pt-3 border-t border-[#1a1a1a]/10 text-[#1a1a1a]/70">
               <span>📅 {room.schedule_text}</span>
               <span className="font-bold text-[#8C2318] text-xs font-serif">{room.price_text}</span>
             </div>
@@ -336,7 +336,7 @@ export default function ClubsSection() {
         </div>
 
         {/* BOTTOM: ACE HOTEL OFFERS BUTTONS (BOOK NOW / VIEW OFFER) */}
-        <div className="p-4 pt-0">
+        <div className="p-5 pt-0">
           {isRecruiting ? (
             /* Recruiting: 2 Buttons (BOOK NOW + VIEW OFFER) */
             <div className="grid grid-cols-2 gap-2">
@@ -489,11 +489,11 @@ export default function ClubsSection() {
 
             <div
               ref={recruitingRowRef}
-              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {recruitingRooms.map((room, idx) => (
-                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
+                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}
@@ -534,11 +534,11 @@ export default function ClubsSection() {
 
             <div
               ref={inProgressRowRef}
-              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {inProgressRooms.map((room, idx) => (
-                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
+                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}
@@ -579,11 +579,11 @@ export default function ClubsSection() {
 
             <div
               ref={completedRowRef}
-              className="flex gap-4 overflow-x-auto scroll-smooth pb-4"
+              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {completedRooms.map((room, idx) => (
-                <div key={room.id} className="w-[calc(50%-12px)] sm:w-[calc(25%-12px)] lg:w-[calc(16.666%-14px)] shrink-0">
+                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
                   {renderRoomCard(room, idx)}
                 </div>
               ))}

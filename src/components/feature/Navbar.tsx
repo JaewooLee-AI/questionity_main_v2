@@ -91,16 +91,16 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* DESKTOP ACE HOTEL TOP BAR NAVIGATION GRID */}
-        <div className="hidden lg:flex items-center h-full flex-1">
+        {/* RESPONSIVE ACE HOTEL TOP BAR NAVIGATION GRID (Desktop & Tablet) */}
+        <div className="hidden md:flex items-center h-full flex-1 overflow-x-auto scroll-smooth" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           
           {/* 2. ABOUT QUESTIONITY & LANGUAGE SELECTOR (Cell 1) */}
-          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-4 shrink-0 min-w-[200px]">
+          <div className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-3 shrink-0 min-w-[170px] lg:min-w-[200px]">
             {/* About Questionity Anchor Link */}
             <a
               href="#about"
               onClick={(e) => handleNavClick(e, "/#about")}
-              className="flex items-center gap-1.5 font-serif font-bold text-xs md:text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer uppercase tracking-tight"
+              className="flex items-center gap-1 font-serif font-bold text-xs md:text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer uppercase tracking-tight whitespace-nowrap"
             >
               <span>ABOUT QUESTIONITY</span>
             </a>
@@ -113,7 +113,7 @@ export default function Navbar() {
                 setLocSelectOpen(false);
                 setCodeOpen(false);
               }}
-              className="flex items-center gap-1 font-sans text-xs font-bold text-[#1a1a1a]/80 hover:text-[#1a1a1a] cursor-pointer"
+              className="flex items-center gap-0.5 font-sans text-xs font-bold text-[#1a1a1a]/80 hover:text-[#1a1a1a] cursor-pointer shrink-0"
             >
               <span>{lang}</span>
               <i className="ri-arrow-down-s-line text-xs" />
@@ -142,13 +142,13 @@ export default function Navbar() {
           <a
             href="#categories"
             onClick={(e) => handleNavClick(e, "/#categories")}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               300 BOOKS
             </span>
-            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">300 Books & Categories ∨</span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a] whitespace-nowrap">
+              <span className="truncate">300 Books ∨</span>
             </div>
           </a>
 
@@ -156,13 +156,13 @@ export default function Navbar() {
           <a
             href="#clubs"
             onClick={(e) => handleNavClick(e, "/#clubs")}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               EDITORIAL CLUBS
             </span>
-            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">Active Reading Clubs ∨</span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a] whitespace-nowrap">
+              <span className="truncate">Active Clubs ∨</span>
             </div>
           </a>
 
@@ -170,13 +170,13 @@ export default function Navbar() {
           <a
             href="#how-it-works"
             onClick={(e) => handleNavClick(e, "/#how-it-works")}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               HOW IT WORKS
             </span>
-            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">Membership Guide ∨</span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a] whitespace-nowrap">
+              <span className="truncate">Guide ∨</span>
             </div>
           </a>
 
@@ -184,13 +184,13 @@ export default function Navbar() {
           <a
             href="#location"
             onClick={(e) => handleNavClick(e, "/#location")}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               SEOUL LOUNGE
             </span>
-            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">Lounge & Architecture ∨</span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a] whitespace-nowrap">
+              <span className="truncate">Lounge Visit ∨</span>
             </div>
           </a>
 
@@ -198,13 +198,13 @@ export default function Navbar() {
           <a
             href="#reviews"
             onClick={(e) => handleNavClick(e, "/#reviews")}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               MEMBER REVIEWS
             </span>
-            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">Stories & Testimonials ∨</span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a] whitespace-nowrap">
+              <span className="truncate">Reviews ∨</span>
             </div>
           </a>
 
@@ -214,12 +214,12 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 text-xs font-bold text-[#1a1a1a] hover:text-[#8C2318] cursor-pointer"
+                  className="flex items-center gap-1.5 text-xs font-bold text-[#1a1a1a] hover:text-[#8C2318] cursor-pointer whitespace-nowrap"
                 >
                   <div className="w-6 h-6 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold text-[10px]">
                     {user.name.charAt(0)}
                   </div>
-                  <span className="truncate max-w-[80px]">{user.name}</span>
+                  <span className="truncate max-w-[70px]">{user.name}</span>
                 </button>
                 {userMenuOpen && (
                   <div className="absolute right-0 top-full mt-2 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-2xl py-2 z-50 text-xs font-mono">
@@ -258,7 +258,7 @@ export default function Navbar() {
         <a
           href="#clubs"
           onClick={(e) => handleNavClick(e, "/#clubs")}
-          className="h-full px-6 md:px-8 bg-[#FF6433] hover:bg-[#e05324] text-[#1a1a1a] font-serif font-black text-base md:text-lg tracking-widest uppercase flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
+          className="h-full px-5 md:px-8 bg-[#FF6433] hover:bg-[#e05324] text-[#1a1a1a] font-serif font-black text-sm md:text-lg tracking-widest uppercase flex items-center justify-center transition-all cursor-pointer shrink-0 shadow-sm"
         >
           BOOK NOW
         </a>
@@ -266,7 +266,7 @@ export default function Navbar() {
         {/* MOBILE HAMBURGER BUTTON */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden h-full px-4 border-l border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#dedcd4] cursor-pointer"
+          className="md:hidden h-full px-4 border-l border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#dedcd4] cursor-pointer"
           aria-label="Toggle Menu"
         >
           <i className={`ri-${mobileMenuOpen ? "close" : "menu"}-line text-2xl`} />
@@ -274,39 +274,110 @@ export default function Navbar() {
 
       </div>
 
-      {/* MOBILE EXPANDED MENU */}
+      {/* RESPONSIVE MOBILE ACE HOTEL GRID DRAWER */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#f4f3ee] border-t border-[#1a1a1a] p-6 space-y-5 shadow-2xl animate-fade-in">
-          <div className="grid grid-cols-2 gap-3 text-xs font-mono font-bold">
-            <div className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20">
-              <span className="text-[9px] text-[#1a1a1a]/60 block mb-1">LOCATION</span>
-              <span className="text-[#1a1a1a]">{selectedLocation}</span>
-            </div>
-            <div className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20">
-              <span className="text-[9px] text-[#1a1a1a]/60 block mb-1">PROMO CODE</span>
-              <span className="text-[#1a1a1a]">{codeType}</span>
-            </div>
+        <div className="md:hidden bg-[#f4f3ee] border-t border-[#1a1a1a] p-5 space-y-4 shadow-2xl animate-fade-in font-sans">
+          
+          {/* Ace Hotel 6-Grid Cell Mobile Menu */}
+          <div className="grid grid-cols-2 gap-2.5">
+            <a
+              href="#about"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#about"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] group-hover:text-white uppercase block mb-0.5">
+                01. BRAND
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                ABOUT QUESTIONITY
+              </span>
+            </a>
+
+            <a
+              href="#categories"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#categories"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 group-hover:text-white uppercase block mb-0.5">
+                02. CURATION
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                300 BOOKS & CATS
+              </span>
+            </a>
+
+            <a
+              href="#clubs"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#clubs"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 group-hover:text-white uppercase block mb-0.5">
+                03. LINEUP
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                EDITORIAL CLUBS
+              </span>
+            </a>
+
+            <a
+              href="#how-it-works"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#how-it-works"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 group-hover:text-white uppercase block mb-0.5">
+                04. GUIDE
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                HOW IT WORKS
+              </span>
+            </a>
+
+            <a
+              href="#location"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#location"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 group-hover:text-white uppercase block mb-0.5">
+                05. SPACE
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                SEOUL LOUNGE
+              </span>
+            </a>
+
+            <a
+              href="#reviews"
+              onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "/#reviews"); }}
+              className="bg-[#e8e6df] p-3 border border-[#1a1a1a]/20 hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all group"
+            >
+              <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 group-hover:text-white uppercase block mb-0.5">
+                06. STORIES
+              </span>
+              <span className="text-xs font-serif font-bold text-[#1a1a1a] group-hover:text-white block">
+                MEMBER REVIEWS
+              </span>
+            </a>
           </div>
 
-          <div className="border-t border-[#1a1a1a]/15 pt-4 space-y-3 font-sans">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => {
-                  setMobileMenuOpen(false);
-                  handleNavClick(e, link.href);
-                }}
-                className="block text-base font-serif font-bold text-[#1a1a1a] hover:text-[#8C2318] uppercase"
+          {/* Bottom Controls (Language & User Auth) */}
+          <div className="border-t border-[#1a1a1a]/15 pt-3 flex items-center justify-between font-mono text-xs">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setLang("EN")}
+                className={`px-2 py-1 text-[10px] font-bold border ${lang === "EN" ? "bg-[#1a1a1a] text-white border-[#1a1a1a]" : "bg-white text-black border-black/20"}`}
               >
-                {link.label}
-              </a>
-            ))}
-          </div>
+                EN
+              </button>
+              <button
+                onClick={() => setLang("KO")}
+                className={`px-2 py-1 text-[10px] font-bold border ${lang === "KO" ? "bg-[#1a1a1a] text-white border-[#1a1a1a]" : "bg-white text-black border-black/20"}`}
+              >
+                KO
+              </button>
+            </div>
 
-          <div className="border-t border-[#1a1a1a]/15 pt-4 flex items-center justify-between font-mono text-xs">
             {isAuthenticated && user ? (
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center gap-3">
                 <span className="font-bold text-[#1a1a1a]">{user.name}</span>
                 <button onClick={handleLogout} className="text-[#8C2318] font-bold underline">
                   LOGOUT

@@ -213,16 +213,16 @@ export default function ReviewsSection() {
                   `}
                 >
                   <div>
-                    {/* TOP: Book Cover Image Poster Banner (1:1 Square Poster Ratio matching Ace Hotel screenshot) */}
+                    {/* TOP: Book Cover Image Banner (65% Compact Height, Full Book Cover Visible with object-contain) */}
                     <div
                       onClick={() => setSelectedReview(item)}
-                      className="relative w-full aspect-square bg-[#1a1a1a] overflow-hidden cursor-pointer"
+                      className="relative w-full h-44 sm:h-52 bg-[#1a1a1a] p-3 overflow-hidden cursor-pointer flex items-center justify-center border-b border-[#1a1a1a]/15"
                     >
                       <ReviewBookCover
                         item={item}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out-ace group-hover:scale-105 filter brightness-95"
+                        className="max-h-full max-w-full object-contain shadow-md transition-transform duration-700 ease-out-ace group-hover:scale-105"
                       />
-                      <div className="absolute top-3 right-3 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10">
+                      <div className="absolute top-2.5 right-2.5 bg-black/85 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10 shadow-sm">
                         REV NO. {String(index + 1).padStart(3, "0")}
                       </div>
                     </div>

@@ -48,18 +48,18 @@ export default function AboutSection() {
             </div>
 
             <h2 className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out font-serif font-bold text-3xl md:text-5xl text-[#1a1a1a] leading-tight mb-8" style={{ transitionDelay: "0.2s" }}>
-              깊이 있는 질문을 던지고,<br />
-              <span className="italic font-normal text-[#8C2318]">지적 커뮤니티를</span> 세웁니다.
+              좋은 질문으로 시작하는<br />
+              <span className="italic font-normal text-[#8C2318]">새로운 독서 문화의</span> 첫걸음.
             </h2>
 
             <p className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-[#1a1a1a]/80 leading-relaxed text-base md:text-lg mb-6 font-sans tracking-tightest" style={{ transitionDelay: "0.3s" }}>
-              퀘스처니티(Questionity)는 서울특별시 종로구 창경궁로 270을 거점으로,
-              온라인과 오프라인의 경계를 허무는 프리미엄 독서클럽 플랫폼입니다.
+              퀘스처니티(Questionity)는 서울 혜화(창경궁로 270)의 아늑한 공간에서 출발한 신생 독서 커뮤니티입니다.
+              과장된 수치보다는, 한 권의 좋은 책과 진솔한 대화가 주는 힘을 믿는 이들이 차근차근 함께 만들어가고 있습니다.
             </p>
 
             <p className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-[#1a1a1a]/70 leading-relaxed text-base md:text-lg mb-10 font-sans tracking-tightest" style={{ transitionDelay: "0.4s" }}>
-              누적 2,000명 이상의 독서 멤버와 5,000건 이상의 지적 대화 데이터를 통해,
-              단순한 도서 소모를 넘어 개인의 지적 스펙트럼과 깊이 있는 관계망을 형성합니다.
+              매월 분야별로 엄선하는 50선 도서 큐레이션부터 소수 정예 오프라인 독서 모임까지,
+              나만의 질문을 발견하고 깊이 있는 지적 교류를 함께 시작할 첫 기수 멤버를 기다립니다.
             </p>
 
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out flex flex-wrap gap-4" style={{ transitionDelay: "0.5s" }}>
@@ -67,10 +67,10 @@ export default function AboutSection() {
                 매월 엄선 도서 50선
               </div>
               <div className="px-5 py-3 border border-black bg-white font-sans text-xs font-bold uppercase tracking-normal text-black hover:bg-black hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg">
-                혜화 오프라인 코워킹 아지트
+                혜화 오프라인 독서 아지트
               </div>
               <div className="px-5 py-3 border border-black bg-black text-white font-sans text-xs font-bold uppercase tracking-normal hover:bg-white hover:text-black transition-all hover:-translate-y-1 hover:shadow-lg">
-                2,000+ 누적 독서 멤버
+                1st Season 멤버 모집 중
               </div>
             </div>
           </div>

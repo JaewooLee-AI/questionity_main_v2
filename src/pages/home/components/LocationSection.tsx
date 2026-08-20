@@ -35,16 +35,16 @@ export default function LocationSection() {
     <section
       id="location"
       ref={sectionRef}
-      className="w-full px-6 md:px-12 lg:px-20 pt-12 pb-6 md:pt-16 md:pb-8 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 font-sans"
+      className="w-full px-6 md:px-12 lg:px-20 pt-6 pb-6 md:pt-8 md:pb-8 bg-[#f4f3ee] border-t border-[#1a1a1a]/10 font-sans"
     >
-      <div className="max-w-7xl mx-auto space-y-16">
+      <div className="max-w-7xl mx-auto space-y-8 md:space-y-10">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <span className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out inline-block border-b border-[#1a1a1a] text-[#1a1a1a] text-xs font-bold tracking-widest uppercase pb-1 font-sans">
+        <div className="text-center">
+          <span className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out inline-block text-[#8C2318] text-xs font-bold tracking-widest uppercase mb-2 font-sans">
             OFFLINE LOUNGE & ARCHITECTURE
           </span>
           <h2
-            className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] tracking-tight leading-tight"
+            className="animate-on-scroll opacity-0 translate-y-6 transition-all duration-700 ease-out font-gmarket font-bold text-3xl md:text-5xl text-[#1a1a1a] tracking-tight leading-tight mb-3"
             style={{ transitionDelay: "0.1s" }}
           >
             오시는 길
@@ -58,121 +58,139 @@ export default function LocationSection() {
         </div>
 
         {/* 2-Column Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
-          {/* LEFT: Architectural Map Card (7 Cols) */}
+          {/* LEFT: Architectural Venue & Map Ticket Card (7 Cols) */}
           <div
-            className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out lg:col-span-7 bg-[#1a1a1a] text-[#f4f3ee] overflow-hidden border border-[#1a1a1a] flex flex-col justify-between relative min-h-[420px] transition-transform duration-700 ease-out-ace hover:-translate-y-2 hover:shadow-2xl"
+            className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out lg:col-span-7 bg-[#1a1a1a] text-[#f4f3ee] border border-[#1a1a1a] flex flex-col justify-between relative overflow-hidden min-h-[380px] md:min-h-[440px]"
             style={{ transitionDelay: "0.3s" }}
           >
-            {/* Map Header Bar */}
-            <div className="bg-[#1a1a1a] px-6 py-4 flex items-center justify-between z-10 border-b border-[#f4f3ee]/10">
+            {/* Top Bar Header */}
+            <div className="bg-[#1a1a1a] px-5 py-3.5 flex items-center justify-between z-10 border-b border-[#f4f3ee]/15 font-mono text-xs">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-[#8C2318] inline-block" />
-                <span className="text-xs font-mono font-bold tracking-widest text-[#f4f3ee]/80 uppercase">NAVER MAP LOCATION</span>
+                <span className="w-2 h-2 bg-[#8C2318] inline-block" />
+                <span className="font-bold tracking-widest text-[#f4f3ee] uppercase">
+                  ROOM 101 — CHANGGYEONGGUNG-RO 270
+                </span>
               </div>
-              <a
-                href={naverMapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-[#8C2318] text-[#f4f3ee] font-bold text-xs uppercase tracking-widest transition-all hover:bg-white hover:text-[#1a1a1a]"
-              >
-                네이버 지도에서 보기 ↗
-              </a>
+              <span className="text-[#f4f3ee]/60 text-[11px] font-bold uppercase tracking-wider hidden sm:inline">
+                OPEN DAILY: 10:00 - 22:00
+              </span>
             </div>
 
-            {/* Map Graphic Preview Box */}
-            <div className="relative flex-1 bg-[#e8e6df] p-8 flex flex-col items-center justify-center text-center overflow-hidden min-h-[300px]">
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:20px_20px]" />
-              
-              {/* Pin Marker Callout */}
-              <div className="relative z-10 bg-[#f4f3ee] p-6 border-2 border-[#1a1a1a] space-y-3 max-w-sm shadow-2xl">
-                <div className="w-12 h-12 bg-[#8C2318] text-[#f4f3ee] flex items-center justify-center text-xl mx-auto font-serif">
-                  📍
-                </div>
-                <strong className="text-lg font-serif font-bold text-[#1a1a1a] block">
-                  퀘스처니티
-                </strong>
-                <span className="text-xs text-[#1a1a1a]/80 font-sans block leading-relaxed">
-                  {addressText}
-                </span>
-                <span className="text-[10px] font-mono font-bold text-[#8C2318] bg-[#e8e6df] px-3 py-1 uppercase tracking-widest inline-block">
-                  혜화역 4번 출구 3분
-                </span>
-              </div>
+            {/* Architectural Photo Banner */}
+            <div className="relative flex-1 bg-[#1a1a1a] overflow-hidden min-h-[260px] group">
+              <img
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80"
+                alt="Questionity Seoul Lounge Venue"
+                className="w-full h-full object-cover filter brightness-75 contrast-105 transition-transform duration-700 ease-out-ace group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/20 to-transparent" />
 
-              {/* Bottom Quick Bar inside map */}
-              <div className="absolute bottom-4 left-4 right-4 bg-[#f4f3ee]/95 backdrop-blur p-3 border border-[#1a1a1a]/20 flex items-center justify-between text-xs z-10 font-sans">
-                <span className="font-semibold text-[#1a1a1a] truncate">
-                  📍 {addressText}
-                </span>
-                <a
-                  href={naverMapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 text-[#8C2318] font-bold uppercase tracking-wider hover:underline ml-3"
-                >
-                  길찾기 ↗
-                </a>
+              {/* Ace Hotel Venue Address Pass Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 bg-[#f4f3ee]/95 backdrop-blur p-4 border border-[#1a1a1a] shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-sans">
+                <div>
+                  <span className="font-mono text-[10px] font-bold text-[#8C2318] uppercase tracking-widest block mb-0.5">
+                    LOCATION ADDRESS
+                  </span>
+                  <p className="text-xs font-serif font-bold text-[#1a1a1a] leading-tight">
+                    {addressText}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={handleCopyAddress}
+                    className="px-3.5 py-2 bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                  >
+                    {copied ? "COPIED!" : "COPY"}
+                  </button>
+                  <a
+                    href={naverMapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 bg-[#8C2318] hover:bg-[#1a1a1a] text-[#f4f3ee] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                  >
+                    MAPS ↗
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT: Detailed Information Card (5 Cols) */}
+          {/* RIGHT: Ace Hotel Space Amenities Grid (5 Cols) */}
           <div
-            className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out lg:col-span-5 bg-white p-8 md:p-10 border border-[#1a1a1a]/15 flex flex-col justify-between space-y-8 transition-transform duration-700 ease-out-ace hover:-translate-y-2 hover:shadow-2xl"
+            className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out lg:col-span-5 bg-[#e8e6df]/60 p-6 md:p-8 border border-[#1a1a1a] flex flex-col justify-between space-y-6"
             style={{ transitionDelay: "0.4s" }}
           >
-            <div className="space-y-6">
-              <div className="space-y-2 pb-6 border-b border-[#1a1a1a]/10">
-                <span className="text-xs font-bold text-[#8C2318] uppercase tracking-widest block">OFFLINE ADDRESS</span>
-                <h3 className="font-serif font-bold text-2xl text-[#1a1a1a]">종로구 창경궁로 270</h3>
-                <p className="text-xs text-[#1a1a1a]/60">서울특별시 종로구 오프라인 독서 아지트</p>
+            <div className="space-y-4">
+              <div className="border-b border-[#1a1a1a]/15 pb-3">
+                <span className="font-mono text-[10px] font-bold text-[#8C2318] uppercase tracking-widest block mb-1">
+                  LOUNGE AMENITIES & FEATURES
+                </span>
+                <h3 className="font-gmarket font-bold text-xl md:text-2xl text-[#1a1a1a]">
+                  혜화 독서 아지트 시설 안내
+                </h3>
               </div>
 
-              {/* Transportation Details */}
-              <div className="space-y-5 text-xs text-[#1a1a1a]/80 font-sans">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#e8e6df] text-[#1a1a1a] flex items-center justify-center text-base shrink-0 font-serif font-bold border border-[#1a1a1a]/20">
-                    🏢
-                  </div>
+              {/* 4 Feature Grid Items */}
+              <div className="space-y-3 font-sans">
+                <div className="bg-[#f4f3ee] p-3.5 border border-[#1a1a1a]/30 flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 shrink-0">
+                    01
+                  </span>
                   <div>
-                    <strong className="text-[#1a1a1a] block font-bold text-sm mb-1 font-serif">오프라인 코워킹 라운지</strong>
-                    <p className="text-[#1a1a1a]/70 leading-relaxed">
-                      창경궁로 270 공간에서 독서 모임 및 작업 가능.
-                    </p>
+                    <strong className="text-xs font-serif font-bold text-[#1a1a1a] block">ANALOG VINYL LOUNGE</strong>
+                    <p className="text-[11px] text-[#1a1a1a]/70 leading-normal mt-0.5">LP 청음 장비 및 고음질 아날로그 오디오 시스템 보유</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#e8e6df] text-[#1a1a1a] flex items-center justify-center text-base shrink-0 font-serif font-bold border border-[#1a1a1a]/20">
-                    🅿️
-                  </div>
+                <div className="bg-[#f4f3ee] p-3.5 border border-[#1a1a1a]/30 flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 shrink-0">
+                    02
+                  </span>
                   <div>
-                    <strong className="text-[#1a1a1a] block font-bold text-sm mb-1 font-serif">주차 지원</strong>
-                    <p className="text-[#1a1a1a]/70 leading-relaxed">
-                      지하 주차장 무료 2시간 지원.
-                    </p>
+                    <strong className="text-xs font-serif font-bold text-[#1a1a1a] block">SPECIALTY COFFEE BAR</strong>
+                    <p className="text-[11px] text-[#1a1a1a]/70 leading-normal mt-0.5">핸드드립 스페셜티 원두 커피 및 블렌딩 티 무제한 제공</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#f4f3ee] p-3.5 border border-[#1a1a1a]/30 flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold bg-[#1a1a1a] text-[#f4f3ee] px-2 py-0.5 shrink-0">
+                    03
+                  </span>
+                  <div>
+                    <strong className="text-xs font-serif font-bold text-[#1a1a1a] block">SILENT READING TABLES</strong>
+                    <p className="text-[11px] text-[#1a1a1a]/70 leading-normal mt-0.5">몰입 독서 및 소규모 오프라인 토론 전용 원목 롱테이블</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#f4f3ee] p-3.5 border border-[#1a1a1a]/30 flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold bg-[#8C2318] text-[#f4f3ee] px-2 py-0.5 shrink-0">
+                    04
+                  </span>
+                  <div>
+                    <strong className="text-xs font-serif font-bold text-[#1a1a1a] block">FREE PARKING PASS</strong>
+                    <p className="text-[11px] text-[#1a1a1a]/70 leading-normal mt-0.5">건물 지하 주차장 2시간 무료 주차 쿠폰 지급</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="space-y-3 pt-6 border-t border-[#1a1a1a]/10">
+            {/* Bottom Buttons */}
+            <div className="grid grid-cols-2 gap-3 pt-2 border-t border-[#1a1a1a]/15 font-mono text-xs">
               <button
                 onClick={handleCopyAddress}
-                className="w-full py-4 bg-[#f4f3ee] hover:bg-[#e8e6df] text-[#1a1a1a] font-bold text-xs uppercase tracking-widest border border-[#1a1a1a] transition-all"
+                className="py-3 bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] font-bold border border-[#1a1a1a] uppercase tracking-wider transition-all cursor-pointer"
               >
-                {copied ? "✅ 주소가 복사되었습니다!" : "📋 주소 복사하기"}
+                {copied ? "COPIED!" : "COPY ADDRESS"}
               </button>
               <a
                 href={naverMapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
+                className="py-3 bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1"
               >
-                네이버 지도로 길찾기 열기 ↗
+                MAP ↗
               </a>
             </div>
           </div>

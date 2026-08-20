@@ -614,9 +614,12 @@ export default function ClubsSection() {
       {/* 1. VIEW OFFER DETAIL MODAL (EDITORIAL DETAILS WITHOUT PAYMENT FORM) */}
       {/* ============================================================================== */}
       {selectedRoom && !showPaymentModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in font-sans">
+        <div
+          onClick={() => setSelectedRoom(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in font-sans cursor-pointer"
+        >
           <div
-            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[#1a1a1a]/20 shadow-2xl relative"
+            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[#1a1a1a]/20 shadow-2xl relative cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header Stamp Bar */}
@@ -860,9 +863,15 @@ export default function ClubsSection() {
       {/* 2. BOOK NOW PAYMENT MODAL (STRICTLY PAYMENT ONLY - ACE HOTEL UI) */}
       {/* ============================================================================== */}
       {showPaymentModal && selectedRoom && selectedRoom.status === "recruiting" && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in font-sans">
+        <div
+          onClick={() => {
+            setShowPaymentModal(false);
+            setSelectedRoom(null);
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in font-sans cursor-pointer"
+        >
           <div
-            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-lg border border-[#1a1a1a]/20 shadow-2xl p-6 md:p-8 space-y-6 relative"
+            className="bg-[#f4f3ee] text-[#1a1a1a] w-full max-w-lg border border-[#1a1a1a]/20 shadow-2xl p-6 md:p-8 space-y-6 relative cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
@@ -876,7 +885,10 @@ export default function ClubsSection() {
                 </h3>
               </div>
               <button
-                onClick={() => setShowPaymentModal(false)}
+                onClick={() => {
+                  setShowPaymentModal(false);
+                  setSelectedRoom(null);
+                }}
                 className="w-8 h-8 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-colors cursor-pointer"
               >
                 ✕

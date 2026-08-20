@@ -40,12 +40,13 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: "모임 둘러보기", href: "/#clubs" },
-    { label: "카테고리 도서", href: "/#categories" },
-    { label: "후기", href: "/#reviews" },
-    { label: "결제방법", href: "/#how-it-works" },
-    { label: "오시는길", href: "/#location" },
-    { label: "FAQ / 문의하기", href: "/faq" },
+    { label: "ABOUT QUESTIONITY", href: "/#about" },
+    { label: "300 BOOKS & CATEGORIES", href: "/#categories" },
+    { label: "EDITORIAL CLUBS", href: "/#clubs" },
+    { label: "HOW IT WORKS", href: "/#how-it-works" },
+    { label: "SEOUL LOUNGE", href: "/#location" },
+    { label: "MEMBER REVIEWS", href: "/#reviews" },
+    { label: "FAQ / INQUIRIES", href: "/faq" },
   ];
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -93,21 +94,16 @@ export default function Navbar() {
         {/* DESKTOP ACE HOTEL TOP BAR NAVIGATION GRID */}
         <div className="hidden lg:flex items-center h-full flex-1">
           
-          {/* 2. LOCATIONS DROPDOWN & LANGUAGE SELECTOR */}
-          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-6 shrink-0 min-w-[170px]">
-            {/* Locations Button */}
-            <button
-              onClick={() => {
-                setLocationsOpen(!locationsOpen);
-                setLocSelectOpen(false);
-                setCodeOpen(false);
-                setLangOpen(false);
-              }}
-              className="flex items-center gap-1.5 font-serif font-bold text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer"
+          {/* 2. ABOUT QUESTIONITY & LANGUAGE SELECTOR (Cell 1) */}
+          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex items-center justify-between gap-4 shrink-0 min-w-[200px]">
+            {/* About Questionity Anchor Link */}
+            <a
+              href="#about"
+              onClick={(e) => handleNavClick(e, "/#about")}
+              className="flex items-center gap-1.5 font-serif font-bold text-xs md:text-sm text-[#1a1a1a] hover:text-[#8C2318] transition-colors cursor-pointer uppercase tracking-tight"
             >
-              <i className={`ri-arrow-down-s-line text-lg transition-transform ${locationsOpen ? "rotate-180" : ""}`} />
-              <span>Locations</span>
-            </button>
+              <span>ABOUT QUESTIONITY</span>
+            </a>
 
             {/* Language Selector */}
             <button
@@ -140,155 +136,77 @@ export default function Navbar() {
                 </button>
               </div>
             )}
-
-            {/* Locations Dropdown Panel */}
-            {locationsOpen && (
-              <div className="absolute top-full left-0 mt-0 w-72 bg-[#f4f3ee] border border-[#1a1a1a] shadow-2xl p-4 z-50 font-sans space-y-4">
-                <div>
-                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-2">
-                    GLOBAL HOTELS & CLUBS
-                  </span>
-                  <div className="grid grid-cols-2 gap-2 text-xs font-serif font-bold text-[#1a1a1a]">
-                    <span className="hover:text-[#8C2318] cursor-pointer">Brooklyn</span>
-                    <span className="hover:text-[#8C2318] cursor-pointer">Kyoto</span>
-                    <span className="hover:text-[#8C2318] cursor-pointer">New York</span>
-                    <span className="hover:text-[#8C2318] cursor-pointer">Sydney</span>
-                    <span className="hover:text-[#8C2318] cursor-pointer">Toronto</span>
-                    <span className="hover:text-[#8C2318] cursor-pointer font-bold text-[#8C2318]">Seoul (Questionity)</span>
-                  </div>
-                </div>
-
-                <div className="border-t border-[#1a1a1a]/15 pt-3 space-y-2">
-                  <span className="text-[10px] font-mono font-bold tracking-widest text-[#1a1a1a]/60 uppercase block mb-1">
-                    SITE NAVIGATION
-                  </span>
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={(e) => {
-                        setLocationsOpen(false);
-                        handleNavClick(e, link.href);
-                      }}
-                      className="block text-xs font-bold text-[#1a1a1a] hover:text-[#8C2318] uppercase tracking-wider py-1"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
-          {/* 3. LOCATION CELL */}
-          <div
-            onClick={() => {
-              setLocSelectOpen(!locSelectOpen);
-              setLocationsOpen(false);
-              setCodeOpen(false);
-              setLangOpen(false);
-            }}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors"
+          {/* 3. CURATED 300 BOOKS CELL -> #categories (Cell 2) */}
+          <a
+            href="#categories"
+            onClick={(e) => handleNavClick(e, "/#categories")}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
-              LOCATION
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+              300 BOOKS
             </span>
             <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">{selectedLocation}</span>
-              <i className="ri-arrow-down-s-line text-sm text-[#1a1a1a]/70 ml-1" />
+              <span className="truncate">300 Books & Categories ∨</span>
             </div>
+          </a>
 
-            {/* Location Selector Dropdown */}
-            {locSelectOpen && (
-              <div className="absolute top-full left-0 mt-0 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
-                {["Choose Location *", "서울 강남 클럽", "서울 성수 클럽", "서울 홍대 클럽", "온라인 클럽"].map((loc) => (
-                  <button
-                    key={loc}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedLocation(loc);
-                      setLocSelectOpen(false);
-                    }}
-                    className={`w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold ${
-                      selectedLocation === loc ? "bg-[#1a1a1a] text-[#f4f3ee]" : ""
-                    }`}
-                  >
-                    {loc}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* 4. CHECK IN CELL */}
-          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
-              CHECK IN
-            </span>
-            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
-              August 19, 2026
-            </span>
-          </div>
-
-          {/* 5. CHECK OUT CELL */}
-          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
-              CHECK OUT
-            </span>
-            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
-              August 20, 2026
-            </span>
-          </div>
-
-          {/* 6. GUESTS CELL */}
-          <div className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
-              GUESTS
-            </span>
-            <span className="text-xs font-sans font-bold text-[#1a1a1a] truncate">
-              1 Adult, 0 Children
-            </span>
-          </div>
-
-          {/* 7. HAVE A CODE? CELL */}
-          <div
-            onClick={() => {
-              setCodeOpen(!codeOpen);
-              setLocationsOpen(false);
-              setLocSelectOpen(false);
-              setLangOpen(false);
-            }}
-            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors"
+          {/* 4. EDITORIAL CLUBS CELL -> #clubs (Cell 3) */}
+          <a
+            href="#clubs"
+            onClick={(e) => handleNavClick(e, "/#clubs")}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
           >
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5">
-              HAVE A CODE?
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+              EDITORIAL CLUBS
             </span>
             <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
-              <span className="truncate">{codeType}</span>
-              <i className="ri-arrow-down-s-line text-sm text-[#1a1a1a]/70 ml-1" />
+              <span className="truncate">Active Reading Clubs ∨</span>
             </div>
+          </a>
 
-            {/* Code Type Dropdown */}
-            {codeOpen && (
-              <div className="absolute top-full left-0 mt-0 w-48 bg-[#f4f3ee] border border-[#1a1a1a] shadow-xl py-1 z-50 font-mono text-xs">
-                {["Select Code Type", "PROMO CODE", "CORPORATE CODE", "GROUP CODE"].map((code) => (
-                  <button
-                    key={code}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCodeType(code);
-                      setCodeOpen(false);
-                    }}
-                    className={`w-full px-3 py-2 text-left hover:bg-[#1a1a1a] hover:text-[#f4f3ee] font-bold ${
-                      codeType === code ? "bg-[#1a1a1a] text-[#f4f3ee]" : ""
-                    }`}
-                  >
-                    {code}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* 5. HOW IT WORKS CELL -> #how-it-works (Cell 4) */}
+          <a
+            href="#how-it-works"
+            onClick={(e) => handleNavClick(e, "/#how-it-works")}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+              HOW IT WORKS
+            </span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
+              <span className="truncate">Membership Guide ∨</span>
+            </div>
+          </a>
+
+          {/* 6. SEOUL LOUNGE CELL -> #location (Cell 5) */}
+          <a
+            href="#location"
+            onClick={(e) => handleNavClick(e, "/#location")}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+              SEOUL LOUNGE
+            </span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
+              <span className="truncate">Lounge & Architecture ∨</span>
+            </div>
+          </a>
+
+          {/* 7. MEMBER REVIEWS CELL -> #reviews (Cell 6) */}
+          <a
+            href="#reviews"
+            onClick={(e) => handleNavClick(e, "/#reviews")}
+            className="relative h-full px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group"
+          >
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318]">
+              MEMBER REVIEWS
+            </span>
+            <div className="flex items-center justify-between text-xs font-sans font-bold text-[#1a1a1a]">
+              <span className="truncate">Stories & Testimonials ∨</span>
+            </div>
+          </a>
 
           {/* USER AUTH MENU (COMPACT INTEGRATED CELL) */}
           <div className="relative h-full px-3 border-r border-[#1a1a1a] flex items-center justify-center shrink-0">

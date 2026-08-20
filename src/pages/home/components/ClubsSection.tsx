@@ -273,7 +273,7 @@ export default function ClubsSection() {
         className={`
           group relative transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer
           ${isRecruiting 
-            ? "bg-[#242424] hover:bg-[#2c2c2c] text-[#f4f3ee] border border-white/15" 
+            ? "bg-[#2d2d2a] hover:bg-[#363633] text-[#f4f3ee] border border-white/15" 
             : "bg-[#e8e6df]/50 hover:bg-white text-[#1a1a1a] border border-[#1a1a1a]/15"}
           ${isHovered ? "-translate-y-1 z-10 shadow-2xl" : "translate-y-0 shadow-xs"}
           ${isDimmed ? "opacity-75" : "opacity-100"}
@@ -468,7 +468,7 @@ export default function ClubsSection() {
 
         {/* ROW 1: 🔥 모집중인 독서모임 (FULL BLEED BLACK BANNER ACROSS FULL SCREEN WIDTH) */}
         {!loading && (activeTab === "all" || activeTab === "recruiting") && recruitingRooms.length > 0 && (
-          <div className="-mx-6 md:-mx-12 lg:-mx-20 px-6 md:px-12 lg:px-20 py-8 md:py-10 bg-[#1a1a1a] text-[#f4f3ee] border-y border-[#1a1a1a] mb-10 md:mb-12 shadow-2xl">
+          <div className="-mx-6 md:-mx-12 lg:-mx-20 px-6 md:px-12 lg:px-20 py-8 md:py-10 bg-[#242422] text-[#f4f3ee] border-y border-[#242422] mb-10 md:mb-12 shadow-2xl">
             <div className="max-w-7xl mx-auto">
               <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
                 <div className="flex items-center gap-2.5">

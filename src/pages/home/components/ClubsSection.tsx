@@ -366,7 +366,7 @@ export default function ClubsSection() {
                   setSelectedRoom(room);
                   setShowPaymentModal(false);
                 }}
-                className="border border-[#f4f3ee]/40 hover:bg-[#f4f3ee] hover:text-[#1a1a1a] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer"
+                className="bg-[#f4f3ee] hover:bg-white text-[#1a1a1a] border border-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer"
               >
                 상세내용
               </button>
@@ -379,7 +379,7 @@ export default function ClubsSection() {
                 setSelectedRoom(room);
                 setShowPaymentModal(false);
               }}
-              className="w-full border border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] text-[#1a1a1a] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer font-sans"
+              className="w-full bg-[#1a1a1a] hover:bg-[#8C2318] text-[#f4f3ee] text-xs font-bold tracking-wider py-2.5 px-3 flex items-center justify-center transition-all duration-300 cursor-pointer font-sans shadow-sm"
             >
               상세내용
             </button>

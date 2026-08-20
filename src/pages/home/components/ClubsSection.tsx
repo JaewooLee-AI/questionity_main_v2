@@ -466,52 +466,54 @@ export default function ClubsSection() {
           </div>
         )}
 
-        {/* ROW 1: 🔥 모집중인 독서모임 (SOLO MATTE BLACK PANEL BOX FOR RECRUITING ONLY) */}
+        {/* ROW 1: 🔥 모집중인 독서모임 (FULL BLEED BLACK BANNER ACROSS FULL SCREEN WIDTH) */}
         {!loading && (activeTab === "all" || activeTab === "recruiting") && recruitingRooms.length > 0 && (
-          <div className="mb-10 md:mb-12 bg-[#1a1a1a] text-[#f4f3ee] p-6 md:p-8 border border-[#1a1a1a] shadow-2xl">
-            <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
-              <div className="flex items-center gap-2.5">
-                <span className="text-lg">🔥</span>
-                <h3 className="font-serif font-bold text-2xl text-[#f4f3ee]">
-                  모집중인 독서모임
-                </h3>
-                <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
-                  {recruitingRooms.length} CLUBS RECRUITING
-                </span>
+          <div className="-mx-6 md:-mx-12 lg:-mx-20 px-6 md:px-12 lg:px-20 py-8 md:py-10 bg-[#1a1a1a] text-[#f4f3ee] border-y border-[#1a1a1a] mb-10 md:mb-12 shadow-2xl">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[#f4f3ee]/20 font-sans">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-lg">🔥</span>
+                  <h3 className="font-serif font-bold text-2xl text-[#f4f3ee]">
+                    모집중인 독서모임
+                  </h3>
+                  <span className="text-xs font-mono font-bold px-2.5 py-0.5 bg-[#8C2318] text-[#f4f3ee]">
+                    {recruitingRooms.length} CLUBS RECRUITING
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* Ace Hotel Floating Circular Arrow Navigation Carousel Wrapper */}
-            <div className="relative group/carousel">
-              {recruitingRooms.length > 1 && (
-                <>
-                  <button
-                    onClick={() => scrollRow(recruitingRowRef, "left")}
-                    className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
-                    aria-label="Previous"
-                  >
-                    <i className="ri-arrow-left-line text-xl font-bold" />
-                  </button>
-                  <button
-                    onClick={() => scrollRow(recruitingRowRef, "right")}
-                    className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
-                    aria-label="Next"
-                  >
-                    <i className="ri-arrow-right-line text-xl font-bold" />
-                  </button>
-                </>
-              )}
+              {/* Ace Hotel Floating Circular Arrow Navigation Carousel Wrapper */}
+              <div className="relative group/carousel">
+                {recruitingRooms.length > 1 && (
+                  <>
+                    <button
+                      onClick={() => scrollRow(recruitingRowRef, "left")}
+                      className="absolute -left-3 sm:-left-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                      aria-label="Previous"
+                    >
+                      <i className="ri-arrow-left-line text-xl font-bold" />
+                    </button>
+                    <button
+                      onClick={() => scrollRow(recruitingRowRef, "right")}
+                      className="absolute -right-3 sm:-right-6 top-[38%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f4f3ee] text-[#1a1a1a] shadow-xl border border-white/20 flex items-center justify-center hover:bg-[#8C2318] hover:text-[#f4f3ee] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                      aria-label="Next"
+                    >
+                      <i className="ri-arrow-right-line text-xl font-bold" />
+                    </button>
+                  </>
+                )}
 
-              <div
-                ref={recruitingRowRef}
-                className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              >
-                {recruitingRooms.map((room, idx) => (
-                  <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
-                    {renderRoomCard(room, idx)}
-                  </div>
-                ))}
+                <div
+                  ref={recruitingRowRef}
+                  className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
+                  {recruitingRooms.map((room, idx) => (
+                    <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
+                      {renderRoomCard(room, idx)}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

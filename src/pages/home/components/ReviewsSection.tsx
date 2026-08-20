@@ -127,12 +127,40 @@ export default function ReviewsSection() {
     return item.likeCount + (likesMap[item.id] || 0);
   };
 
+  const getBaseBookTitle = (title: string): string => {
+    if (!title) return "";
+    let base = title.split("-")[0].split(":")[0].split("(")[0].split("[")[0].trim();
+    if (base.includes("오뒷세이아") || base.includes("오디세이아")) return "오디세이아";
+    if (base.includes("세네카")) return "세네카";
+    return base;
+  };
+
   const uniqueReviews = useMemo(() => {
-    return reviewList.map((item) => ({
-      ...item,
-      displayTitle: item.bookTitle,
-    }));
+    const seen = new Set<string>();
+    return reviewList
+      .map((item) => {
+        const cleanT = getBaseBookTitle(item.bookTitle);
+        return {
+          ...item,
+          displayTitle: cleanT || item.bookTitle,
+        };
+      })
+      .filter((item) => {
+        const key = item.displayTitle;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
   }, [reviewList]);
+
+  // Find all member reviews for the currently selected book
+  const selectedBookReviews = useMemo(() => {
+    if (!selectedReview) return [];
+    const cleanTarget = getBaseBookTitle(selectedReview.bookTitle);
+    return reviewList.filter(
+      (r) => getBaseBookTitle(r.bookTitle) === cleanTarget || r.bookTitle === selectedReview.bookTitle
+    );
+  }, [selectedReview, reviewList]);
 
   // Smooth scroll carousel helper (Left / Right)
   const scrollRow = (direction: "left" | "right") => {
@@ -164,7 +192,7 @@ export default function ReviewsSection() {
             멤버들의 솔직한 독서 후기
           </h2>
           <p className="text-[#1a1a1a]/70 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-sans tracking-tightest">
-            READ MORE를 클릭하시면 멤버들의 생생한 독후감 풀스토리를 감상하실 수 있습니다.
+            READ MORE를 클릭하시면 동일한 도서에 대한 멤버들의 다채로운 독후감을 감상하실 수 있습니다.
           </p>
         </div>
 
@@ -199,6 +227,10 @@ export default function ReviewsSection() {
               const currentLikes = getLikes(item);
               const isHovered = hoveredReviewId === `${item.id}-${index}`;
               const isDimmed = hoveredReviewId !== null && !isHovered;
+              
+              const sameBookCount = reviewList.filter(
+                (r) => getBaseBookTitle(r.bookTitle) === ((item as any).displayTitle || item.bookTitle)
+              ).length;
 
               return (
                 <div
@@ -225,6 +257,11 @@ export default function ReviewsSection() {
                       <div className="absolute top-2.5 right-2.5 bg-black/80 text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/10 shadow-sm">
                         REV NO. {String(index + 1).padStart(3, "0")}
                       </div>
+                      {sameBookCount > 1 && (
+                        <div className="absolute top-2.5 left-2.5 bg-[#8C2318] text-[#f4f3ee] text-[9px] font-mono font-bold px-2 py-0.5 tracking-wider uppercase border border-white/20 shadow-sm">
+                          🔥 {sameBookCount} REVIEWS
+                        </div>
+                      )}
                     </div>
 
                     {/* MIDDLE: Compact Text Details (Book Title, Member Meta & Short Excerpt) */}
@@ -265,7 +302,7 @@ export default function ReviewsSection() {
                       onClick={() => setSelectedReview(item)}
                       className="font-mono font-bold text-xs uppercase tracking-widest text-[#1a1a1a] group-hover:text-[#8C2318] underline underline-offset-4 decoration-1 hover:decoration-2 transition-all cursor-pointer pt-2.5"
                     >
-                      READ MORE
+                      READ MORE {sameBookCount > 1 ? `(${sameBookCount})` : ""}
                     </button>
                     <button
                       onClick={(e) => handleLike(item.id, e)}
@@ -283,10 +320,10 @@ export default function ReviewsSection() {
         </div>
       </div>
 
-      {/* Ace Hotel Editorial Review Detail Card Modal */}
+      {/* Ace Hotel Editorial Review Detail Card Modal (Multi-Review Supported) */}
       {selectedReview && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-[#f4f3ee] text-[#1a1a1a] border border-[#1a1a1a] w-full max-w-lg p-6 md:p-8 shadow-2xl relative font-sans">
+          <div className="bg-[#f4f3ee] text-[#1a1a1a] border border-[#1a1a1a] w-full max-w-xl p-6 md:p-8 shadow-2xl relative font-sans">
             <button
               onClick={() => setSelectedReview(null)}
               className="absolute top-4 right-4 text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors cursor-pointer"
@@ -294,10 +331,13 @@ export default function ReviewsSection() {
               <i className="ri-close-line text-2xl" />
             </button>
 
-            {/* Ace Hotel Tag */}
-            <div className="mb-4">
+            {/* Ace Hotel Tag & Review Count Badge */}
+            <div className="mb-4 flex items-center justify-between">
               <span className="font-mono text-[10px] font-bold text-[#8C2318] bg-[#e8e6df] px-3 py-1 uppercase tracking-widest border border-[#1a1a1a]/20">
-                QUESTIONITY MEMBER TESTIMONIAL
+                QUESTIONITY MEMBER TESTIMONIALS
+              </span>
+              <span className="font-mono text-xs font-bold text-[#f4f3ee] bg-[#8C2318] px-2.5 py-1 uppercase tracking-wider">
+                총 {selectedBookReviews.length}개의 멤버 후기
               </span>
             </div>
 
@@ -328,38 +368,50 @@ export default function ReviewsSection() {
               </div>
             </div>
 
-            {/* Full Review Content */}
-            <div className="mb-6">
-              <div className="flex items-center gap-1 mb-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <i
-                    key={i}
-                    className={`ri-star-${i < selectedReview.rating ? "fill" : "line"} text-[#8C2318] text-sm`}
-                  />
-                ))}
-                <span className="text-xs font-mono font-bold text-[#1a1a1a] ml-1">
-                  {selectedReview.rating}.0 / 5.0
-                </span>
-              </div>
-              <div className="text-xs sm:text-sm text-[#1a1a1a] leading-relaxed italic bg-white p-5 border border-[#1a1a1a]/20 max-h-60 overflow-y-auto">
-                &ldquo;{selectedReview.content}&rdquo;
-              </div>
-            </div>
+            {/* Stacked Full Member Reviews List */}
+            <div className="space-y-4 max-h-[55vh] overflow-y-auto pr-1">
+              {selectedBookReviews.map((rev, idx) => (
+                <div key={rev.id} className="bg-white p-5 border border-[#1a1a1a]/20 shadow-xs">
+                  {/* Rating & Review Index Header */}
+                  <div className="flex items-center justify-between mb-2 font-mono text-xs border-b border-[#1a1a1a]/10 pb-2">
+                    <span className="font-bold text-[#8C2318] text-[11px]">
+                      REVIEW #{String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <i
+                          key={i}
+                          className={`ri-star-${i < rev.rating ? "fill" : "line"} text-[#8C2318] text-xs`}
+                        />
+                      ))}
+                      <span className="font-bold text-[#1a1a1a] text-[11px] ml-1">
+                        {rev.rating}.0 / 5.0
+                      </span>
+                    </div>
+                  </div>
 
-            {/* Author & Like Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-[#1a1a1a]/15 font-sans">
-              <div>
-                <p className="text-sm font-serif font-bold text-[#1a1a1a]">{selectedReview.name}</p>
-                <p className="text-xs text-[#1a1a1a]/60">{selectedReview.role} &bull; {selectedReview.clubName}</p>
-              </div>
+                  {/* Review Text */}
+                  <p className="text-xs sm:text-sm text-[#1a1a1a] leading-relaxed italic mb-4 pt-1">
+                    &ldquo;{rev.content}&rdquo;
+                  </p>
 
-              <button
-                onClick={(e) => handleLike(selectedReview.id, e)}
-                className="flex items-center gap-2 px-4 py-2 bg-[#8C2318] text-[#f4f3ee] hover:bg-[#1a1a1a] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-sm"
-              >
-                <i className="ri-heart-3-fill text-xs" />
-                <span>LIKE {getLikes(selectedReview)}</span>
-              </button>
+                  {/* Member Info & Like Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-[#1a1a1a]/10 font-sans">
+                    <div>
+                      <p className="text-xs font-serif font-bold text-[#1a1a1a]">{rev.name}</p>
+                      <p className="text-[11px] text-[#1a1a1a]/60">{rev.role} &bull; {rev.clubName}</p>
+                    </div>
+
+                    <button
+                      onClick={(e) => handleLike(rev.id, e)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-[#8C2318] text-[#f4f3ee] hover:bg-[#1a1a1a] font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
+                    >
+                      <i className="ri-heart-3-fill text-xs" />
+                      <span>LIKE {getLikes(rev)}</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

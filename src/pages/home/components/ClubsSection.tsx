@@ -469,34 +469,40 @@ export default function ClubsSection() {
                   {recruitingRooms.length} CLUBS RECRUITING
                 </span>
               </div>
-              {recruitingRooms.length > 3 && (
-                <div className="flex items-center gap-2 font-mono">
+            </div>
+
+            {/* Ace Hotel Floating Circular Arrow Navigation Carousel Wrapper */}
+            <div className="relative group/carousel">
+              {recruitingRooms.length > 1 && (
+                <>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "left")}
-                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Previous"
                   >
-                    &lt;
+                    <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(recruitingRowRef, "right")}
-                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
+                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Next"
                   >
-                    &gt;
+                    <i className="ri-arrow-right-line text-xl font-bold" />
                   </button>
-                </div>
+                </>
               )}
-            </div>
 
-            <div
-              ref={recruitingRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {recruitingRooms.map((room, idx) => (
-                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
-                  {renderRoomCard(room, idx)}
-                </div>
-              ))}
+              <div
+                ref={recruitingRowRef}
+                className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {recruitingRooms.map((room, idx) => (
+                  <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
+                    {renderRoomCard(room, idx)}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -514,34 +520,40 @@ export default function ClubsSection() {
                   {inProgressRooms.length} CLUBS ACTIVE
                 </span>
               </div>
-              {inProgressRooms.length > 3 && (
-                <div className="flex items-center gap-2 font-mono">
+            </div>
+
+            {/* Ace Hotel Floating Circular Arrow Navigation Carousel Wrapper */}
+            <div className="relative group/carousel">
+              {inProgressRooms.length > 1 && (
+                <>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "left")}
-                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Previous"
                   >
-                    &lt;
+                    <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(inProgressRowRef, "right")}
-                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
+                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Next"
                   >
-                    &gt;
+                    <i className="ri-arrow-right-line text-xl font-bold" />
                   </button>
-                </div>
+                </>
               )}
-            </div>
 
-            <div
-              ref={inProgressRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {inProgressRooms.map((room, idx) => (
-                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
-                  {renderRoomCard(room, idx)}
-                </div>
-              ))}
+              <div
+                ref={inProgressRowRef}
+                className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {inProgressRooms.map((room, idx) => (
+                  <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
+                    {renderRoomCard(room, idx)}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -559,34 +571,40 @@ export default function ClubsSection() {
                   {completedRooms.length} CLUBS ARCHIVED
                 </span>
               </div>
-              {completedRooms.length > 3 && (
-                <div className="flex items-center gap-2 font-mono">
+            </div>
+
+            {/* Ace Hotel Floating Circular Arrow Navigation Carousel Wrapper */}
+            <div className="relative group/carousel">
+              {completedRooms.length > 1 && (
+                <>
                   <button
                     onClick={() => scrollRow(completedRowRef, "left")}
-                    className="w-9 h-9 border border-[#1a1a1a] flex items-center justify-center text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all text-xs font-bold cursor-pointer"
+                    className="absolute -left-3 sm:-left-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Previous"
                   >
-                    &lt;
+                    <i className="ri-arrow-left-line text-xl font-bold" />
                   </button>
                   <button
                     onClick={() => scrollRow(completedRowRef, "right")}
-                    className="w-9 h-9 bg-[#1a1a1a] text-[#f4f3ee] flex items-center justify-center font-bold hover:bg-[#8C2318] transition-all text-xs cursor-pointer shadow-sm"
+                    className="absolute -right-3 sm:-right-6 top-[22%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white text-[#1a1a1a] shadow-xl border border-black/10 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+                    aria-label="Next"
                   >
-                    &gt;
+                    <i className="ri-arrow-right-line text-xl font-bold" />
                   </button>
-                </div>
+                </>
               )}
-            </div>
 
-            <div
-              ref={completedRowRef}
-              className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {completedRooms.map((room, idx) => (
-                <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
-                  {renderRoomCard(room, idx)}
-                </div>
-              ))}
+              <div
+                ref={completedRowRef}
+                className="flex gap-6 overflow-x-auto scroll-smooth pb-4"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {completedRooms.map((room, idx) => (
+                  <div key={room.id} className="w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0">
+                    {renderRoomCard(room, idx)}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}

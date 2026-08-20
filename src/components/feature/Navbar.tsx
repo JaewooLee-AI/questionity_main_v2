@@ -6,9 +6,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [locationsOpen, setLocationsOpen] = useState(false);
-  const [locSelectOpen, setLocSelectOpen] = useState(false);
-  const [codeOpen, setCodeOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const navRef = useRef<HTMLDivElement>(null);
@@ -17,9 +14,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setLocationsOpen(false);
-        setLocSelectOpen(false);
-        setCodeOpen(false);
         setUserMenuOpen(false);
       }
     };
@@ -32,16 +26,6 @@ export default function Navbar() {
     setUserMenuOpen(false);
     navigate("/");
   };
-
-  const navLinks = [
-    { label: "ABOUT QUESTIONITY", href: "/#about" },
-    { label: "300 BOOKS & CATEGORIES", href: "/#categories" },
-    { label: "EDITORIAL CLUBS", href: "/#clubs" },
-    { label: "HOW IT WORKS", href: "/#how-it-works" },
-    { label: "SEOUL LOUNGE", href: "/#location" },
-    { label: "MEMBER REVIEWS", href: "/#reviews" },
-    { label: "FAQ / INQUIRIES", href: "/faq" },
-  ];
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (window.location.pathname === "/") {
@@ -76,7 +60,7 @@ export default function Navbar() {
         <Link
           to="/"
           onClick={handleLogoClick}
-          className="h-full px-4 md:px-7 flex items-center justify-center border-r border-[#1a1a1a] bg-[#e8e6df] hover:bg-[#dedcd4] transition-colors shrink-0"
+          className="h-full px-4 md:px-6 flex items-center justify-center border-r border-[#1a1a1a] bg-[#e8e6df] hover:bg-[#dedcd4] transition-colors shrink-0"
         >
           <div className="border-[2.5px] border-[#1a1a1a] px-2.5 py-1 bg-transparent hover:bg-[#1a1a1a] hover:text-[#f4f3ee] transition-all">
             <span className="font-serif font-black text-sm md:text-base tracking-tighter uppercase leading-none block">
@@ -92,7 +76,7 @@ export default function Navbar() {
           <a
             href="#about"
             onClick={(e) => handleNavClick(e, "/#about")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[140px] lg:min-w-[160px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[150px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#8C2318] uppercase block mb-0.5 group-hover:text-[#1a1a1a] whitespace-nowrap">
               BRAND
@@ -106,7 +90,7 @@ export default function Navbar() {
           <a
             href="#categories"
             onClick={(e) => handleNavClick(e, "/#categories")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[135px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               300 BOOKS
@@ -120,7 +104,7 @@ export default function Navbar() {
           <a
             href="#clubs"
             onClick={(e) => handleNavClick(e, "/#clubs")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[135px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               EDITORIAL CLUBS
@@ -134,7 +118,7 @@ export default function Navbar() {
           <a
             href="#how-it-works"
             onClick={(e) => handleNavClick(e, "/#how-it-works")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[110px] lg:min-w-[120px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               HOW IT WORKS
@@ -148,7 +132,7 @@ export default function Navbar() {
           <a
             href="#location"
             onClick={(e) => handleNavClick(e, "/#location")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[110px] lg:min-w-[120px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               SEOUL LOUNGE
@@ -162,7 +146,7 @@ export default function Navbar() {
           <a
             href="#reviews"
             onClick={(e) => handleNavClick(e, "/#reviews")}
-            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[130px] lg:min-w-[140px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
+            className="relative h-full px-3 md:px-4 border-r border-[#1a1a1a] flex flex-col justify-center flex-1 min-w-[120px] lg:min-w-[130px] cursor-pointer hover:bg-[#dedcd4] transition-colors group shrink-0"
           >
             <span className="text-[9px] font-mono font-bold tracking-widest text-[#1a1a1a]/70 uppercase block mb-0.5 group-hover:text-[#8C2318] whitespace-nowrap">
               MEMBER REVIEWS
@@ -172,8 +156,8 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* USER AUTH MENU (COMPACT INTEGRATED CELL) */}
-          <div className="relative h-full px-3 border-r border-[#1a1a1a] flex items-center justify-center shrink-0">
+          {/* USER AUTH LOGIN CELL */}
+          <div className="relative h-full px-3.5 border-r border-[#1a1a1a] flex items-center justify-center shrink-0">
             {!isLoading && isAuthenticated && user ? (
               <div className="relative">
                 <button
@@ -216,6 +200,25 @@ export default function Navbar() {
             )}
           </div>
 
+        </div>
+
+        {/* 8. ACE HOTEL SIGN UP BUTTON CELL (RIGHTMOST CELL - MATCHING ACE HOTEL BOOK NOW UI) */}
+        <div className="hidden md:flex h-full shrink-0">
+          {!isLoading && isAuthenticated ? (
+            <Link
+              to="/mypage"
+              className="h-full px-5 md:px-7 bg-[#8C2318] hover:bg-[#1a1a1a] text-[#f4f3ee] font-mono text-xs md:text-sm font-bold uppercase tracking-widest flex items-center justify-center border-l border-[#1a1a1a] transition-colors shrink-0 shadow-sm"
+            >
+              MY PAGE
+            </Link>
+          ) : (
+            <Link
+              to="/signup"
+              className="h-full px-5 md:px-7 bg-[#8C2318] hover:bg-[#1a1a1a] text-[#f4f3ee] font-mono text-xs md:text-sm font-bold uppercase tracking-widest flex items-center justify-center border-l border-[#1a1a1a] transition-colors shrink-0 shadow-sm"
+            >
+              SIGN UP
+            </Link>
+          )}
         </div>
 
         {/* MOBILE HAMBURGER BUTTON */}
@@ -314,8 +317,15 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Bottom Controls (User Auth) */}
-          <div className="border-t border-[#1a1a1a]/15 pt-3 flex items-center justify-end font-mono text-xs">
+          {/* Bottom Controls (SIGN UP & User Auth) */}
+          <div className="border-t border-[#1a1a1a]/15 pt-3 flex items-center justify-between font-mono text-xs">
+            <Link
+              to="/signup"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-2 bg-[#8C2318] text-[#f4f3ee] font-bold uppercase tracking-widest hover:bg-[#1a1a1a] transition-colors"
+            >
+              SIGN UP ↗
+            </Link>
 
             {isAuthenticated && user ? (
               <div className="flex items-center gap-3">
@@ -330,7 +340,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="font-bold text-[#1a1a1a] underline uppercase"
               >
-                LOGIN / SIGNUP
+                LOGIN
               </Link>
             )}
           </div>
